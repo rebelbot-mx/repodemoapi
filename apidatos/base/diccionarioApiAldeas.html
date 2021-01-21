@@ -1,0 +1,268 @@
+<!DOCTYPE HTML><html lang='en' dir='ltr'>
+    <head>
+        <meta charset="utf-8" /><meta name="referrer" content="no-referrer" />
+        <meta name="robots" content="noindex,nofollow" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="jquery_ui.css?v=4.8.5" />
+
+        <link rel="stylesheet" type="text/css" href="print.css?v=4.8.5" />
+
+       <!-- <link rel="stylesheet" type="text/css" href="phpmyadmin.css?v=4.8.5" />
+       -->
+        <title>Print view - phpMyAdmin 4.8.5</title>
+
+      </head>
+      <body>
+    <h2>cargos</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">nombrecargo</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">descripcion</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">activo</td><td class="nowrap" lang="en" dir="ltr">tinyint(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>6</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    
+  
+        <h2>denuncialegal</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">incidenteid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Llave secundaria, es el identificador del incidente</td>
+    </tr><tr><td class="nowrap">foliodenuncia</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Folio de la denuncia</td>
+    </tr><tr><td class="nowrap">programa</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">consenso</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Texto para redactar conclusiones del consenso</td>
+    </tr><tr><td class="nowrap">consensodocto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos del consenso </td>
+    </tr><tr><td class="nowrap">soportecontacto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Contacto al soporte legal</td>
+    </tr><tr><td class="nowrap">soporteantes</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>acompaÃ±amiento del soporte antes</td>
+    </tr><tr><td class="nowrap">soportedurante</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>acompaÃ±amiento del soporte legal durante</td>
+    </tr><tr><td class="nowrap">soporteemocionalcontacto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>contacto con el soporte emocional</td>
+    </tr><tr><td class="nowrap">soporteemocionalantes</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>soporte emocional antes </td>
+    </tr><tr><td class="nowrap">soporteemocionaldurante</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>soporte emocional durante</td>
+    </tr><tr><td class="nowrap">medidasd</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Se han tomado medidas : SI,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">medidasd_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de las medidas tomadas</td>
+    </tr><tr><td class="nowrap">medidastexto</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Texto acerca de las medidas tomadas</td>
+    </tr><tr><td class="nowrap">fechaCreacion</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>fecha de creacion</td>
+    </tr><tr><td class="nowrap">fechaUpdate</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>fecha de actualizacion</td>
+    </tr><tr><td class="nowrap">estado</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Estado de la denuncia ABIERTO O CERRADO</td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>0</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>doctos</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Identificador unico del registro y llave primaria</td>
+    </tr><tr><td class="nowrap">incidenteId</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Llave secundaria, es el identificador del incidente</td>
+    </tr><tr><td class="nowrap">nombreOriginal</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Nombre del documento</td>
+    </tr><tr><td class="nowrap">ext</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>tipo de extesion del documento</td>
+    </tr><tr><td class="nowrap">fechaCreacion</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>Fecha en la que se creo el documento</td>
+    </tr><tr><td class="nowrap">fechaUpdate</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>Fecha en la que se actualizo el documento</td>
+    </tr><tr><td class="nowrap">nombreinterno</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Nombre que se le asigna en servidor</td>
+    </tr><tr><td class="nowrap">directorio</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>carpeta en la que se aloja dentro del servidor</td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>34</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>evidencias</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">descripcion</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ubicacion</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">tipo</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">investigacionid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">activo</td><td class="nowrap" lang="en" dir="ltr">bit(1)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>3</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>incidente</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">bigint(20)</td><td>No</td><td class="nowrap"></td>    <td>Identificador unico del registro y llave primaria</td>
+    </tr><tr><td class="nowrap">folio</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Folio que identifica el incidente durante el proceso</td>
+    </tr><tr><td class="nowrap">programa</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Programa en donde se genero el incidente</td>
+    </tr><tr><td class="nowrap">fechaAlta</td><td class="nowrap" lang="en" dir="ltr">datetime</td><td>No</td><td class="nowrap"></td>    <td>fecha de creacion del registro</td>
+    </tr><tr><td class="nowrap">fechaUpdate</td><td class="nowrap" lang="en" dir="ltr">datetime</td><td>No</td><td class="nowrap"></td>    <td>Fecha de Actualizacion del registro</td>
+    </tr><tr><td class="nowrap">usuarioCreador</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>usuario que creo el. registro</td>
+    </tr><tr><td class="nowrap">involucrados</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Texto en donde se describen los involucrados</td>
+    </tr><tr><td class="nowrap">elaboro</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Nombre si se conoce del denunciante</td>
+    </tr><tr><td class="nowrap">cargousuario</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>cargo del denunciante</td>
+    </tr><tr><td class="nowrap">registrohechos</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Texto en donde se registran los hechos</td>
+    </tr><tr><td class="nowrap">prefildelagresor</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Perfil del Agresor : Adulto a niÃ±a/niÃ±o o Entre pares</td>
+    </tr><tr><td class="nowrap">paadultocolaborador</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Opciones: Colaborador SOS, Familiar o Adulto Externo</td>
+    </tr><tr><td class="nowrap">paadultocolaboradortipo</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Opciones a escoger de COlaborador SOS u Opciones de Famila</td>
+    </tr><tr><td class="nowrap">pafamilia</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>obsoleto</td>
+    </tr><tr><td class="nowrap">pafamiliatipo</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>obsoleto</td>
+    </tr><tr><td class="nowrap">adultoexterno</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>obsoleto</td>
+    </tr><tr><td class="nowrap">perfilvictima</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>NiÃ±a o niÃ±o</td>
+    </tr><tr><td class="nowrap">recibeayuda</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Es apoyado o no por SOS</td>
+    </tr><tr><td class="nowrap">medidasproinmediatas</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Texto para describir las medidas integrales que se han tomado en primer instancia</td>
+    </tr><tr><td class="nowrap">incidenteconfirmado</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Primera evaluaciÃ³n del incidente</td>
+    </tr><tr><td class="nowrap">testigos</td><td class="nowrap" lang="en" dir="ltr">text</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Texto para la descripcion de los testigos involucrados en el incidente</td>
+    </tr><tr><td class="nowrap">nnj</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>obsoleto</td>
+    </tr><tr><td class="nowrap">etapa</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>etapa actual en la que se encuentra el incidente-uso grafico</td>
+    </tr><tr><td class="nowrap">activo</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Estado del status</td>
+    </tr><tr><td class="nowrap">etapauno</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Para uso grafico  , muestr u oculta el boton de valoracion inicial</td>
+    </tr><tr><td class="nowrap">etapados</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td> 	Para uso grafico , muestr u oculta el boton de valoracion Integral</td>
+    </tr><tr><td class="nowrap">etapatres</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td> 	Para uso grafico , muestr u oculta el boton de seguimiento</td>
+    </tr><tr><td class="nowrap">etapacuatro</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td> 	Para uso grafico , muestr u oculta el boton de cierre</td>
+    </tr><tr><td class="nowrap">coloretapauno</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Para manejo del color actual del boton de valoracion inicial</td>
+    </tr><tr><td class="nowrap">coloretapados</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Para manejo del color actual del boton de valoracion Integral</td>
+    </tr><tr><td class="nowrap">coloretapatres</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Para manejo del color actual del boton de seguimiento</td>
+    </tr><tr><td class="nowrap">coloretapacuatro</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Para manejo del color actual del boton de cierre</td>
+    </tr><tr><td class="nowrap">textocierre</td><td class="nowrap" lang="en" dir="ltr">text</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Texto del dictamen del cierre del incidente</td>
+    </tr><tr><td class="nowrap">estado</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Estado de este incidente, puede ser abierto , cerrado o cerrado por no ser incidente</td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>2</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>investigacion</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td> 	Identificador unico del registro y llave primaria</td>
+    </tr><tr><td class="nowrap">incidenteid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Llave secundaria, es el identificador del incidente </td>
+    </tr><tr><td class="nowrap">folioinvestigacion</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Folio de la Investigacion</td>
+    </tr><tr><td class="nowrap">programa</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">registroincidentes_docto</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Id del docuemento en la tabla Doctos</td>
+    </tr><tr><td class="nowrap">cartautorizacion_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Id del docuemento en la tabla Doctos</td>
+    </tr><tr><td class="nowrap">terminosreferencia_doctp</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Id del docuemento en la tabla Doctos</td>
+    </tr><tr><td class="nowrap">plan_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Id del docuemento en la tabla Doctos</td>
+    </tr><tr><td class="nowrap">informe_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Id del docuemento en la tabla Doctos</td>
+    </tr><tr><td class="nowrap">fechaCreacion</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>Fe cha de la creacion del Registro</td>
+    </tr><tr><td class="nowrap">fechaUpdate</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>Fecha de actualizacion del registro</td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>0</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>programas</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">programa</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">abreviatura</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">prefijofolio</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>7</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>roles</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">NOMBREDELROL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADECATALOGOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJADECATALOGOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIOnDECATALOGOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADEUSUARIOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJADEUSUARIOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONDEUSUARIOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADEROL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJADEROL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONDEROL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADEVALORACIONINICIAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONREAPERTURAVALORACIONINICIAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDITARANTESDECIERREDELAVALORACIONINICIAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJAVALORACIONINICIAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONVALORACIONINICIAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONVALORACIONINICIAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADEVALORACIONINTEGRAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONREAPERTURAVALORACIONINTEGRAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDITARANTESDECIERREDELAVALORACIONINTEGRAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJAVALORACIONINTEGRAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONVALORACIONINTEGRAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONVALORACIONINTEGRAL</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADESEGUIMIENTO</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONDESEGUIMIENTO</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDITARDESEGUIMIENTO</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJADESEGUIMIENTO</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONDESEGUIMIENTO</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONDESEGUIMIENTO</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADECIERRE</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONDECIERRE</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDICIONDECIERRE</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJADECIERRE</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONDECIERRE</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONDECIERRE</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADENUNCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFCACIONDENUNCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDICIONDENUNCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJADENUNCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONDENUNCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONDENUNCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTAINVESTIGACION</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONINVESTIGACION</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDICIONINVESTIGACION</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJAINVESTIGACION</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONINVESTIGACION</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONINVESTIGACION</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTAEVIDENCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFCACIONEVIDENCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">EDICIONEVIDENCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">BAJAEVIDENCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONEVIDENCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONEVIDENCIA</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ALTADEARCHIVOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">MODIFICACIONARCHIVOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">IMPRESIONARCHIVOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">VISUALIZACIONARCHIVOS</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">ACTIVO</td><td class="nowrap" lang="en" dir="ltr">bit(1)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>16</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>seguimiento</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Identificador unico del registro y llave primaria</td>
+    </tr><tr><td class="nowrap">incidenteid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Llave secundaria, es el identificador del incidente</td>
+    </tr><tr><td class="nowrap">status</td><td class="nowrap" lang="en" dir="ltr">text</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Texto para inidicar el Estatus de esta parte del proceso</td>
+    </tr><tr><td class="nowrap">plan</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Estatus del Plan : Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">documentos</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">notificaciondif</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Estatus de la notificacion al DIF si es que aplica : Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">notificacionautoridad</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Estatus de la notificacion al Autoridad si es que aplica : Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">notificacionpfn</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Estatus de la Notificaion al PFN : Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">notificaciodenunciante</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Estatus de la notificaion  a la persona que hizo la denuncia : Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">actavaloracion</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Estatus del Acta de Valoracion: Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">planrecuperacion</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Estatus del Plan de recuperacion : Si,NO,POR CONFIRMAR</td>
+    </tr><tr><td class="nowrap">actavaloracion_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de acta de valoracion</td>
+    </tr><tr><td class="nowrap">documentos_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de los documentos oficiales </td>
+    </tr><tr><td class="nowrap">notificaciondenunciante_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de la notificacion al denunciante</td>
+    </tr><tr><td class="nowrap">notificacionautoridad_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de la notificacion a la autoridad</td>
+    </tr><tr><td class="nowrap">notificaciondif_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de la notificacion al DIF</td>
+    </tr><tr><td class="nowrap">notificacionpfn_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos de la notificacion al PFN</td>
+    </tr><tr><td class="nowrap">plan_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos del Plan y cronograma</td>
+    </tr><tr><td class="nowrap">planrecuperacion_docto</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos del Plan de recuperacion</td>
+    </tr><tr><td class="nowrap">protocolosos</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Estatus de la respuesta (Denuncia o investigacion) SI, NO, PENDIENTE</td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>2</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>testigoscierre</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Identificador unico del registro y llave primaria</td>
+    </tr><tr><td class="nowrap">incidenteid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Llave secundaria, es el identificador del incidente</td>
+    </tr><tr><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">text</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Nombre del testigo que participa en el cierre del incidente</td>
+    </tr><tr><td class="nowrap">cargo</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Cargo  que ostenta el testigo </td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>0</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>users</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">bigint(20)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">name</td><td class="nowrap" lang="en" dir="ltr">varchar(191)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">email</td><td class="nowrap" lang="en" dir="ltr">varchar(191)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">email_verified_at</td><td class="nowrap" lang="en" dir="ltr">timestamp</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">password</td><td class="nowrap" lang="en" dir="ltr">varchar(191)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">remember_token</td><td class="nowrap" lang="en" dir="ltr">varchar(100)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">created_at</td><td class="nowrap" lang="en" dir="ltr">timestamp</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">updated_at</td><td class="nowrap" lang="en" dir="ltr">timestamp</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">level_access</td><td class="nowrap" lang="en" dir="ltr">varchar(191)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">genero</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">celular</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">fechanacimiento</td><td class="nowrap" lang="en" dir="ltr">datetime</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">edad</td><td class="nowrap" lang="en" dir="ltr">decimal(10,0)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">foto</td><td class="nowrap" lang="en" dir="ltr">text</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">sucursalfavorita</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">stripeid</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr><tr><td class="nowrap">facebookid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td></td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>0</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >users_email_unique</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>email</td><td>0</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>usuarios</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">nombre</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">email</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">password</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">rol</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">programa</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">fechaCreacion</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr><tr><td class="nowrap">activo</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td></td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>4</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><div>
+    <h2>valoracionintegral</h2>
+    <table width="100%" class="print"><tr><th width="50">Columna</th><th width="80">Tipo</th><th width="40">Nulo</th><th width="70">Default</th>    <th>Comentarios</th>
+    </tr><tr><td class="nowrap">id <em>(Primary)</em></td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Identificadro unico del registro</td>
+    </tr><tr><td class="nowrap">incidenteid</td><td class="nowrap" lang="en" dir="ltr">int(11)</td><td>No</td><td class="nowrap"></td>    <td>Llave secundaria, es el identificador del incidente</td>
+    </tr><tr><td class="nowrap">fechacreacion</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>fecha en la que se creo el registro</td>
+    </tr><tr><td class="nowrap">fechaupdate</td><td class="nowrap" lang="en" dir="ltr">date</td><td>No</td><td class="nowrap"></td>    <td>fecha en la que se actualizo el registro</td>
+    </tr><tr><td class="nowrap">textovi</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Testo en donde se describe la valoracion acerca de este incidente</td>
+    </tr><tr><td class="nowrap">tipologiadelincidente</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>si es de caracter interno o externo</td>
+    </tr><tr><td class="nowrap">niveldelincidente</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Bajo nivel , Alto Nivel o Critico</td>
+    </tr><tr><td class="nowrap">tipodecaso</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Seleccion entre Abusos ,Negligencia o Violaacion</td>
+    </tr><tr><td class="nowrap">confirmaincidente</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Se confirma a traves de la valoracion si es un incidente o no.</td>
+    </tr><tr><td class="nowrap">confirmaincidentenumerico</td><td class="nowrap" lang="en" dir="ltr">decimal(10,0)</td><td>Yes</td><td class="nowrap"><i>NULL</i></td>    <td>Uso Grafico, determina un comportamiento en la pantalla. su valor es 1 y 2</td>
+    </tr><tr><td class="nowrap">tipoderespuesta</td><td class="nowrap" lang="en" dir="ltr">varchar(50)</td><td>No</td><td class="nowrap"></td>    <td>Denuncia Penal, Investigacion Interna, Abordaje interno y cuando el regstro se crea por primera vez tiene su valor es &quot;En proceso de Valoracion&quot;</td>
+    </tr><tr><td class="nowrap">medidasintegrales</td><td class="nowrap" lang="en" dir="ltr">text</td><td>No</td><td class="nowrap"></td>    <td>Identificador del documento , es el id del registro en la tabla doctos</td>
+    </tr><tr><td class="nowrap">activo</td><td class="nowrap" lang="en" dir="ltr">bit(1)</td><td>No</td><td class="nowrap"></td>    <td>Estado del registro</td>
+    </tr></table><h3>Indexes</h3><div class='no_indexes_defined hide'><div class="notice"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_notice" /> No index defined!</div></div><div class="responsivetable jsresponsive"><table id="table_index"><thead><tr><th>Nombre de la Llave</th><th>Tipo</th><th>Unique</th><th>Packed</th><th>Columna</th><th>Cardinality</th><th>Collation</th><th>Nulo</th><th>Comentario</th></tr></thead><tbody class="row_span"><tr class="noclick" ><td  rowspan="1" >PRIMARY</td><td  rowspan="1" >BTREE</td><td  rowspan="1" >Yes</td><td  rowspan="1" >No</td><td>id</td><td>2</td><td>A</td><td>No</td><td  rowspan="1" ></td></tr></tbody></table></div></div><p class="print_ignore"><input type="button" class="button" id="print" value="Print" /></p></div><div id="selflink" class="print_ignore"><a href="db_datadict.php?db=apialdeas&amp;table=valoracionintegral&amp;server=1&amp;target=" title="Open new phpMyAdmin window" target="_blank" rel="noopener noreferrer"><img src="themes/dot.gif" title="Open new phpMyAdmin window" alt="Open new phpMyAdmin window" class="icon ic_window-new" /></a></div><div class="clearfloat" id="pma_errors"></div>
+ </body></html>
+

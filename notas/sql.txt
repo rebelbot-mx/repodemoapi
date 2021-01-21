@@ -1,0 +1,14 @@
+truncate table denuncialegal;
+
+truncate table incidente;
+truncate table seguimiento ;
+
+truncate table testigoscierre; 
+truncate table valoracionintegral; 
+truncate table investigacion;
+landing page test 3 seconds
+
+--truncate table doctos;
+#alters
+ALTER TABLE `denuncialegal` ADD `programa` VARCHAR(50) NULL AFTER `foliodenuncia`;
+ALTER TABLE `investigacion` ADD `programa` VARCHAR(50) NULL AFTER `folioinvestigacion`;
