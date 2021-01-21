@@ -220,13 +220,16 @@ $app->options('/incidentes', function (Request $request, Response $response): Re
     con este endpoint recueperamos todos los registros de la tabla de  incidentes
     ----------------------------------------------------------------------------*/
 
-$app->get('/api/v0/incidentes', function (Request $request, Response $response ):Response{
+$app->get('/api/v0/incidentes/{idusuario}/incidentes', function (Request $request, Response $response , array $args):Response{
 
     require 'apidatos/incidentes/clsIncidentes_todosLosIncidentes.php';
+     
+    $idusuario = (int)$args['idusuario'];
+
 
     $apiDatos = new clsIncidentes_todosLosIncidentes;
     
-    $resultado  = $apiDatos->todosLosIncidentes();
+    $resultado  = $apiDatos->todosLosIncidentes($idusuario);
 
     $response->getBody()->write($resultado);
 
@@ -235,7 +238,7 @@ $app->get('/api/v0/incidentes', function (Request $request, Response $response )
 
 });
 
-$app->options('/api/v0/incidentes', function (Request $request, Response $response): Response {
+$app->options('/api/v0/incidentes/{idusuario}/incidentes', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
 });

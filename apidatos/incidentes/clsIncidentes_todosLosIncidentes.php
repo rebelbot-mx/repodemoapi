@@ -27,7 +27,7 @@ foreach ($results as $row) {
 $datosUsuario = DB::queryFirstRow("select * from usuarios where id = %i",$idusuario);
 $programaid =$datosUsuario["programa"];
 
-$results = DB::query("SELECT * FROM incidente i join valoracionintegral v on v.incidenteid = i.id and i.progama = %s",$programaid);
+$results = DB::query("SELECT * FROM incidente i join valoracionintegral v on v.incidenteid = i.id where i.programa = %s",$programaid);
 
 return json_encode($results);
 
