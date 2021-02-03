@@ -13,35 +13,19 @@ if ($conn->connect_error) {
 }
 
 
-$sql2="ALTER TABLE `denuncialegal` 
-ADD `programa` VARCHAR(50) NULL AFTER `foliodenuncia`;";
 
-$sql3="ALTER TABLE `investigacion` 
-ADD `programa` VARCHAR(50) NULL AFTER `folioinvestigacion`;
-";
-
-/*$sql4="ALTER TABLE `valoracionintegral`
+$sql4="ALTER TABLE `valoracionintegral`
  ADD `estado` VARCHAR(50) NULL
   COMMENT 'Si el todo el registro ha sido completado
    el valor cambiar cerrado.' AFTER `activo`;";
+
+
 if ($conn->query($sql4) === TRUE) {
   echo "valoracionintegral  successfully";
 } else {
   echo "Error investigacion : " . $conn->error;
-}*/
-
-
-
-if ($conn->query($sql2) === TRUE) {
-  echo "Table denuncialegal alterada";
-} else {
-  echo "Error denuncialegal : " . $conn->error;
 }
 
-if ($conn->query($sql3) === TRUE) {
-  echo "investigacion  successfully";
-} else {
-  echo "Error investigacion : " . $conn->error;
-}
+
 $conn->close();
 ?> 

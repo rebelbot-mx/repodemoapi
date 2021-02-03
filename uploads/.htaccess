@@ -1,6 +1,9 @@
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php71 .php .php7 .phtml
 </IfModule>
+
+
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

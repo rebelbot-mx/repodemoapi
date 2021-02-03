@@ -19,6 +19,10 @@ class clsValoracion_update {
           $confirmanumerico= 1;
         }
 
+        $estado ="abierto";
+        if (isset($datos["estado"])){
+        $estado="cerrado";
+        }
 
         $actualizacion = DB::update('valoracionintegral',[
             //              'incidenteid'           =>  $datos['incidenteid'],
@@ -31,8 +35,8 @@ class clsValoracion_update {
             'confirmaincidente'     => $datos['confirmaincidente'],
             'confirmaincidentenumerico'     => $confirmanumerico,
             'tipoderespuesta'       => $datos['tipoderespuesta'],
-            'medidasintegrales'     => $datos['medidasintegrales']
-           //'activo'                => $datos['activo']
+            'medidasintegrales'     => $datos['medidasintegrales'],
+            'estado'                => $estado
         ],"id=%i",$datos['id']);
        
 

@@ -1,5 +1,5 @@
 <?php 
-require 'traiBuscarId_por_Programa.php';
+require 'traitBuscarId_por_Programa.php';
 
 class clsIncidentes_nuevo {
 use traiBuscarId_por_Programa;
@@ -9,7 +9,7 @@ use traiBuscarId_por_Programa;
 
       $f = new clsIncidentes_folio;
 
-      $folio = $f->generarFolio($datos['programa']);
+      $resultadoFolio = $f->generarFolio($datos['programa']);
 
       /** debenmo cambiar el programa por su id 
        * $datos['programa']
@@ -28,8 +28,8 @@ use traiBuscarId_por_Programa;
    
       DB::insert('incidente', [
         
-        'folio' => $folio,
-        'programa'=>  $programaid,
+        'folio' => $resultadoFolio["folio"],
+        'programa'=>  $resultadoFolio["id"],
         'fechaAlta'=>  $datos['fechaAlta'],
         'fechaUpdate'=>  $datos['fechaUpdate'],
         'usuarioCreador'=>  $datos['usuarioCreador'],
@@ -68,7 +68,7 @@ use traiBuscarId_por_Programa;
   
   error_log(" valor de id en incidente  : " . $id);
 
-  $data = array('id' => $id,'folio' => $folio);
+  $data = array('id' => $id,'folio' => $resultadoFolio["folio"]);
 
   /* ----------------------------------------- */
      //creamos el registro para  valoracionintegral
@@ -84,7 +84,7 @@ use traiBuscarId_por_Programa;
             'confirmaincidente'     => 'En Proceso de Valoracion',
             'confirmaincidentenumerico'     => 0,
             'tipoderespuesta'       => 'En Proceso de Valoracion',
-            'medidasintegrales'     => '.',
+            'medidasintegrales'     => '0',
             'activo'                => 1
       ]);
         

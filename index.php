@@ -1393,5 +1393,294 @@ $app->options('/api/v0/login/usuario/{correo}/pass/{pass}', function (Request $r
     return $response;
   });
 
+/******************************************************************************* */
+// conciencia
+/******************************************************************************** */
+/*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/conciencia/{todos}/tipo', function (Request $request, Response $response,  array $args): Response {
+   
+    $todos = (int)$args['todos'];
+
+    require 'apidatos/conciencia/clsconciencia_getconcirnvis_tipo.php';
+
+    $apiDatos = new clsconciencia_getconcirnvis_tipo;
+    
+    $resultado  = $apiDatos->getconciencia($todos);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+$app->options('/api/v0/conciencia/{todos}/tipo', function (Request $request, Response $response, array $args): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*-------------*/
+$app->get('/api/v0/conciencia/{id}', function (Request $request, Response $response,  array $args): Response {
+   
+    $id = (int)$args['id'];
+
+    require 'apidatos/conciencia/clsconciencia_getconciencia.php';
+
+    $apiDatos = new clsconciencia_getconciencia;
+    
+    $resultado  = $apiDatos->getconciencia($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+
+$app->options('/api/v0/conciencia/{id}', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*----------------------------------------------------------------------------------*/
+$app->delete('/api/v0/conciencia/{id}', function (Request $request, Response $response,  array $args): Response {
+   
+    $id = (int)$args['id'];
+
+    require 'apidatos/conciencia/clsconciencia_delete.php';
+
+    $apiDatos = new clsconciencia_delete;
+    
+    $resultado  = $apiDatos->deleteconciencia($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+
+/*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/conciencia', function (Request $request, Response $response): Response {
+   
+
+
+    require 'apidatos/conciencia/clsconciencia_getTodosLosconciencia.php';
+
+    $apiDatos = new clsconciencia_getTodosLosconciencia;
+    
+    $resultado  = $apiDatos->getTodosLosconciencia();
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+$app->options('/api/v0/conciencia', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*----------------------------------------------------------------------------------*/
+$app->post('/api/v0/conciencia', function (Request $request, Response $response): Response {
+   
+      // Retrieve the JSON data
+    $parameters = (array)$request->getParsedBody();
+
+    require 'apidatos/conciencia/clsconciencia_nuevo.php';
+
+    $apiDatos = new clsconciencia_nuevo;
+    
+    $resultado  = $apiDatos->nuevoconciencia( $parameters);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+
+/*----------------------------------------------------------------------------------*/
+$app->put('/api/v0/conciencia', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+
+  require 'apidatos/conciencia/clsconciencia_update.php';
+
+  $apiDatos = new clsconciencia_update;
+  
+  $resultado  = $apiDatos->updateconciencia($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+});
+
+/******************************************************************************* */
+// parametros
+/******************************************************************************** */
+/*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/parametros/{id}', function (Request $request, Response $response,  array $args): Response {
+   
+    $id = (int)$args['id'];
+
+    require 'apidatos/parametros/clsparametros_getparametros.php';
+
+    $apiDatos = new clsparametros_getparametros;
+    
+    $resultado  = $apiDatos->getparametros($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+$app->options('/api/v0/parametros/{id}', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*----------------------------------------------------------------------------------*/
+$app->delete('/api/v0/parametros/{id}', function (Request $request, Response $response,  array $args): Response {
+   
+    $id = (int)$args['id'];
+ 
+    require 'apidatos/parametros/clsparametros_delete.php';
+
+    $apiDatos = new clsparametros_delete;
+    
+    $resultado  = $apiDatos->deleteparametros($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+
+/*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/parametros', function (Request $request, Response $response): Response {
+   
+
+
+    require 'apidatos/parametros/clsparametros_getTodosLosparametros.php';
+
+    $apiDatos = new clsparametros_getTodosLosparametros;
+    
+    $resultado  = $apiDatos->getTodosLosparametros($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+$app->options('/api/v0/parametros', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*----------------------------------------------------------------------------------*/
+$app->post('/api/v0/parametros', function (Request $request, Response $response): Response {
+   
+      // Retrieve the JSON data
+    $parameters = (array)$request->getParsedBody();
+
+    require 'apidatos/parametros/clsparametros_nuevo.php';
+
+    $apiDatos = new clsparametros_nuevo;
+    
+    $resultado  = $apiDatos->nuevoparametros( $parameters);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+
+/*----------------------------------------------------------------------------------*/
+$app->put('/api/v0/parametros', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+
+  require 'apidatos/parametros/clsparametros_update.php';
+
+  $apiDatos = new clsparametros_update;
+  
+  $resultado  = $apiDatos->updateparametros($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+});
+
+
+/*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/parametrosconfig/nombre/{parametro}', function (Request $request, Response $response, array $args): Response {
+   
+    $parametro = (String)$args['parametro'];
+   
+    error_log("parametro recibido : " . $parametro);
+
+    require 'apidatos/parametros/clsparametros_getTodosLosparametros.php';
+
+    $apiDatos = new clsparametros_getTodosLosparametros;
+    
+    $resultado  = $apiDatos->getParametro_por_nombre($parametro);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+$app->options('/api/v0/parametrosconfig/nombre/{parametro}', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+$app->put('/api/v0/parametrosconfig/nombreupdate', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+
+  require 'apidatos/parametros/clsparametros_update.php';
+
+  $apiDatos = new clsparametros_update;
+  
+  $resultado  = $apiDatos->updateparametro_por_nombre($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+});
+
+$app->options('/api/v0/parametrosconfig/nombreupdate', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+
+
+
+
+
 
 $app->run();
+
+

@@ -26,6 +26,19 @@ class clssesion_login {
 
             $rol = DB::queryFirstRow($sqlrol);
 
+
+            $proN ="TODOS";
+          
+            if ( $results['programa']=="0"){
+              $proN ="TODOS";
+            }else {
+              $proN =  DB::queryFirstField("SELECT programa FROM programas where id =%i " , $results['programa'] );
+           
+            }
+            $rolN = DB::queryFirstField("SELECT NOMBREDELROL FROM roles where id =%i " , $results['rol'] );
+            $results['rol'] =   $rolN;
+            $results['programa'] =  $proN ;
+
  
             $respuesta["msg"]= "Datos del registro";
             $respuesta["usuario"]=  $results;

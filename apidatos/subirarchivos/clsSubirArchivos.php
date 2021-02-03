@@ -119,14 +119,24 @@ function moveUploadedFile()
 
     $incidenteId = $_POST['incidenteId'];
 
+
     error_log(" valor de directory " . $directory);
+    //////////////////////////////////////////////
+
+    $datosDeLNombre =$_FILES['file']['name'];
+
+    error_log(">>>>> valor de FILES['file']['name']" . $_FILES['file']['tmp_name']);
+
+    $ext = explode( ".",$datosDeLNombre) ;
+
+    $extension = $ext[1];
 
    /*---------------------------------------------------------------------*/
     // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
     // Check MIME Type by yourself.
     // https://www.php.net/manual/es/function.mime-content-type.php
     
-    $finfo = new finfo(FILEINFO_MIME_TYPE);
+   /* $finfo = new finfo(FILEINFO_MIME_TYPE);
     if (false === $ext = array_search(
         $finfo->file($_FILES['file']['tmp_name']),
         array(
@@ -138,7 +148,7 @@ function moveUploadedFile()
         true
     )) {
         throw new RuntimeException('Invalid file format.');
-    }
+    }*/
 
 
    // $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
@@ -155,13 +165,13 @@ function moveUploadedFile()
     $_FILES['file']['tmp_name'],
     sprintf( $diractual .  $directory  .'/%s.%s',
              $filename,
-        $ext)
+             $extension)
    )) {
        //throw new RuntimeException('Failed to move uploaded file.');
    }
 
   /*---------------------------------------------------------------------*/
-    $nombreArchivo = $filename .'.'.$ext;
+    $nombreArchivo = $filename .'.'.$extension;
     /*************************************************/
     // guardamos en la base de datos
 
@@ -170,7 +180,7 @@ function moveUploadedFile()
         'incidenteId' => $incidenteId,
         'nombreOriginal' => $_FILES['file']['name'],
        
-        'ext'            => $ext,
+        'ext'            => $extension,
 
         'nombreinterno'  =>  $nombreArchivo ,
         'directorio'     => $directory
@@ -188,4 +198,18 @@ function moveUploadedFile()
 }
 
 }//termina clase
+
+
+/*
+Fatal error: Uncaught Error: 
+Class 'finfo' not found in /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/apidatos/subirarchivos/clsSubirArchivos.php:129
+ Stack trace: #0 /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/index.php(143): 
+ clsSubirArchivos->moveUploadedFile() 
+ #1 /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/vendor/slim/slim/Slim/Handlers/Strategies/RequestResponse.php(43):
+  {closure}(Object(Slim\Psr7\Request),
+   Object(Slim\Psr7\Response), Array)
+    #2 /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/vendor/slim/slim/Slim/Routing/Route.php(381): Slim\Handlers\Strategies\RequestResponse->__invoke(Object(Closure), Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array) #3 /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/vendor/slim/slim/Slim/MiddlewareDispatcher.php(81): Slim\Routing\Route->handle(Object(Slim\Psr7\Request)) #4 /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/vendor/slim/slim/Slim/MiddlewareDispatcher.php(81): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request)) #5 /home/aisosmx/api.aldeasinf in /home/aisosmx/api.aldeasinfantiles.mx/apialdeas/apidatos/subirarchivos/clsSubirArchivos.php on line 129
+
+
+ */
 ?>

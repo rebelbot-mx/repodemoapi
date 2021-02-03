@@ -38,3 +38,17 @@ class clsValoracion_getValoracion {
 
 
 }
+
+/*
+Fatal error: Uncaught Slim\Exception\HttpNotFoundException: Not found.
+ in C:\laragon\www\apialdeas\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:93 
+ Stack trace: #0 C:\laragon\www\apialdeas\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php(59):
+  Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request)) #1
+   C:\laragon\www\apialdeas\vendor\slim\slim\Slim\MiddlewareDispatcher.php(140):
+    Slim\Middleware\RoutingMiddleware->process(Object(Slim\Psr7\Request), Object(class@anonymous)) #2 
+    C:\laragon\www\apialdeas\vendor\slim\slim\Slim\MiddlewareDispatcher.php(81): class@anonymous->handle(Object(Slim\Psr7\Request)) #3
+    C:\laragon\www\apialdeas\vendor\slim\slim\Slim\App.php(215): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+     #4 C:\laragon\www\apialdeas\vendor\slim\slim\Slim\App.php(199): Slim\App->handle(Object(Slim\Psr7\Request)) 
+     #5 C:\laragon\www\apialdeas\index.php(1397): Slim\App->run() #6 {main} thrown in C:\laragon\www\apialdeas\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 93
+
+ */
