@@ -70,6 +70,7 @@ error_log(" visualizacioninvestigaciom: " . $datos["VISUALIZACIONINVESTIGACION"]
   'MODIFICACIONARCHIVOS'    =>  $datos['MODIFICACIONARCHIVOS'],
   'IMPRESIONARCHIVOS'    =>  $datos['IMPRESIONARCHIVOS'],
   'VISUALIZACIONARCHIVOS'    =>  $datos['VISUALIZACIONARCHIVOS'],
+  'RECIBECORREOS'=>  $datos['RECIBECORREOS'],
   'ACTIVO'    =>  $datos['ACTIVO'],
 
            

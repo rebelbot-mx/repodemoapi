@@ -1,8 +1,15 @@
 <?php 
+
+//Use swiftmailer;
 require 'traitBuscarId_por_Programa.php';
+
+//require __DIR__ . '../../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/clsEnviarCorreo.php';
+
 
 class clsIncidentes_nuevo {
 use traiBuscarId_por_Programa;
+
     public function nuevoIncidente($datos){
 
       require 'clsIncidentes_folio.php';
@@ -90,12 +97,19 @@ use traiBuscarId_por_Programa;
         
     
   /* ------------------------------------------*/
+
+   $enviarCorreo = new clsEnviarCorreo();
+   $enviarCorreo->enviarCorreo_version_extendida_nuevoIncidente($resultadoFolio["folio"]);
+  
    
+ 
   return json_encode($data);
 
 
 
     }
-
+    //apiañldeas sendgrdi 
+    //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
+  
 
 }//terminaclase

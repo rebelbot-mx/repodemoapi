@@ -39,6 +39,8 @@ class DB {
   public static $nested_transactions = false;
   public static $usenull = true;
   public static $ssl = array('key' => '', 'cert' => '', 'ca_cert' => '', 'ca_path' => '', 'cipher' => '');
+ // public static $ssl = array('key' => '', 'cert' => '', 'ca_cert' => 'C:\sslazure\BaltimoreCyberTrustRoot.crt.pem', 'ca_path' => '', 'cipher' => '');
+  
   public static $connect_options = array(MYSQLI_OPT_CONNECT_TIMEOUT => 30);
   
   // internal

@@ -20,6 +20,9 @@ $sql3="ALTER TABLE `investigacion`
 ADD `programa` VARCHAR(50) NULL AFTER `folioinvestigacion`;
 ";
 
+
+$sql4 = "ALTER TABLE `incidente` ADD `fechaCierre` DATE NULL AFTER `estado`;";
+
 /*$sql4="ALTER TABLE `valoracionintegral`
  ADD `estado` VARCHAR(50) NULL
   COMMENT 'Si el todo el registro ha sido completado
@@ -42,6 +45,11 @@ if ($conn->query($sql3) === TRUE) {
   echo "investigacion  successfully";
 } else {
   echo "Error investigacion : " . $conn->error;
+}
+if ($conn->query($sql4) === TRUE) {
+  echo "se agrego el campo de fecha de cierre a la tabla incidentes  successfully";
+} else {
+  echo "Error incidentes : " . $conn->error;
 }
 $conn->close();
 ?> 

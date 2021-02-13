@@ -10,6 +10,7 @@ use Slim\Exception\NotFoundException;
 use Psr\Http\Message\UploadedFileInterface;
 
 require_once 'vendor/autoload.php';
+//require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
 require_once 'apidatos/clsConexionDB.php';
 
@@ -1574,7 +1575,7 @@ $app->get('/api/v0/parametros', function (Request $request, Response $response):
 
     $apiDatos = new clsparametros_getTodosLosparametros;
     
-    $resultado  = $apiDatos->getTodosLosparametros($id);
+    $resultado  = $apiDatos->getTodosLosparametros();
 
     $response->getBody()->write($resultado);
 

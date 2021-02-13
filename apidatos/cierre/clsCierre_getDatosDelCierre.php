@@ -6,13 +6,26 @@ class clsCierre_getDatosDelCierre {
 
 
         try  {
+        /*
+                  console.log(response.data);
+          this.folio = response.data[0]["folio"];
+          this.programa= response.data[0]["nombrePrograma"];
+          this.elaboro= response.data[0]["elaboro"];
+          this.cargo= response.data[0]["cargousuario"];
+
+          this.testigos= response.data[0]["testigos"];
         
+         this.texto = response.data[0]['textocierre'];
+         this.cerrado = response.data[0]['cerrado'];
+        
+        */
         $results = DB::query("SELECT * FROM 
                               incidente i 
          join valoracionintegral v on v.incidenteid = i.id 
          join seguimiento s on s.incidenteid = i.id where i.id = %i",$id);
 
-
+        $programa =  $results[0]['programa'];
+        $nombrePrograma  =  DB::queryFirstField(" select abreviatura from programas where id =%i",  $programa);
         $valor = gettype($results);
 
         error_log(" valor : " . $valor);
@@ -36,7 +49,9 @@ class clsCierre_getDatosDelCierre {
          'plan_docto'   
         
         */
-
+        $results[0]['estadoIncidente']=  DB::queryFirstField("select estado from incidente where  id  = %i",$id); 
+   
+        $results[0]['nombrePrograma']=$nombrePrograma;
         $results2 = DB::queryFirstRow("select * from seguimiento where  incidenteid  = %i",$id); 
         $idDocto_valor =  $results2['plan_docto'];
         error_log("  xxxxxxx " . $idDocto_valor);

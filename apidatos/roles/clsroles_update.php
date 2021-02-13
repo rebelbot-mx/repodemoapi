@@ -63,6 +63,7 @@ class clsroles_update {
   'MODIFICACIONARCHIVOS'    =>  $datos['MODIFICACIONARCHIVOS'],
   'IMPRESIONARCHIVOS'    =>  $datos['IMPRESIONARCHIVOS'],
   'VISUALIZACIONARCHIVOS'    =>  $datos['VISUALIZACIONARCHIVOS'],
+  'RECIBECORREOS'=>  $datos['RECIBECORREOS'],
   'ACTIVO'    =>  $datos['ACTIVO'],
         
          ],"id=%i",$datos['id'] );

@@ -1,0 +1,135 @@
+https://www.youtube.com/watch?v=RMjU3llv8Yg
+
+{
+  "additionalProperties": {},
+  "administratorLogin": "macapower",
+  "byokEnforcement": "Disabled",
+  "connectionString": "mysql defaultdb --host mysqlapialdeas.mysql.database.azure.com --user macapower@mysqlapialdeas --password=Rbl2020*.",
+  "databaseName": "defaultdb",
+  "earliestRestoreDate": "2021-02-13T16:07:36.593000+00:00",
+  "fullyQualifiedDomainName": "mysqlapialdeas.mysql.database.azure.com",
+  "id": "/subscriptions/8800be8e-126e-4376-ad50-af5c97a5e58e/resourceGroups/grupoDeRecursosAldeas/providers/Microsoft.DBforMySQL/servers/mysqlapialdeas",
+  "identity": null,
+  "infrastructureEncryption": "Disabled",
+  "location": "westeurope",
+  "masterServerId": "",
+  "minimalTlsVersion": "TLSEnforcementDisabled",
+  "name": "mysqlapialdeas",
+  "password": "Rbl2020*.",
+  "privateEndpointConnections": [],
+  "publicNetworkAccess": "Enabled",
+  "replicaCapacity": 5,
+  "replicationRole": "None",
+  "resourceGroup": "grupoDeRecursosAldeas",
+  "sku": {
+    "additionalProperties": {},
+    "capacity": 1,
+    "family": "Gen5",
+    "name": "B_Gen5_1",
+    "size": null,
+    "tier": "Basic"
+  },
+  "sslEnforcement": "Enabled",
+  "storageProfile": {
+    "additionalProperties": {},
+    "backupRetentionDays": 7,
+    "geoRedundantBackup": "Disabled",
+    "storageAutogrow": "Enabled",
+    "storageMb": 51200
+  },
+  "tags": null,
+  "type": "Microsoft.DBforMySQL/servers",
+  "userVisibleState": "Ready",
+  "version": "5.7"
+}
+
+===respuesta ala creacion del firewall ==
+
+{- Finished ..
+  "endIpAddress": "0.0.0.0",
+  "id": "/subscriptions/8800be8e-126e-4376-ad50-af5c97a5e58e/resourceGroups/grupoDeRecursosAldeas/providers/Microsoft.DBforMySQL/servers/mysqlapialdeas/firewallRules/allAzureIPs",
+  "name": "allAzureIPs",
+  "resourceGroup": "grupoDeRecursosAldeas",
+  "startIpAddress": "0.0.0.0",
+  "type": "Microsoft.DBforMySQL/servers/firewallRules"
+}
+
+=== permitirme conectar a mi ip localmente ==
+nota: correr este comando practicamente diario.?
+
+az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address=187.143.188.192  --end-ip-address=187.143.188.192
+ 187.135.15.53
+ az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address=187.135.15.53  --end-ip-address=187.135.15.53
+
+=== crear la base de datos y un usuareio ======
+create database sampledb;
+create user 'phpappuser' identified by 'mysqlazure2017';
+grant all privileges on sampledb.* to  'phpappuser';
+
+=============================================================
+creando un usuario para hacer deploy 
+=============================================================
+
+az webapp deployment user set --user-name rebelBotDeployone --password rbl2478*.
+
+======================================================================
+creando un service plan en el free tier 
+======================================================================
+#https://azure.microsoft.com/en-us/pricing/details/app-service/windows/
+
+//el tutorial marca f1
+az appservice plan create --name apiAldeasServicePlan --resource-group grupoDeRecursosAldeas --sku B1 --is-linux
+
+//borrando
+az appservice plan delete --name apiAldeasServicePlan --resource-group grupoDeRecursosAldeas
+
+{- Finished ..
+  "freeOfferExpirationTime": "2021-03-15T23:37:27.910000",
+  "geoRegion": "West Europe",
+  "hostingEnvironmentProfile": null,
+  "hyperV": false,
+  "id": "/subscriptions/8800be8e-126e-4376-ad50-af5c97a5e58e/resourceGroups/grupoDeRecursosAldeas/providers/Microsoft.Web/serverfarms/apiAldeasServicePlan",
+  "isSpot": false,
+  "isXenon": false,
+  "kind": "linux",
+  "location": "westeurope",
+  "maximumElasticWorkerCount": 1,
+  "maximumNumberOfWorkers": 0,
+  "name": "apiAldeasServicePlan",
+  "numberOfSites": 0,
+  "perSiteScaling": false,
+  "provisioningState": "Succeeded",
+  "reserved": true,
+  "resourceGroup": "grupoDeRecursosAldeas",
+  "sku": {
+    "capabilities": null,
+    "capacity": 1,
+    "family": "B",
+    "locations": null,
+    "name": "B1",
+    "size": "B1",
+    "skuCapacity": null,
+    "tier": "Basic"
+  },
+  "spotExpirationTime": null,
+  "status": "Ready",
+  "subscription": "8800be8e-126e-4376-ad50-af5c97a5e58e",
+  "tags": null,
+  "targetWorkerCount": 0,
+  "targetWorkerSizeId": 0,
+  "type": "Microsoft.Web/serverfarms",
+  "workerTierName": null
+}
+
+================================================================
+creadno la web app y configurando la version de php 
+===============================================================
+az webapp create --resource-group grupoDeRecursosAldeas --plan apiAldeasServicePlan --name apiAldeasRebelbot --runtime "PHP|7.4" --deployment-local-git
+
+Local git is configured with url of 'https://rebelBotDeployone@apialdeasrebelbot.scm.azurewebsites.net/apiAldeasRebelbot.git'
+
+=======================================================
+agregando esto al git local 
+=======================================================
+
+git remote add azure https://rebelBotDeployone@apialdeasrebelbot.scm.azurewebsites.net/apiAldeasRebelbot.git

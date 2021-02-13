@@ -1,11 +1,18 @@
 <?php
+
+require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/clsEnviarCorreo.php';
+require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/traitTemplate_updateValoracionIntegral.php';
+
 class clsValoracion_update { 
+  use traitTemplate_updateValoracionIntegral;
  
     public function updateValoracion($datos){
 
+       $folio = DB::queryFirstColumn("select folio from incidente where id = %i", $datos['incidenteid']);
+
         $id = $datos['id'];
 
-       $incidenteId  = $datos['incidenteid'];
+        $incidenteId  = $datos['incidenteid'];
         
         $textovi =  $datos['textovi'];
 
@@ -162,8 +169,30 @@ class clsValoracion_update {
          }
 
         $data = array('msg' => 'ok','incidente'=>'Si');
-   
-          return json_encode($data);
+
+        /* enviamos el correo  */ 
+        
+        $enviarCorreo = new clsEnviarCorreo();
+        $argumentos = array();
+        $argumentos['folio']=$folio;
+        $tipores = $datos['tipoderespuesta'];
+        $argumentos['tipoderespuesta']= $tipores;
+
+        if ($confirmanumerico == 2) {
+          $argumentos['confirmacion']="Si";
+        }else {
+          $argumentos['confirmacion']="No";
+        }
+
+        $templatelisto= $this->populate_template($argumentos);
+        //traitTemplate_updateValoracionIntegral
+        $args = array();
+        $args['textotema'] = 'Se ha realizado la valoracion integral del Folio #'. $folio[0] . ' en la Plataforma ALDEAS SOS';
+        $args['template'] =  $templatelisto;
+        $enviarCorreo->enviarCorreo_x($args);
+        /************************************** */
+      
+        return json_encode($data);
 
 
     }

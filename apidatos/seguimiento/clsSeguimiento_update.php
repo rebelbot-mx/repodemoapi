@@ -1,7 +1,10 @@
 <?php
+require 'traitValidarSeguimiento.php';
+require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/clsEnviarCorreo.php';
+require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/traitTemplate_updateSeguimiento.php';
 
 class clsSeguimiento_update {
-
+     use validarSeguimiento,traitTemplate_updateSeguimiento;
 
     public function updateSeguimiento($datos){
 
@@ -32,6 +35,10 @@ class clsSeguimiento_update {
          ],"incidenteid=%i",$datos['incidenteid'] );
       
            $data = array('msg' => 'ok');
+
+           //validamos si se puede cerrar el registro 
+           // sise puede se actualiza la tabla en el campo estado a 'cerrado'
+          clsSeguimiento_update::validar($id);
    
           return json_encode($data);
     }
@@ -59,11 +66,36 @@ class clsSeguimiento_update {
          'notificaciondenunciante_docto'=>  clsSeguimiento_update::eliminar_doblecomillas($datos['notificaciodenunciante_docto']),
          'actavaloracion_docto'         =>  clsSeguimiento_update::eliminar_doblecomillas($datos['actavaloracion_docto']),
          'planrecuperacion_docto'       =>  clsSeguimiento_update::eliminar_doblecomillas($datos['planrecuperacion_docto']),
-         'plan_docto'                    =>  clsSeguimiento_update::eliminar_doblecomillas($datos['plan_docto'])
-
+         'plan_docto'                   =>  clsSeguimiento_update::eliminar_doblecomillas($datos['plan_docto']),
+         'protocolosos'                 =>  clsSeguimiento_update::eliminar_doblecomillas($datos['protocolosos'])
       ],"incidenteid=%i",$datos['incidenteid'] );
    
         $data = array('msg' => 'ok');
+
+        //validamos si se puede cerrar el registro 
+        // sise puede se actualiza la tabla en el campo estado a 'cerrado'
+        $validacion = clsSeguimiento_update::validar($id);
+
+                /* enviamos el correo  */ 
+                $folio = DB::queryFirstColumn("select folio from incidente where id = %i", $id);
+                $enviarCorreo = new clsEnviarCorreo();
+                $argumentos = array();
+                $argumentos['folio']=$folio;
+
+                $templatelisto= $this->populate_template($argumentos);
+                //traitTemplate_updateValoracionIntegral
+                $args = array();
+                if ($validacion==true){
+                $args['textotema'] = 'Se ha actualizado el seguimiento del Folio #'. $folio[0] . ' en la Plataforma ALDEAS SOS';
+                 }else{
+                  $args['textotema'] = 'Se ha validado todo el  seguimiento del Folio #'. $folio[0] . ' en la Plataforma ALDEAS SOS';
+                
+                 }
+                  $args['template'] =  $templatelisto;
+                $enviarCorreo->enviarCorreo_x($args);
+                /************************************** */
+
+
 
        return json_encode($data);
  }
@@ -78,6 +110,25 @@ class clsSeguimiento_update {
 
   }
 
+  public function validar($idincidente ){
+
+    $id = DB::queryFirstField("select id from seguimiento where incidenteid =". $idincidente ." " );
+
+    $respuesta =$this->se_puedeCerrar_Seguimiento($id);
+    
+    //DB::update('tbl', ['age' => 25, 'height' => 10.99], "name=%s", $name);
+
+    error_log("resouesta validacion : " . $respuesta);
+    if ($respuesta== true ){
+      DB::update('seguimiento', ['estado' => 'cerrado'], "id=%i", $id);
+    }else {
+      DB::update('seguimiento', ['estado' => 'abierto'], "id=%i", $id);
+    }
+
+ return $respuesta;
+  }
+   
+ 
     /*
     `id`
 `incidenteid`
