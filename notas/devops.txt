@@ -1,58 +1,13 @@
-https://www.youtube.com/watch?v=RMjU3llv8Yg
 
-{
-  "additionalProperties": {},
-  "administratorLogin": "macapower",
-  "byokEnforcement": "Disabled",
-  "connectionString": "mysql defaultdb --host mysqlapialdeas.mysql.database.azure.com --user macapower@mysqlapialdeas --password=Rbl2020*.",
-  "databaseName": "defaultdb",
-  "earliestRestoreDate": "2021-02-13T16:07:36.593000+00:00",
-  "fullyQualifiedDomainName": "mysqlapialdeas.mysql.database.azure.com",
-  "id": "/subscriptions/8800be8e-126e-4376-ad50-af5c97a5e58e/resourceGroups/grupoDeRecursosAldeas/providers/Microsoft.DBforMySQL/servers/mysqlapialdeas",
-  "identity": null,
-  "infrastructureEncryption": "Disabled",
-  "location": "westeurope",
-  "masterServerId": "",
-  "minimalTlsVersion": "TLSEnforcementDisabled",
-  "name": "mysqlapialdeas",
-  "password": "Rbl2020*.",
-  "privateEndpointConnections": [],
-  "publicNetworkAccess": "Enabled",
-  "replicaCapacity": 5,
-  "replicationRole": "None",
-  "resourceGroup": "grupoDeRecursosAldeas",
-  "sku": {
-    "additionalProperties": {},
-    "capacity": 1,
-    "family": "Gen5",
-    "name": "B_Gen5_1",
-    "size": null,
-    "tier": "Basic"
-  },
-  "sslEnforcement": "Enabled",
-  "storageProfile": {
-    "additionalProperties": {},
-    "backupRetentionDays": 7,
-    "geoRedundantBackup": "Disabled",
-    "storageAutogrow": "Enabled",
-    "storageMb": 51200
-  },
-  "tags": null,
-  "type": "Microsoft.DBforMySQL/servers",
-  "userVisibleState": "Ready",
-  "version": "5.7"
-}
+shell.azure.com 
+bash 
+========================================================================
+creando el servidor mysqlserver 
+========================================================================
+az group create --name myResourceGroup --location "West Europe"
+az mysql server create --resource-group myResourceGroup --name <mysql-server-name> --location "West Europe" --admin-user <admin-user> --admin-password <admin-password> --sku-name B_Gen5_1
+az mysql server firewall-rule create --name allAzureIPs --server <mysql-server-name> --resource-group myResourceGroup --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
-===respuesta ala creacion del firewall ==
-
-{- Finished ..
-  "endIpAddress": "0.0.0.0",
-  "id": "/subscriptions/8800be8e-126e-4376-ad50-af5c97a5e58e/resourceGroups/grupoDeRecursosAldeas/providers/Microsoft.DBforMySQL/servers/mysqlapialdeas/firewallRules/allAzureIPs",
-  "name": "allAzureIPs",
-  "resourceGroup": "grupoDeRecursosAldeas",
-  "startIpAddress": "0.0.0.0",
-  "type": "Microsoft.DBforMySQL/servers/firewallRules"
-}
 
 === permitirme conectar a mi ip localmente ==
 nota: correr este comando practicamente diario.?
@@ -77,49 +32,12 @@ creando un service plan en el free tier
 ======================================================================
 #https://azure.microsoft.com/en-us/pricing/details/app-service/windows/
 
-//el tutorial marca f1
+//el tutorial marca f1, pero anotaremos B1
 az appservice plan create --name apiAldeasServicePlan --resource-group grupoDeRecursosAldeas --sku B1 --is-linux
 
 //borrando
 az appservice plan delete --name apiAldeasServicePlan --resource-group grupoDeRecursosAldeas
 
-{- Finished ..
-  "freeOfferExpirationTime": "2021-03-15T23:37:27.910000",
-  "geoRegion": "West Europe",
-  "hostingEnvironmentProfile": null,
-  "hyperV": false,
-  "id": "/subscriptions/8800be8e-126e-4376-ad50-af5c97a5e58e/resourceGroups/grupoDeRecursosAldeas/providers/Microsoft.Web/serverfarms/apiAldeasServicePlan",
-  "isSpot": false,
-  "isXenon": false,
-  "kind": "linux",
-  "location": "westeurope",
-  "maximumElasticWorkerCount": 1,
-  "maximumNumberOfWorkers": 0,
-  "name": "apiAldeasServicePlan",
-  "numberOfSites": 0,
-  "perSiteScaling": false,
-  "provisioningState": "Succeeded",
-  "reserved": true,
-  "resourceGroup": "grupoDeRecursosAldeas",
-  "sku": {
-    "capabilities": null,
-    "capacity": 1,
-    "family": "B",
-    "locations": null,
-    "name": "B1",
-    "size": "B1",
-    "skuCapacity": null,
-    "tier": "Basic"
-  },
-  "spotExpirationTime": null,
-  "status": "Ready",
-  "subscription": "8800be8e-126e-4376-ad50-af5c97a5e58e",
-  "tags": null,
-  "targetWorkerCount": 0,
-  "targetWorkerSizeId": 0,
-  "type": "Microsoft.Web/serverfarms",
-  "workerTierName": null
-}
 
 ================================================================
 creadno la web app y configurando la version de php 
@@ -133,5 +51,44 @@ agregando esto al git local
 =======================================================
 
 git remote add azure https://rebelBotDeployone@apialdeasrebelbot.scm.azurewebsites.net/apiAldeasRebelbot.git
-
+*nota* para elminar un remote , uszamos git remote rm <nombre-remoto>
 git push azure master
+
+*actual 'https://rebelBotDeployone@apialdeasrebelbotdemo.scm.azurewebsites.net/apiAldeasRebelbotDemo.git'
+http://apiAldeasRebelbotDemo.azurewebsites.net
+
+
+====================================
+activando el log
+====================================
+///az webapp log config --resource-group grupoDeRecursosAldeas --name apiAldeasRebelbotDemo --application-logging true --level Verbose
+az webapp log config --name apiAldeasRebelbotDemo --resource-group grupoDeRecursosAldeas --web-server-logging off
+
+==================================
+configurand como ver el log  stream ?
+====================================
+
+az webapp log tail --resource-group grupoDeRecursosAldeas --name apiAldeasRebelbotDemo
+ctrl + z para detener el stream
+
+//asi vemos los logs en vivo 
+ https://apiAldeasRebelbotDemo.scm.azurewebsites.net/api/logs/docker.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
