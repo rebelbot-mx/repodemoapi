@@ -2,9 +2,9 @@
 
 trait traitTemplateBase_nuevoIncidente {
 
-    function template(){
+    function template($ROOT_DIR){
     
-        $ruta = $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/template_nuevoIncidente.html';
+        $ruta = $ROOT_DIR . '/apidatos/enviodecorreos/template_nuevoIncidente.html';
 
         $myfile = fopen($ruta, "r");
         // some code to be <executed class="77">

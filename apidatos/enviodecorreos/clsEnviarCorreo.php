@@ -152,7 +152,7 @@ $result = $mailer->send($message);
 
        }
 
-       public function enviarCorreo_version_extendida_nuevoIncidente($folio){
+       public function enviarCorreo_version_extendida_nuevoIncidente($folio,$ROOT_DIR){
 
         $from = new From("mcabrera@rebelbot.mx", "Soporte Plataforma ALDEAS SOS");
 
@@ -179,7 +179,7 @@ $result = $mailer->send($message);
     );
 
     //Obtenemos nuestro template 
-    $tpl =  $this->template();
+    $tpl =  $this->template($ROOT_DIR);
     $contenido = str_replace('{{folio}}',$folio,$tpl);
 
 
