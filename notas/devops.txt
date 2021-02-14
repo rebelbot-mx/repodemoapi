@@ -133,3 +133,5 @@ agregando esto al git local
 =======================================================
 
 git remote add azure https://rebelBotDeployone@apialdeasrebelbot.scm.azurewebsites.net/apiAldeasRebelbot.git
+
+git push azure master
