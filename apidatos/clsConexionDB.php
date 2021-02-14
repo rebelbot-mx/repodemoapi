@@ -3,6 +3,9 @@
     /*DB::$user = 'aisosmx_rebelbot';
     DB::$password = 'Rebelware10*';
     DB::$dbName = 'aisosmx_apialdeas';*/
+   
+    $EN_PRODUCCION =  $_ENV['PRODUCCION']; 
+    
 
     if($EN_PRODUCCION=='SI') {
 

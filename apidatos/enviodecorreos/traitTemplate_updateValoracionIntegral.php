@@ -1,10 +1,10 @@
 <?php 
-
+$raiz = $_ENV['RUTA'];
 trait traitTemplate_updateValoracionIntegral {
 
     function template(){
     
-        $ruta = $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/template_updateValoracion.html';
+        $ruta = $raiz . '/apidatos/enviodecorreos/template_updateValoracion.html';
 
         $myfile = fopen($ruta, "r");
         // some code to be <executed class="77">

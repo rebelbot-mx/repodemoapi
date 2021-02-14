@@ -9,8 +9,14 @@ use Slim\Routing\RouteContext;
 use Slim\Exception\NotFoundException;
 use Psr\Http\Message\UploadedFileInterface;
 
+require('vendor/autoload.php');
 
-$EN_PRODUCCION= 'SI'; 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+$_ENV['RUTA'] = dirname(__FILE__);
+$EN_PRODUCCION= $_ENV['PRODUCCION']; 
+$ruta = $_ENV['RUTA'];
+//error_log("valor de ruta : " . $ruta);
 
 require_once 'vendor/autoload.php';
 //require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
@@ -474,7 +480,9 @@ $app->put('/api/v0/seguimiento', function (Request $request, Response $response,
 
     $apidatos = new clsSeguimiento_update;
 
-    $msg = $apidatos->updateSeguimiento2($parameters);
+    $ROOT_DIR = dirname(__FILE__); 
+
+    $msg = $apidatos->updateSeguimiento2($parameters, $ROOT_DIR );
 
    $response->getBody()->write($msg);
 

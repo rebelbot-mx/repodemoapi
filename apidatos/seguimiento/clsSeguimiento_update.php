@@ -1,36 +1,37 @@
 <?php
 require 'traitValidarSeguimiento.php';
-require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/clsEnviarCorreo.php';
-require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/traitTemplate_updateSeguimiento.php';
+$ruta = $_ENV['RUTA'];
+require $ruta . '/apidatos/enviodecorreos/clsEnviarCorreo.php';
+require $ruta . '/apidatos/enviodecorreos/traitTemplate_updateSeguimiento.php';
 
 class clsSeguimiento_update {
      use validarSeguimiento,traitTemplate_updateSeguimiento;
 
-    public function updateSeguimiento($datos){
+    public function updateSeguimiento($datos,$ROOT_DIR){
 
          $id = $datos['incidenteid'];
 
          $actualizacion = DB::update('seguimiento',[
         
-          'incidenteid'                   =>  filter_var($datos['incidenteid'],FILTER_SANITIZE_STRING),
-            'status'                      =>  filter_var($datos['status'],FILTER_SANITIZE_STRING),
-            'plan'                        =>  filter_var($datos['plan'],FILTER_SANITIZE_STRING),
-            'documentos'                  =>  filter_var($datos['documentos'],FILTER_SANITIZE_STRING),
-            'notificaciondif'             =>  filter_var($datos['notificaciondif'],FILTER_SANITIZE_STRING),
-            'notificacionautoridad'       =>  filter_var($datos['notificacionautoridad'],FILTER_SANITIZE_STRING),
-            'notificacionpfn'             =>  filter_var($datos['notificacionpfn'],FILTER_SANITIZE_STRING),
-            'notificaciodenunciante'      =>  filter_var($datos['notificaciodenunciante'],FILTER_SANITIZE_STRING),
-            'actavaloracion'              =>  filter_var($datos['actavaloracion'],FILTER_SANITIZE_STRING),
-            'planrecuperacion'            =>  filter_var($datos['planrecuperacion'],FILTER_SANITIZE_STRING),
-            'documentos_docto'            =>  filter_var($datos['documentos_docto'],FILTER_SANITIZE_STRING),
-            'notificaciondif_docto'       =>  filter_var($datos['notificaciondif_docto'],FILTER_SANITIZE_STRING),
-            'notificacionautoridad_docto' =>  filter_var($datos['notificacionautoridad_docto'],FILTER_SANITIZE_STRING),
-            'notificacionpfn_docto'       =>  filter_var($datos['notificacionpfn_docto'],FILTER_SANITIZE_STRING),
-            'notificaciondenunciante_docto'=> filter_var($datos['notificaciodenunciante_docto'],FILTER_SANITIZE_STRING),
-            'actavaloracion_docto'        =>  filter_var($datos['actavaloracion_docto'],FILTER_SANITIZE_STRING),
-            'planrecuperacion_docto'      =>  filter_var($datos['planrecuperacion_docto'],FILTER_SANITIZE_STRING),
-            'plan_docto'                  =>  filter_var($datos['plan_docto'],FILTER_SANITIZE_STRING),
-            'protocolosos'                =>  filter_var($datos['protocolosos'],FILTER_SANITIZE_STRING),
+           'incidenteid'                    =>  filter_var($datos['incidenteid'],FILTER_SANITIZE_STRING),
+            'status'                        =>  filter_var($datos['status'],FILTER_SANITIZE_STRING),
+            'plan'                          =>  filter_var($datos['plan'],FILTER_SANITIZE_STRING),
+            'documentos'                    =>  filter_var($datos['documentos'],FILTER_SANITIZE_STRING),
+            'notificaciondif'               =>  filter_var($datos['notificaciondif'],FILTER_SANITIZE_STRING),
+            'notificacionautoridad'         =>  filter_var($datos['notificacionautoridad'],FILTER_SANITIZE_STRING),
+            'notificacionpfn'               =>  filter_var($datos['notificacionpfn'],FILTER_SANITIZE_STRING),
+            'notificaciodenunciante'        =>  filter_var($datos['notificaciodenunciante'],FILTER_SANITIZE_STRING),
+            'actavaloracion'                 =>  filter_var($datos['actavaloracion'],FILTER_SANITIZE_STRING),
+            'planrecuperacion'              =>  filter_var($datos['planrecuperacion'],FILTER_SANITIZE_STRING),
+            'documentos_docto'              =>  filter_var($datos['documentos_docto'],FILTER_SANITIZE_STRING),
+            'notificaciondif_docto'         =>  filter_var($datos['notificaciondif_docto'],FILTER_SANITIZE_STRING),
+            'notificacionautoridad_docto'   =>  filter_var($datos['notificacionautoridad_docto'],FILTER_SANITIZE_STRING),
+            'notificacionpfn_docto'         =>  filter_var($datos['notificacionpfn_docto'],FILTER_SANITIZE_STRING),
+            'notificaciondenunciante_docto '=> filter_var($datos['notificaciodenunciante_docto'],FILTER_SANITIZE_STRING),
+            'actavaloracion_docto'          =>  filter_var($datos['actavaloracion_docto'],FILTER_SANITIZE_STRING),
+            'planrecuperacion_docto'        =>  filter_var($datos['planrecuperacion_docto'],FILTER_SANITIZE_STRING),
+            'plan_docto'                    =>  filter_var($datos['plan_docto'],FILTER_SANITIZE_STRING),
+            'protocolosos'                  =>  filter_var($datos['protocolosos'],FILTER_SANITIZE_STRING),
             
          ],"incidenteid=%i",$datos['incidenteid'] );
       
@@ -78,6 +79,8 @@ class clsSeguimiento_update {
 
                 /* enviamos el correo  */ 
                 $folio = DB::queryFirstColumn("select folio from incidente where id = %i", $id);
+                
+                //require $ROOT_DIR . '/apidatos/enviodecorreos/clsEnviarCorreo.php';
                 $enviarCorreo = new clsEnviarCorreo();
                 $argumentos = array();
                 $argumentos['folio']=$folio;

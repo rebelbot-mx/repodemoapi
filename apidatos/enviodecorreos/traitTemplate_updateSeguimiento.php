@@ -3,8 +3,9 @@
 trait traitTemplate_updateSeguimiento {
 
     function template(){
-    
-        $ruta = $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/template_updateSeguimiento.html';
+       
+        $raiz = $_ENV['RUTA'];
+        $ruta = $raiz .'/apialdeas/apidatos/enviodecorreos/template_updateSeguimiento.html';
 
         $myfile = fopen($ruta, "r");
         // some code to be <executed class="77">

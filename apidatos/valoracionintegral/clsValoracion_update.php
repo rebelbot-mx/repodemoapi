@@ -1,7 +1,7 @@
 <?php
-
-require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/clsEnviarCorreo.php';
-require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/traitTemplate_updateValoracionIntegral.php';
+$raiz = $_ENV['RUTA'];
+require $raiz. '/apidatos/enviodecorreos/clsEnviarCorreo.php';
+require $raiz. '/apidatos/enviodecorreos/traitTemplate_updateValoracionIntegral.php';
 
 class clsValoracion_update { 
   use traitTemplate_updateValoracionIntegral;
