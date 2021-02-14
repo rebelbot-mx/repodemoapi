@@ -29,7 +29,7 @@ require_once 'apidatos/clsConexionDB.php';
 /*----------------------------------------*/
 
 $app = AppFactory::create();
-$app->setBasePath("/apialdeas");
+$app->setBasePath("/");
 $app->addBodyParsingMiddleware();
 
 $app->options('/apialdeas/{routes:.+}', function ($request, $response, $args) {
