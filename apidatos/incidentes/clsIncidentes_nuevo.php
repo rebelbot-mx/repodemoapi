@@ -3,14 +3,12 @@
 //Use swiftmailer;
 require 'traitBuscarId_por_Programa.php';
 
-//require __DIR__ . '../../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
-require $_SERVER['DOCUMENT_ROOT'] .'/apialdeas/apidatos/enviodecorreos/clsEnviarCorreo.php';
 
 
 class clsIncidentes_nuevo {
 use traiBuscarId_por_Programa;
 
-    public function nuevoIncidente($datos){
+    public function nuevoIncidente($datos,$ROOT_DIR ){
 
       require 'clsIncidentes_folio.php';
 
@@ -97,7 +95,8 @@ use traiBuscarId_por_Programa;
         
     
   /* ------------------------------------------*/
-
+   require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
+     
    $enviarCorreo = new clsEnviarCorreo();
    $enviarCorreo->enviarCorreo_version_extendida_nuevoIncidente($resultadoFolio["folio"]);
   

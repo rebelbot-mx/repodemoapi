@@ -9,6 +9,9 @@ use Slim\Routing\RouteContext;
 use Slim\Exception\NotFoundException;
 use Psr\Http\Message\UploadedFileInterface;
 
+
+$EN_PRODUCCION= 'SI'; 
+
 require_once 'vendor/autoload.php';
 //require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
@@ -29,9 +32,12 @@ require_once 'apidatos/clsConexionDB.php';
 /*----------------------------------------*/
 
 $app = AppFactory::create();
-$app->setBasePath("/");
-$app->addBodyParsingMiddleware();
 
+if ($EN_PRODUCCION == 'NO'){
+  $app->setBasePath("/apialdeas");   
+}
+
+$app->addBodyParsingMiddleware();
 $app->options('/apialdeas/{routes:.+}', function ($request, $response, $args) {
     return $response
         ->withHeader('Access-Control-Allow-Origin', '*')
@@ -204,7 +210,9 @@ $app->post('/incidentes', function (Request $request, Response $response): Respo
 
     $apidatos = new clsIncidentes_nuevo;
 
-    $id = $apidatos->nuevoIncidente($parameters);
+    $ROOT_DIR = dirname(__FILE__); 
+
+    $id = $apidatos->nuevoIncidente($parameters , $ROOT_DIR);
 
    $response->getBody()->write(json_encode( $id));
 
