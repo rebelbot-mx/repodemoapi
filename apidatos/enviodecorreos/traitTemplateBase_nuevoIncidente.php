@@ -1,9 +1,9 @@
 <?php 
-$raiz = $_ENV['RUTA'];
+
 trait traitTemplateBase_nuevoIncidente {
 
     function template($ROOT_DIR){
-    
+        $raiz = $_ENV['RUTA'];
         $ruta = $raiz . '/apidatos/enviodecorreos/template_nuevoIncidente.html';
 
         $myfile = fopen($ruta, "r");
