@@ -1,7 +1,10 @@
 <?php 
+require 'traitEstadoDelSeguimiento.php';
 
 class clsCierre_getDatosDelCierre { 
  
+use traitEstadoDelSeguimiento;
+
     public function getcierre($id){
 
 
@@ -132,6 +135,8 @@ class clsCierre_getDatosDelCierre {
        $testigos = DB::query("select * from testigoscierre where incidenteid = %i",$id);
 
        $results[0]['testigos']=$testigos;
+
+       $results[0]['estadoseguimiento'] = $this->estadoDelSeguimiento($id);
 
 
         return json_encode($results);

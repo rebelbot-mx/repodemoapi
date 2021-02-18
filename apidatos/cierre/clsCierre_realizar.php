@@ -4,7 +4,8 @@ require $ruta . '/apidatos/enviodecorreos/clsEnviarCorreo.php';
 require $ruta . '/apidatos/enviodecorreos/traitTemplate_cierreSeguimiento.php';
 
 class clsCierre_realizar { 
- 
+
+
     public function getcierre($datos){ 
 
         $tz = 'America/Mexico_City';

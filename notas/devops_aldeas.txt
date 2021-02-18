@@ -1,3 +1,6 @@
 az webapp deployment user set --user-name rebelBotDeploytwo --password rbl2478*.
 
+nota: quitar el uso del ssl en la base de datos .
+
+
 https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiAldeasProteccionInfantil.git
