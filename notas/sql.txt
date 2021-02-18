@@ -1,11 +1,11 @@
-truncate table denuncialegal;
+truncate  denuncialegal;
 
-truncate table incidente;
-truncate table seguimiento ;
+truncate  incidente;
+truncate  seguimiento ;
 
-truncate table testigoscierre; 
-truncate table valoracionintegral; 
-truncate table investigacion;
+truncate  testigoscierre; 
+truncate  valoracionintegral; 
+truncate  investigacion;
 landing page test 3 seconds
 
 --truncate table doctos;

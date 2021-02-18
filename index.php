@@ -14,8 +14,10 @@ require('vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $_ENV['RUTA'] = dirname(__FILE__);
+
 $EN_PRODUCCION= $_ENV['PRODUCCION']; 
-$ruta = $_ENV['RUTA'];
+
+//$ruta = $_ENV['RUTA'];
 //error_log("valor de ruta : " . $ruta);
 
 require_once 'vendor/autoload.php';

@@ -140,7 +140,8 @@ class clsValoracion_update {
             'actavaloracion_docto'        =>  '0',
             'planrecuperacion_docto'      =>  '0',
             'plan_docto'      =>  '0',
-            'protocolosos'  =>'PENDIENTE'
+            'protocolosos'  =>'PENDIENTE',
+            'estado'=> 'abierto'
 
 
          ] );
@@ -170,8 +171,13 @@ class clsValoracion_update {
 
         $data = array('msg' => 'ok','incidente'=>'Si');
 
-        /* enviamos el correo  */ 
+        error_log("antes de enviar el correo de valoracion ");
+
+        /* enviamos el correo  */
         
+        $seEnvianLosCorreos  = $_ENV['ENVIO_DE_CORREOS'];
+        
+        if ($seEnvianLosCorreos =="SI"){
         $enviarCorreo = new clsEnviarCorreo();
         $argumentos = array();
         $argumentos['folio']=$folio;
@@ -185,11 +191,12 @@ class clsValoracion_update {
         }
 
         $templatelisto= $this->populate_template($argumentos);
-        //traitTemplate_updateValoracionIntegral
+        
         $args = array();
         $args['textotema'] = 'Se ha realizado la valoracion integral del Folio #'. $folio[0] . ' en la Plataforma ALDEAS SOS';
         $args['template'] =  $templatelisto;
         $enviarCorreo->enviarCorreo_x($args);
+        }
         /************************************** */
       
         return json_encode($data);

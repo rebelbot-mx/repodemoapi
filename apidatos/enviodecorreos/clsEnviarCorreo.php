@@ -260,8 +260,12 @@ $result = $mailer->send($message);
 
     $sendgrid = new \SendGrid('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');
     try {
-        $response = $sendgrid->send($email);
 
+        $enviarCorreo = $_ENV['ENVIO_DE_CORREOS'];
+        if ($enviarCorreo=="SI"){
+        $response = $sendgrid->send($email);
+        }
+        
     } catch (Exception $e) {
         echo 'Caught exception: '.  $e->getMessage(). "\n";
     }

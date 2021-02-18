@@ -90,7 +90,8 @@ use traiBuscarId_por_Programa;
             'confirmaincidentenumerico'     => 0,
             'tipoderespuesta'       => 'En Proceso de Valoracion',
             'medidasintegrales'     => '0',
-            'activo'                => 1
+            'activo'                => 1,
+            'estado'                => 'abierto'
       ]);
         
     

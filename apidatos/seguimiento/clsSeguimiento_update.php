@@ -77,10 +77,16 @@ class clsSeguimiento_update {
         // sise puede se actualiza la tabla en el campo estado a 'cerrado'
         $validacion = clsSeguimiento_update::validar($id);
 
-                /* enviamos el correo  */ 
+        $seEnvianLosCorreos  = $_ENV['ENVIO_DE_CORREOS'];
+        
+        if ($seEnvianLosCorreos =="SI"){
+        /* enviamos el correo  */ 
                 $folio = DB::queryFirstColumn("select folio from incidente where id = %i", $id);
                 
                 //require $ROOT_DIR . '/apidatos/enviodecorreos/clsEnviarCorreo.php';
+               
+               $sepudeEnviarCorreo = $_ENV['ENVIO_DE_CORREOS'];
+               if ( $sepudeEnviarCorreo == 'SI'){
                 $enviarCorreo = new clsEnviarCorreo();
                 $argumentos = array();
                 $argumentos['folio']=$folio;
@@ -96,7 +102,9 @@ class clsSeguimiento_update {
                  }
                   $args['template'] =  $templatelisto;
                 $enviarCorreo->enviarCorreo_x($args);
+              }
                 /************************************** */
+        }
 
 
 
@@ -124,6 +132,7 @@ class clsSeguimiento_update {
     error_log("resouesta validacion : " . $respuesta);
     if ($respuesta== true ){
       DB::update('seguimiento', ['estado' => 'cerrado'], "id=%i", $id);
+      DB::update('incidente',  ['coloretapatres' => 'green'], "id=%i", $idincidente);
     }else {
       DB::update('seguimiento', ['estado' => 'abierto'], "id=%i", $id);
     }

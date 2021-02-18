@@ -4,15 +4,16 @@ bash
 ========================================================================
 creando el servidor mysqlserver 
 ========================================================================
-az group create --name myResourceGroup --location "West Europe"
-az mysql server create --resource-group myResourceGroup --name <mysql-server-name> --location "West Europe" --admin-user <admin-user> --admin-password <admin-password> --sku-name B_Gen5_1
-az mysql server firewall-rule create --name allAzureIPs --server <mysql-server-name> --resource-group myResourceGroup --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
+az group create --name grupoDeRecursosAldeas --location "West Europe"
+az mysql server create --resource-group grupoDeRecursosAldeas --name mysqlApiAldeas --location "West Europe" --admin-user adminaldeas --admin-password Ai2021mx-ona --sku-name B_Gen5_1
+az mysql server firewall-rule create --name allAzureIPs --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
 
 === permitirme conectar a mi ip localmente ==
 nota: correr este comando practicamente diario.?
 
 az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address=187.143.188.192  --end-ip-address=187.143.188.192
+
  187.135.15.53
  az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address=187.135.15.53  --end-ip-address=187.135.15.53
 
@@ -79,6 +80,8 @@ ctrl + z para detener el stream
 
 
 
+
+https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiAldeasProteccionInfantil.git
 
 
 
