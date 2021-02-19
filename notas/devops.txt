@@ -15,7 +15,7 @@ nota: correr este comando practicamente diario.?
 az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address=187.143.188.192  --end-ip-address=187.143.188.192
 
  187.135.15.53
- az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas --resource-group grupoDeRecursosAldeas --start-ip-address=187.135.15.53  --end-ip-address=187.135.15.53
+ az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas2 --resource-group grupoDeRecursosAldeas --start-ip-address=187.135.20.52  --end-ip-address=187.135.20.52
 
 === crear la base de datos y un usuareio ======
 create database sampledb;

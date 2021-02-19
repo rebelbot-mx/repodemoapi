@@ -6,6 +6,9 @@ mysqlApiAldeas2
 adminaldeas
 Ai2021mx-ona
 
+create database apialdeasbdd;
+create user 'rblprod' identified by 'maca2478*';
+grant all privileges on apialdeasbdd.* to  'rblprod';
 
 
 https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiAldeasProteccionInfantil.git

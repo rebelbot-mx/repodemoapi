@@ -11,10 +11,10 @@
 
    // DB::$host='';
     DB::$host='mysqlApiAldeas2.mysql.database.azure.com';
-    DB::$user = 'adminaldeas@mysqlApiAldeas2';
-    DB::$password = 'Ai2021mx-ona';
+    DB::$user = 'rblprod@mysqlApiAldeas2';
+    DB::$password = 'maca2478*';
     DB::$dbName = 'apialdeasbdd';  
-    
+   
     
 
     }else {
