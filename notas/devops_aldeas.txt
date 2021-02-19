@@ -2,5 +2,10 @@ az webapp deployment user set --user-name rebelBotDeploytwo --password rbl2478*.
 
 nota: quitar el uso del ssl en la base de datos .
 
+mysqlApiAldeas2
+adminaldeas
+Ai2021mx-ona
+
+
 
 https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiAldeasProteccionInfantil.git

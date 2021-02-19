@@ -1,9 +1,10 @@
 <?php
-$servername = "localhost";
+require 'conexion.php';
+/*$servername = "localhost";
 $username = "mcabrera2";
 $password = "2478*";
 $dbname = "apialdeas";
-/*
+
 $servername = "localhost";
 $username = "aisosmx_rebelbot";
 $password = "Rebelware10*";

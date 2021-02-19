@@ -6,13 +6,13 @@ DB::$dbName = 'apialdeas';*/
 /*$servername = "localhost";
 $username = "mcabrera2";
 $password = "2478*";
-$dbname = "apialdeas";*/
+$dbname = "apialdeas";
 
 $servername = "localhost";
 $username = "aisosmx_rebelbot";
 $password = "Rebelware10*";
-$dbname = "aisosmx_apialdeas";
-
+$dbname = "aisosmx_apialdeas";*/
+require 'conexion.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

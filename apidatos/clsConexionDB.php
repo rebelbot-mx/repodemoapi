@@ -10,10 +10,13 @@
     if($EN_PRODUCCION=='SI') {
 
    // DB::$host='';
-    DB::$host='mysqlApiAldeas.mysql.database.azure.com';
-    DB::$user = 'phpappuser@mysqlApiAldeas';
-    DB::$password = 'mysqlazure2017';
-    DB::$dbName = 'sampledb';  
+    DB::$host='mysqlApiAldeas2.mysql.database.azure.com';
+    DB::$user = 'adminaldeas@mysqlApiAldeas2';
+    DB::$password = 'Ai2021mx-ona';
+    DB::$dbName = 'apialdeasbdd';  
+    
+    
+
     }else {
   DB::$user = 'mcabrera';
     DB::$password = '2478';

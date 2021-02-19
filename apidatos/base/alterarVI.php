@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "aisosmx_rebelbot";
-$password = "Rebelware10*";
-$dbname = "aisosmx_apialdeas";
+require 'conexion.php';
 
 
 // Create connection
