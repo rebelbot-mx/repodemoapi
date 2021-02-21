@@ -1,8 +1,9 @@
 <?php 
 
+require ('traitToken.php');
 
 class clssesion_login {
-
+use traitToken;
 
     public function getSesion($correo, $pass) {
 
@@ -39,10 +40,13 @@ class clssesion_login {
             $results['rol'] =   $rolN;
             $results['programa'] =  $proN ;
 
+            $token = $this->getToken();
+
  
             $respuesta["msg"]= "Datos del registro";
             $respuesta["usuario"]=  $results;
             $respuesta["rol"]= $rol;
+            $respuesta["token"]= $token;
 
              return json_encode($respuesta);
 

@@ -9,11 +9,28 @@ use Slim\Routing\RouteContext;
 use Slim\Exception\NotFoundException;
 use Psr\Http\Message\UploadedFileInterface;
 
+
 require('vendor/autoload.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
+
+// Create Middleware with JSON handler.
+use PsrJwt\Handler\Json;
+use PsrJwt\JwtAuthMiddleware;
+$token = $_ENV['TKN_SCRT'];
+// The handler.
+$jsonHandler = new Json($token, '', ['Autorizacion fallida']);
+// The middleware.
+$middleware_auth = new JwtAuthMiddleware($jsonHandler);
+
+
+
+
+
 $_ENV['RUTA'] = dirname(__FILE__);
+
 
 $EN_PRODUCCION= $_ENV['PRODUCCION']; 
 
@@ -100,7 +117,7 @@ $app->get('/api/v0/users', function (Request $request, Response $response): Resp
     $response->getBody()->write('List all users');
 
     return $response;
-});
+})->add($middleware_auth);
 
 $app->get('/api/v0/users/{id}', function (Request $request, Response $response, array $arguments): Response {
     $userId = (int)$arguments['id'];
@@ -170,7 +187,7 @@ $app->post('/api/v0/upload', function (Request $request, Response $response): Re
         error_log(" error en ex " . $ex);
 
     }
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/upload', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -196,7 +213,7 @@ $app->get('/api/v0/files/{id}', function (Request $request, Response $response,a
 
 
     }
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/files/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -227,7 +244,8 @@ $app->post('/incidentes', function (Request $request, Response $response): Respo
     
 
     return $response->withHeader('Content-Type', 'application/json');
-});
+})->add($middleware_auth);
+
 $app->options('/incidentes', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
@@ -253,7 +271,7 @@ $app->get('/api/v0/incidentes/{idusuario}/incidentes', function (Request $reques
     return $response->withHeader('Content-Type', 'application/json');
 
 
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/incidentes/{idusuario}/incidentes', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -276,7 +294,7 @@ $app->get('/api/v0/incidentes/{id}', function (Request $request, Response $respo
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/incidentes/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -299,7 +317,7 @@ $app->get('/api/v0/incidentes/{id}/valoracionintegral', function (Request $reque
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/incidentes/{id}/valoracionintegral', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -325,7 +343,7 @@ $app->get('/api/v0/incidentes/{id}/cierre', function (Request $request, Response
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/incidentes/{id}/cierre', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -352,7 +370,7 @@ $app->get('/api/v0/testigos/{id}', function (Request $request, Response $respons
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/testigos/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -374,7 +392,7 @@ $app->delete('/api/v0/testigos/{id}', function (Request $request, Response $resp
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -393,7 +411,7 @@ $app->get('/api/v0/cierre/{id}/testigos', function (Request $request, Response $
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cierre/{id}/testigos', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -416,7 +434,7 @@ $app->post('/api/v0/testigos', function (Request $request, Response $response): 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/testigos', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -440,7 +458,7 @@ $app->put('/api/v0/testigos', function (Request $request, Response $response): R
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/testigos', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -465,12 +483,12 @@ $app->get('/api/v0/incidentes/{id}/seguimiento', function (Request $request, Res
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/incidentes/{id}/seguimiento', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
-});
+})->add($middleware_auth);
 /*---------------------------------------------------------------------*/
 ///api/v0/seguimiento
 
@@ -493,7 +511,7 @@ $app->put('/api/v0/seguimiento', function (Request $request, Response $response,
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 $app->options('/api/v0/seguimiento', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
@@ -518,7 +536,7 @@ $app->put('/api/v0/valoracionintegral', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 $app->options('/api/v0/valoracionintegral', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
@@ -552,12 +570,12 @@ $app->get('/api/v0/denuncialegal/{id}', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/denuncialegal/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
-});
+})->add($middleware_auth);
 /*----------------------------------------------------------------------------------*/
 $app->delete('/api/v0/denuncialegal/{id}', function (Request $request, Response $response,  array $args): Response {
    
@@ -574,7 +592,7 @@ $app->delete('/api/v0/denuncialegal/{id}', function (Request $request, Response 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -593,7 +611,7 @@ $app->get('/api/v0/incidente/{id}/denuncialegal', function (Request $request, Re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/incidente/{id}/denuncialegal', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -616,7 +634,7 @@ $app->post('/api/v0/denuncialegal', function (Request $request, Response $respon
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/denuncialegal', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -640,7 +658,7 @@ $app->put('/api/v0/denuncialegal', function (Request $request, Response $respons
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/denuncialegal', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -666,7 +684,7 @@ $app->get('/api/v0/investigacion/{id}', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/investigacion/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -688,7 +706,7 @@ $app->delete('/api/v0/investigacion/{id}', function (Request $request, Response 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -707,7 +725,7 @@ $app->get('/api/v0/denuncia/{id}/investigacion', function (Request $request, Res
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/denuncia/{id}/investigacion', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -730,7 +748,7 @@ $app->post('/api/v0/investigacion', function (Request $request, Response $respon
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/investigacion', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -754,7 +772,7 @@ $app->put('/api/v0/investigacion', function (Request $request, Response $respons
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/investigacion', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -780,7 +798,7 @@ $app->put('/api/v0/cierre', function (Request $request, Response $response): Res
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cierre', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -805,7 +823,7 @@ $app->get('/api/v0/programas', function (Request $request, Response $response): 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 
@@ -825,7 +843,7 @@ $app->get('/api/v0/programas/{id}', function (Request $request, Response $respon
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/programas/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -847,7 +865,7 @@ $app->delete('/api/v0/programas/{id}', function (Request $request, Response $res
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -866,7 +884,7 @@ $app->get('/api/v0/cierre/{id}/programas', function (Request $request, Response 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cierre/{id}/programas', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -889,7 +907,7 @@ $app->post('/api/v0/programas', function (Request $request, Response $response):
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/programas', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -913,7 +931,7 @@ $app->put('/api/v0/programas', function (Request $request, Response $response): 
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/programas', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -938,12 +956,12 @@ $app->get('/api/v0/cargos/{id}', function (Request $request, Response $response,
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cargos/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
-});
+})->add($middleware_auth);
 /*----------------------------------------------------------------------------------*/
 $app->delete('/api/v0/cargos/{id}', function (Request $request, Response $response,  array $args): Response {
    
@@ -960,7 +978,7 @@ $app->delete('/api/v0/cargos/{id}', function (Request $request, Response $respon
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -978,7 +996,7 @@ $app->get('/api/v0/cargos', function (Request $request, Response $response): Res
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 $app->get('/api/v0/cierre/{id}/cargos', function (Request $request, Response $response, array $args): Response {
@@ -996,7 +1014,7 @@ $app->get('/api/v0/cierre/{id}/cargos', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cierre/{id}/cargos', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1019,7 +1037,7 @@ $app->post('/api/v0/cargos', function (Request $request, Response $response): Re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/cargos', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1043,7 +1061,7 @@ $app->put('/api/v0/cargos', function (Request $request, Response $response): Res
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cargos', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -1068,7 +1086,7 @@ $app->get('/api/v0/evidencias/{id}', function (Request $request, Response $respo
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/evidencias/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1090,7 +1108,7 @@ $app->delete('/api/v0/evidencias/{id}', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1109,7 +1127,7 @@ $app->get('/api/v0/investigacion/{id}/evidencias', function (Request $request, R
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/investigacion/{id}/evidencias', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1132,7 +1150,7 @@ $app->post('/api/v0/evidencias', function (Request $request, Response $response)
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/evidencias', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1156,7 +1174,7 @@ $app->put('/api/v0/evidencias', function (Request $request, Response $response):
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/evidencias', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -1181,7 +1199,7 @@ $app->get('/api/v0/roles/{id}', function (Request $request, Response $response, 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/roles/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1203,7 +1221,7 @@ $app->delete('/api/v0/roles/{id}', function (Request $request, Response $respons
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1222,7 +1240,7 @@ $app->get('/api/v0/roles', function (Request $request, Response $response): Resp
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cierre/{id}/roles', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1245,7 +1263,7 @@ $app->post('/api/v0/roles', function (Request $request, Response $response): Res
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/roles', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1269,7 +1287,7 @@ $app->put('/api/v0/roles', function (Request $request, Response $response): Resp
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/roles', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -1294,7 +1312,7 @@ $app->get('/api/v0/usuarios/{id}', function (Request $request, Response $respons
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/usuarios/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1316,7 +1334,7 @@ $app->delete('/api/v0/usuarios/{id}', function (Request $request, Response $resp
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1335,7 +1353,7 @@ $app->get('/api/v0/usuarios', function (Request $request, Response $response): R
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/cierre/{id}/usuarios', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1358,7 +1376,7 @@ $app->post('/api/v0/usuarios', function (Request $request, Response $response): 
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
  /*
 $app->options('/api/v0/usuarios', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1382,7 +1400,7 @@ $app->put('/api/v0/usuarios', function (Request $request, Response $response): R
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/usuarios', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
@@ -1431,7 +1449,7 @@ $app->get('/api/v0/conciencia/{todos}/tipo', function (Request $request, Respons
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/conciencia/{todos}/tipo', function (Request $request, Response $response, array $args): Response {
     // Retrieve the JSON data
@@ -1453,7 +1471,7 @@ $app->get('/api/v0/conciencia/{id}', function (Request $request, Response $respo
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 $app->options('/api/v0/conciencia/{id}', function (Request $request, Response $response): Response {
@@ -1476,7 +1494,7 @@ $app->delete('/api/v0/conciencia/{id}', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1495,7 +1513,7 @@ $app->get('/api/v0/conciencia', function (Request $request, Response $response):
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/conciencia', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1518,7 +1536,7 @@ $app->post('/api/v0/conciencia', function (Request $request, Response $response)
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1538,7 +1556,7 @@ $app->put('/api/v0/conciencia', function (Request $request, Response $response):
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 /******************************************************************************* */
 // parametros
@@ -1559,7 +1577,7 @@ $app->get('/api/v0/parametros/{id}', function (Request $request, Response $respo
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/parametros/{id}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1581,7 +1599,7 @@ $app->delete('/api/v0/parametros/{id}', function (Request $request, Response $re
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1623,7 +1641,7 @@ $app->post('/api/v0/parametros', function (Request $request, Response $response)
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1643,7 +1661,7 @@ $app->put('/api/v0/parametros', function (Request $request, Response $response):
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 
 /*----------------------------------------------------------------------------------*/
@@ -1664,7 +1682,7 @@ $app->get('/api/v0/parametrosconfig/nombre/{parametro}', function (Request $requ
     return $response->withHeader('Content-Type', 'application/json');
 
     
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/parametrosconfig/nombre/{parametro}', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1687,7 +1705,7 @@ $app->put('/api/v0/parametrosconfig/nombreupdate', function (Request $request, R
   return $response->withHeader('Content-Type', 'application/json');
 
   
-});
+})->add($middleware_auth);
 
 $app->options('/api/v0/parametrosconfig/nombreupdate', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
@@ -1695,9 +1713,9 @@ $app->options('/api/v0/parametrosconfig/nombreupdate', function (Request $reques
 });
 
 
-
-
-
+///////////////////////////////////
+// pruebas JWT
+//////////////////////////////////
 
 
 $app->run();

@@ -21,6 +21,10 @@ class ComposerStaticInit3ae46a371a239699020f47d6aa707665
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Tests\\' => 6,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -39,13 +43,26 @@ class ComposerStaticInit3ae46a371a239699020f47d6aa707665
             'SendGrid\\Contacts\\' => 18,
             'SendGrid\\' => 9,
         ),
+        'R' => 
+        array (
+            'ReallySimpleJWT\\' => 16,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'PsrJwt\\' => 7,
             'PhpOption\\' => 10,
+        ),
+        'N' => 
+        array (
+            'Nyholm\\Psr7\\' => 12,
+        ),
+        'H' => 
+        array (
+            'Http\\Message\\' => 13,
         ),
         'G' => 
         array (
@@ -68,6 +85,10 @@ class ComposerStaticInit3ae46a371a239699020f47d6aa707665
     );
 
     public static $prefixDirsPsr4 = array (
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rbdwllr/psr-jwt/tests',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -128,6 +149,10 @@ class ComposerStaticInit3ae46a371a239699020f47d6aa707665
         array (
             0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
         ),
+        'ReallySimpleJWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rbdwllr/reallysimplejwt/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -146,9 +171,21 @@ class ComposerStaticInit3ae46a371a239699020f47d6aa707665
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'PsrJwt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rbdwllr/psr-jwt/src',
+        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'Nyholm\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nyholm/psr7/src',
+        ),
+        'Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/message-factory/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (

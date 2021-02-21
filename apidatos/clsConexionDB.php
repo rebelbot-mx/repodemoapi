@@ -18,7 +18,7 @@
     
 
     }else {
-  DB::$user = 'mcabrera';
+    DB::$user = 'mcabrera';
     DB::$password = '2478';
     DB::$dbName = 'apialdeas';
      
