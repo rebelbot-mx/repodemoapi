@@ -488,7 +488,7 @@ $app->get('/api/v0/incidentes/{id}/seguimiento', function (Request $request, Res
 $app->options('/api/v0/incidentes/{id}/seguimiento', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
-})->add($middleware_auth);
+});
 /*---------------------------------------------------------------------*/
 ///api/v0/seguimiento
 
