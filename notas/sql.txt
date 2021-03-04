@@ -12,3 +12,10 @@ landing page test 3 seconds
 #alters
 ALTER TABLE `denuncialegal` ADD `programa` VARCHAR(50) NULL AFTER `foliodenuncia`;
 ALTER TABLE `investigacion` ADD `programa` VARCHAR(50) NULL AFTER `folioinvestigacion`;
+
+============================================
+martes 2 de marzo 
+============================================
+CREATE TABLE `apialdeas`.`permisosimpresion` ( `id` INT NOT NULL AUTO_INCREMENT , `usuarioid` INT NOT NULL , `incidenteid` INT NOT NULL , `etapa` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL , `respuesta` VARCHAR(50) NOT NULL , `usuarioidautorizo` INT NOT NULL , `vigente` VARCHAR(50) NOT NULL , `fechapeticion` DATE NOT NULL , `fechaautorizacion` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `roles` ADD `AUTORIZAIMPRESION` VARCHAR(50) NULL AFTER `RECIBECORREOS`;

@@ -98,9 +98,12 @@ use traiBuscarId_por_Programa;
   /* ------------------------------------------*/
    require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
      
+   $seEnvianLosCorreos  = $_ENV['ENVIO_DE_CORREOS'];
+        
+   if ($seEnvianLosCorreos =="SI"){
    $enviarCorreo = new clsEnviarCorreo();
    $enviarCorreo->enviarCorreo_version_extendida_nuevoIncidente($resultadoFolio["folio"],$ROOT_DIR);
-  
+   }
    
  
   return json_encode($data);

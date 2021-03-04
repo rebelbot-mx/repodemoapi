@@ -91,7 +91,20 @@ https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiA
 
 
 
+===========================================
+        notas adicionales
+===========================================
 
+ 1.- depsues de creado el servidor mysql , hay que desactivar el acceso con ssl.
+
+2.- depues accesamo a  mysql workbench y creamos una base de datos y un usario con 
+ todos los permisos:
+
+create database nombredb;
+create user 'phpappuser' identified by 'mysqlazure2017';
+grant all privileges on sampledb.* to  'phpappuser';
+
+corremos el script de creacion de la base de datos. 
 
 
 

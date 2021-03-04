@@ -1,0 +1,36 @@
+
+JORGE VELAZQUEZ"                ,  "d@g.com",                                                   "password":"1234",              "rol":"ROL PRIORITARIO UNO",        "programa":"ACOGIMIENTO FAMILIAR TIJUANA"
+Marcos Alberto cabrera abarca",    :"dev.marcoscabrera@gmail.com",                              "password":"12345",             "rol":"ROL PRIORITARIO UNO",        "programa":"ACOGIMIENTO FAMILIAR MORELIA"
+Luis Morales Taylor",              :"lmorales@rebelbot.mx",                                     "password":"12345",             "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"FORTALECIMIENTO FAMILIAR HUEHUETOCA"
+administrador del sistema",        :"administrador@sos.com",                                    "password":"12345",             "rol":"ROL PRIORITARIO UNO",        "programa":null,
+Diana Rosales Espinosa",           :"diana.rosales@aldeasinfantiles.or.mxg",                    "password":"drs*2021",          "rol":"ROL PRIORITARIO UNO",        "programa":null,
+Efraín Guzmán Garcia",             :"efrain.guzman@aldeasinfantiles.org.mx",                    "password":"egg*2021",          "rol":"ROL PRIORITARIO UNO",        "programa":null,
+Edgar Serralde Monreal",           :"edgar.serralde@aldeasinfantiles.org.mx",                   "password":"es*2021",           "rol":"ROL PRIORITARIO UNO",        "programa":null,
+M. Constanza Catuar  Huerta",      :"matha.catuar@aldeasinfantiles.org.mx",                     "password":"mc*201",            "rol":"ROL PRIORITARIO UNO",        "programa":null,
+Teresa Gómez Guillén",             :"teresa.gomez@aldeasinfantiles.org.mx",                     "password":"tg*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR COMITAN"
+Marco Antonio López",              :"antonio.lopez@aldeasinfantiles.org.mx",                    "password":"al*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR COMITAN"
+Esteban Juan Pedro",               :"esteban.juan@aldeasinfantiles.org.mx",                     "password":"ej*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR COMITAN"
+María Concepción González",        :"concepcion.gonzalez@aldeasinfantiles.org.mx",              "password":"NOcg*2021",         "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR COMITAN"
+Graciela Maldonado B.",            :"graciela.maldonado@aldeasinfantiles.org.mx",               "password":"NOgm*2021",         "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"FORTALECIMIENTO FAMILIAR COMITAN"
+Carmen Graciela Aguilar",          :"aguilar.graciela@aldeasinfantiles.org.mx",                 "password":"ag*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"FORTALECIMIENTO FAMILIAR COMITAN"
+Rocio Toledo Antonio",             :"rocio.toledo@aldeasinfantiles.org.mx",                     "password":"rt*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TUXTLA"
+Mariela G Cruz López",             :"mariela.cruz@aldeasinfantiles.org.mx",                     "password":"mc*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TUXTLA"
+C. Xóchitl Escobar Aguilar",       :"xochiltcecilia.escobar@aldeasinfantiles.org.mx",           "password":"xce*2021",          "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TUXTLA"
+C. Viridiana Rosales Vicente",     :"cinthiaviridiana.gonzalez@aldeasinfantiles.org.mx",        "password":"cvg*2021",          "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TUXTLA"
+Blanca D. Gómez Figueroa ",        blanca.gomez@aldeasinfantiles.org.mx",                       "password":"bg*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TUXTLA"
+M. Carmen Robles Ayala",           carmen.robles@aldeasinfantiles.org.mx",                      "password":"cr*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR CDMNX"
+Lourdes Esmeralda Barroso ",       lourdes.sosa@aldeasinfantiles.org.mx",                       "password":"ls*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR CDMNX"
+Elena Sierra García ",             elena.sierra@gmail.com",                                     "password":"es*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR CDMNX"
+Jesús S. Flores Reséndiz ",        jesusshane.flores@aldeasinfantiles.org.mx",                  "password":"jshf*2021",         "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR CDMNX"
+Jesús S. Flores Reséndiz",         jesusshane.flores@aldeasinfantiles.org.mx",                  "password":"jshf*2021",         "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"Equipo de Protección Infantil de Fortalecimiento "
+Rosa María Hernández",             rosa.hernandez@aldeasinfantiles.org.mx",                     "password":"rh*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"Equipo de Protección Infantil de Fortalecimiento "
+Pamela Bernal Valderrama",         pamela.bernal@aldeasinfantiles.org.mx",                      "password":"pb*201.",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"Equipo de Protección Infantil de Fortalecimiento "
+Karla Sánchez ",                   karla.sanchez@aldeasinfantiles.org.mx",                      "password":"ks*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR MORELIA"
+Martin Tinoco ",                   martin.tinoco@aldeasinfantiles.org.mx",                      "password":"mt*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR MORELIA"
+Refugio Carolina Farrer",          refugio.farrera@aldeasinfantiles.org.mx",                    "password":"rf*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TIJUANA"
+Alma Pérez Miranda",               trabajosocial.tijuana@aldeasinfantiles.org.mx",              "password":"tjs*2021",          "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TIJUANA"
+Berenice Castro Piedra ",          psicologia.tijuana@aldeasinfantiles.org.mx",                 "password":"pt*2021",           "rol":"ROL SIN ENVIO DE CORREOS",   "programa":"ACOGIMIENTO FAMILIAR TIJUANA,
+Lucia Miranda Loria ",             lucia.miranda@sos-kd.org",                                   "password":"lm*2021",           "rol":"ROL PRIORITARIO UNO",        "programa":null
+
+​
+
