@@ -21,6 +21,15 @@ class clsprogramas_getprogramas {
 
 
     }
+    public function getTodosprogramascolumnas() {
+
+        $results = DB::queryFirstColumn("SELECT  abreviatura  FROM programas");
+
+        return json_encode($results);
+
+
+    }
+    
 
     
 }

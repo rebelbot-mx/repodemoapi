@@ -7,11 +7,19 @@ use traitToken;
 
     public function getSesion($correo, $pass) {
 
+       error_log("en sesioni");
+       error_log($correo);
+       error_log($pass);
+
         $sql = "SELECT * FROM usuarios where email = '".  $correo  ."'  and password ='". $pass  ."' ";
+        
+        error_log($sql); 
 
         $results = DB::queryFirstRow($sql);
 
         $cuantos = isset($results);
+
+        error_log($cuantos); 
 
         $respuesta = array();
 

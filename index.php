@@ -826,7 +826,26 @@ $app->get('/api/v0/programas', function (Request $request, Response $response): 
 })->add($middleware_auth);
 
 
+$app->get('/api/v0/programascolumnas', function (Request $request, Response $response): Response {
+   
+ 
 
+    require 'apidatos/programas/clsprogramas_getprogramas.php';
+
+    $apiDatos = new clsprogramas_getprogramas;
+    
+    $resultado  = $apiDatos->getTodosprogramascolumnas();
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+})->add($middleware_auth);
+$app->options('/api/v0/programascolumnas', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
 
 $app->get('/api/v0/programas/{id}', function (Request $request, Response $response,  array $args): Response {
    
