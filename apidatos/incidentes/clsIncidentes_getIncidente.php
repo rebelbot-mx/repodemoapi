@@ -5,8 +5,12 @@ class clsIncidentes_getIncidente {
 
     public function getIncidente($id){
 
-        $results = DB::query("SELECT * FROM incidente where id =%i " ,$id );
+        $results = DB::queryFirstRow("SELECT * FROM incidente where id =%i " ,$id );
         
+        $pr = $results['programa'];
+
+        $nombrePrograma  = DB::queryFirstField("select programa from programas where id = %i",$pr);
+        $results['nombreprograma']=$nombrePrograma;
         //$estadoSeguimiento = $this->estadoDelSeguimiento($id);
 
         //$results['estado'] =$estadoSeguimiento;

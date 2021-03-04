@@ -19,7 +19,7 @@ use traiBuscarId_por_Programa;
       /** debenmo cambiar el programa por su id 
        * $datos['programa']
       */
-      $programaid = clsIncidentes_nuevo::buscarIdDelPrograma($datos['programa']);
+      $programaid = $this->buscarIdDelPrograma($datos['programa']);
 
       /** debenmo cambiar el elabors por su id 
        * $datos['programa']
