@@ -227,7 +227,7 @@ $app->options('/api/v0/files/{id}', function (Request $request, Response $respon
 // INCIDENTES 
 ==========================================*/
 
-$app->post('/incidentes', function (Request $request, Response $response): Response {
+$app->post('/api/v0/incidentes', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     $parameters = (array)$request->getParsedBody();
 
@@ -246,7 +246,7 @@ $app->post('/incidentes', function (Request $request, Response $response): Respo
     return $response->withHeader('Content-Type', 'application/json');
 })->add($middleware_auth);
 
-$app->options('/incidentes', function (Request $request, Response $response): Response {
+$app->options('/api/v0/incidentes', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
 });

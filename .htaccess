@@ -1,6 +1,6 @@
 <FilesMatch '\.(eot|ttf|otf|woff|pdf)'>
    Header set Access-Control-Allow-Origin '*'
-</FilesMatch> 
+</FilesMatch>
 RewriteEngine On 
 RewriteCond %{REQUEST_FILENAME} !-f  
 RewriteCond %{REQUEST_FILENAME} !-d 
