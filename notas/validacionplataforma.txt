@@ -1,0 +1,10 @@
+los miembros del comite. 
+
+-- usuarios  y contraseña que coincidan
+-- que puedan crear un incidente 
+-- que puedan modificarlo 
+-- que puedan visualizar valoracion integral 
+-- que puedan dicataminar los casos si es un incidente 
+   y si no es un incidente .
+-- que puedan modificar despues del cierre
+-- que puedan imprimir 

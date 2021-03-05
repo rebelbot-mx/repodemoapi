@@ -250,6 +250,26 @@ $app->options('/api/v0/incidentes', function (Request $request, Response $respon
     // Retrieve the JSON data
     return $response;
 });
+//--------update
+
+$app->put('/api/v0/incidentes', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    $parameters = (array)$request->getParsedBody();
+
+    require 'apidatos/incidentes/clsincidentes_update.php';
+
+    $apidatos = new clsincidentes_update;
+
+    $ROOT_DIR = dirname(__FILE__); 
+
+    $id = $apidatos->updateIncidente($parameters , $ROOT_DIR);
+
+   $response->getBody()->write(json_encode( $id));
+
+    
+
+    return $response->withHeader('Content-Type', 'application/json');
+})->add($middleware_auth);
 
 /*----------------------------------------------------------------------------- 
     con este endpoint recueperamos todos los registros de la tabla de  incidentes
