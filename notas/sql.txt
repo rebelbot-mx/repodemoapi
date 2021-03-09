@@ -21,5 +21,27 @@ CREATE TABLE `apialdeas`.`permisosimpresion` ( `id` INT NOT NULL AUTO_INCREMENT 
 
 ALTER TABLE `roles` ADD `AUTORIZAIMPRESION` VARCHAR(50) NULL AFTER `RECIBECORREOS`;
 
+=============================================
+LUNES 8 DE MARZO 
+=============================================
+ALTER TABLE `roles` ADD `VISIBILIDADDEINCIDENTES` VARCHAR(50) NULL AFTER `AUTORIZAIMPRESION`;
+
+
+
+
 
 https://agreeable-moss-01259571e.azurestaticapps.net/#/login
+
+
+efrain.guzman@aldeasinfantiles.org.mx
+egg*2021
+
+
+
+
+
+Lorem ipsum dolor sit amet. Aut soluta necessitatibus qui saepe quibusdam eum sunt voluptatem sed temporibus corrupti ut ipsam voluptatum et nostrum explicabo cum quod reprehenderit. Eos saepe amet est nemo esse est dolorum ipsum in officiis soluta. Qui laudantium expedita ea quasi alias sit repudiandae tenetur aut iusto sapiente id omnis rerum! A rerum dolor non vero dicta qui quam quas eos molestiae quisquam et nisi rerum. Eos aliquam sunt et quia aliquid sit tempora enim et voluptatem tenetur sed accusamus doloribus aut tempora iusto.
+
+Est itaque perspiciatis nam delectus ducimus At autem neque eos consequatur illo ut architecto asperiores 33 ullam dolore et natus accusamus. Et voluptatem assumenda et veniam numquam ex voluptas voluptas aut autem rerum. Quo impedit provident est minus explicabo ad nisi obcaecati aut quibusdam voluptatum deserunt sequi et quibusdam facere. Est amet modi sit ratione aperiam est facere sint et aspernatur adipisci. Ut aperiam quibusdam At sint omnis et quia consequatur et eveniet deserunt ut galisum autem? Et atque accusantium quo eaque quam et vero vero 33 tempora voluptas aut ratione libero. Et consequatur consectetur ex ipsum laboriosam sit laborum corporis 33 saepe officiis.
+
+Et nisi nobis et assumenda galisum qui consequatur magni aut reiciendis debitis. Et tempora repudiandae quo neque voluptatem a animi beatae. Sit fugiat voluptas id quam dolorum quo consequuntur galisum. Aut nostrum sint aut odio earum non voluptas veniam aut voluptas quasi eos blanditiis voluptas. Ad laudantium quisquam aut excepturi harum et quam debitis?

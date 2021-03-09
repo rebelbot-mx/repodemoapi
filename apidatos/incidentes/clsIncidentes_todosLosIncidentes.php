@@ -1,7 +1,7 @@
 <?php 
-
+require 'traitPermisoParaVerIncidentes.php';
 class clsIncidentes_todosLosIncidentes { 
- 
+ use traitPermisoParaVerIncidentes;
     public function todosLosIncidentes_join(){
 
         $results = DB::query("SELECT * FROM incidente");
@@ -28,6 +28,13 @@ $datosUsuario = DB::queryFirstRow("select * from usuarios where id = %i",$idusua
 $programaid =$datosUsuario["programa"];
 
 /*
+  VERIFICAR LOS PERMISOS DEL USUARIO , SI PUEDE VER TODOS LOS INCIDENTES
+*/
+
+$queIncidentesSePuedenVer =  $this->permisoParaVerLosincidente($idusuario);
+
+//posibles respuestas : todos, programas, propios
+/*
 //  
      { text: "Programa", value: "programa" },
       { text: "Fecha", value: "fechaAlta" },
@@ -47,7 +54,7 @@ $programaid =$datosUsuario["programa"];
 
 */
 
-if ($programaid  == 0){
+if ($queIncidentesSePuedenVer  == "TODOS"){
 
     $results = DB::query("SELECT 
        i.id as 'id',
@@ -73,7 +80,10 @@ if ($programaid  == 0){
 return json_encode($results);
 
 
-}else {
+}
+
+if ($queIncidentesSePuedenVer  == "PROGRAMA"){
+
     $results = DB::query("SELECT 
        i.id as 'id',
        i.folio as 'folio',
@@ -94,6 +104,34 @@ return json_encode($results);
        v.estado as 'estadoseguimiento',
        v.confirmaincidentenumerico as 'confirmaincidentenumerico'
        FROM incidente i join valoracionintegral v on v.incidenteid = i.id where i.programa = %s",$programaid);
+
+return json_encode($results);
+
+}
+
+if ($queIncidentesSePuedenVer  == "PROPIOS"){
+
+    
+    $results = DB::query("SELECT 
+       i.id as 'id',
+       i.folio as 'folio',
+       i.programa ,
+       i.fechaAlta as 'fechaAlta',
+       i.incidenteconfirmado as 'incidenteconfirmado',
+       v.confirmaincidente as 'confirmaincidente',
+       v.tipoderespuesta as 'tipoderespuesta',
+       i.estado as 'estado',
+       i.etapauno as 'etapauno',
+       i.etapados as 'etapados',
+       i.etapatres as 'etapatres',
+       i.etapacuatro as 'etapacuatro',
+       i.coloretapauno as 'coloretapauno',
+       i.coloretapados as 'coloretapados',
+       i.coloretapatres as 'coloretapatres',
+       i.coloretapacuatro as 'coloretapacuatro',
+       v.estado as 'estadoseguimiento',
+       v.confirmaincidentenumerico as 'confirmaincidentenumerico'
+       FROM incidente i join valoracionintegral v on v.incidenteid = i.id where i.usuariocreador = %i",$idusuario);
 
 return json_encode($results);
 
