@@ -1,6 +1,7 @@
 <?php
 
-class clsValoracion_crearTipoRespuesta {
+class clsValoracion_crearTipoRespuesta 
+{
 
     public function crearRespuesta($datos){
 
@@ -9,7 +10,9 @@ class clsValoracion_crearTipoRespuesta {
        
         $perteneceAlprograma ="no hay datos";
 
-        if( $tipoRespuesta ==='DENUNCIA PENAL') {
+        $perteneceAlprograma = DB::queryFirstField("select programa from incidente where id = %i", $incidenteId);
+
+        if( $tipoRespuesta ==='DENUNCIA LEGAL') {
             clsValoracion_crearTipoRespuesta::crearDenuncia($incidenteId,$perteneceAlprograma);
         }
 
@@ -19,14 +22,23 @@ class clsValoracion_crearTipoRespuesta {
   
         }
 
+        if( $tipoRespuesta ==='ABORDAJE INTERNO') {
+            error_log(" creando respuesta ->abordaje interno = " . $incidenteId  . "  " . $perteneceAlprograma );
+            clsValoracion_crearTipoRespuesta::crearAbordaje($incidenteId,$perteneceAlprograma);
+  
+        }
+
     }
     
     public function crearDenuncia($incidenteid, $programa){
 
         /* existe */
-
+        
         $existe = DB::queryFirstField("SELECT count(*) FROM denuncialegal WHERE incidenteid=%i", $incidenteid);
          /* debo de hacer algo con el folio de la denuncia */
+
+         $idprograma = DB::queryFirstField("select programa from incidente where id = %i",$incidenteid );
+
         if($existe== 0 ){
 
 
@@ -51,6 +63,7 @@ class clsValoracion_crearTipoRespuesta {
                 'fechaCreacion'    => $date,
                 'fechaUpdate'    =>  $date,
                 'estado'    =>  'EN PROCESO',
+                'programa'  =>   $idprograma
                 ]);
         }
 
@@ -112,13 +125,48 @@ class clsValoracion_crearTipoRespuesta {
         $folio = "INV-$folioprefijo-$consecutivo-$year";
         return $folio;
 
-    }
+    }//termina funcion
+
+    public function generarAbordajeInterno($incidenteId){
+
+        //buscamos el programa y la fecha 
+        //luego buscamos las denuncias asociadas a ese programa en particular 
+        //  y las sumamos
+        
+        error_log(" Dentro de abordaje interno");
+        $datos = DB::queryFirstRow("SELECT folio, programa , fechaAlta FROM incidente WHERE id=%i", $incidenteId);
+        
+     
+        
+        $programa=$datos["programa"];
+        $fechaALta=$datos["fechaAlta"];
+
+        error_log(" valores de programa : $programa y de fechaALtra : $fechaALta ");
+
+        $folioprefijo =DB::queryFirstField("select prefijofolio from programas where abreviatura ='$programa'");
+
+        $year = substr( $fechaALta, 0, 4);
+        error_log(" valor de year : $year");
+        //cuantas denuncias en el año
+        $cuantasDenuncias=DB::queryFirstField("select count(*) from abordajinterno where programa ='$programa' and YEAR(fechaCreacion)='$fechaALta'  ");
+
+        $consecutivo = $cuantasDenuncias + 1;
+
+        $folio = "AI-$folioprefijo-$consecutivo-$year";
+
+        return $folio;
+
+    }//termina funcion
 
     public function crearInvestigacion($incidenteid, $programa) {
+
 
                /* existe */
                $existe = DB::queryFirstField("SELECT count(*) FROM investigacion WHERE incidenteid=%i", $incidenteid);
               /* debo de hacer algo con el folio de la denuncia */
+              
+              $idprograma = DB::queryFirstField("select programa from incidente where id = %i",$incidenteid );
+
               error_log( " valor de existe =>> " . $existe );
                if($existe== 0 ){
 
@@ -140,7 +188,9 @@ class clsValoracion_crearTipoRespuesta {
                        'plan_docto' => "0",
                        'informe_docto' => "0",
                        'fechaCreacion' =>  $date,
-                       'fechaUpdate' =>  $date
+                       'fechaUpdate' =>  $date,
+                       'programa' =>  $idprograma,
+                       'estado' => 'EN PROCESO'
                         ]);                      
                    }catch(Exception $ex) {
                        error_log(" error en insertar investigacion"  . $ex);
@@ -149,6 +199,60 @@ class clsValoracion_crearTipoRespuesta {
   
                }
 
-            }
+            }// termina function
+
+       public function crearAbordaje($incidenteid, $programa){
+
+               /* existe */
+               $existe = DB::queryFirstField("SELECT count(*) FROM abordajinterno WHERE incidenteid=%i", $incidenteid);
+              
+
+               $idprograma = DB::queryFirstField("select programa from incidente where id = %i",$incidenteid );
+
+
+              error_log( " valor de existe =>> " . $existe );
+
+               if($existe== 0 ){
+
+                 $folio = clsValoracion_crearTipoRespuesta::generarAbordajeInterno($incidenteid);
+                  
+
+                 error_log( "creando folio  abordaje intereno =>> " . $folio );
+
+                 date_default_timezone_set('America/Mexico_City');
+
+                   $date = date("Y-m-d H:i:s");
+                   
+                   try {
+
+                    error_log( "creando registro abordaje intereno =>> "  );
+
+                    DB::insert('abordajinterno', [
+     
+                  
+                       'incidenteid'           =>  $incidenteid,
+                       'folioabordaje'    =>  $folio,
+                       'status' => " ",
+                       'plan' => " ",
+                       'documentos' => "0",
+                       'plan_docto' => "0",
+                       'documentos_docto' => "0",
+                       'fechaCreacion' =>  $date,
+                       'fechaUpdate' =>  $date,
+                       'estado'=> 'abierto',
+                       'programa' => $idprograma
+                        ]);       
+
+                   }catch(Exception $ex) {
+                       error_log(" error en insertar abordaje interno"  . $ex);
+                   }
+
+  
+               }
+
+
+       }//termina funcion
 
 }
+
+

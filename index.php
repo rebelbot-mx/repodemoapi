@@ -297,7 +297,56 @@ $app->options('/api/v0/incidentes/{idusuario}/incidentes', function (Request $re
     // Retrieve the JSON data
     return $response;
 });
+/******************************************************************************************** */
 
+$app->get('/api/v0/incidentes/folio/{folio}', function (Request $request, Response $response , array $args):Response{
+                                 
+    require 'apidatos/incidentes/clsIncidentes_buscarIncidentePorFolio.php';
+     
+    $folio = (string)$args['folio'];
+
+
+    $apiDatos = new clsIncidentes_buscarIncidentePorFolio;
+    
+    $resultado  = $apiDatos->buscarIncidentePorFolio($folio);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+
+})->add($middleware_auth);
+
+
+$app->options('/api/v0/incidentes/folio/{folio}', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/************************************************************* */
+
+$app->post('/api/v0/incidentes/busqueda/parametros', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    $parameters = (array)$request->getParsedBody();
+
+    require 'apidatos/incidentes/clsIncidentes_busquedaPorParametros.php';
+
+    $apidatos = new clsIncidentes_busquedaPorParametros;
+
+    $ROOT_DIR = dirname(__FILE__); 
+
+    $datos = $apidatos->busqueda($parameters );
+
+   $response->getBody()->write($datos);
+
+    
+
+    return $response->withHeader('Content-Type', 'application/json');
+})->add($middleware_auth);
+
+$app->options('/api/v0/incidentes/busqueda/parametros', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
 /******************************************************************************************** */
 $app->get('/api/v0/incidentes/{id}', function (Request $request, Response $response,  array $args): Response {
    
@@ -571,6 +620,67 @@ $app->options('/api/v0/valoracionintegral', function (Request $request, Response
 });*/
 
 /*=========================================*/
+
+/*********************** */
+//abordaje
+$app->get("/api/v0/abordaje/{id}", function (Request $request, Response $response,  array $args): Response {
+   
+    $id = (int)$args['id'];
+
+    require 'apidatos/abordaje/clsabordaje_getabordaje.php';
+
+    $apiDatos = new clsabordaje_getabordaje;
+    
+    $resultado  = $apiDatos->getabordaje($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+})->add($middleware_auth);
+
+$app->options('/api/v0/abordaje/{id}', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+})->add($middleware_auth);
+
+/*-----------------------------------------------------------------*/
+
+
+
+$app->get('/api/v0/incidente/{id}/abordaje/l', function (Request $request, Response $response,  array $args): Response {
+
+
+
+    $id = (int)$args['id'];
+
+    require 'apidatos/abordaje/clsabordaje_getabordaje.php';
+
+    $apiDatos = new clsabordaje_getabordaje;
+    
+   $resultado  = $apiDatos->getabordaje_por_incidente($id);
+  
+   error_log("resultados");  
+   error_log($resultado);
+   error_log("despues de imprimir");
+
+   $response->getBody()->write($resultado);
+
+  // error_log($response);
+
+   return $response->withHeader('Content-Type', 'application/json');
+
+
+});
+
+$app->options('/api/v0/incidente/{id}/abordaje/l', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+
+
 /******************************************************************************* */
 // denuncialegal
 /******************************************************************************** */

@@ -1,6 +1,8 @@
 <?php 
 
+require 'traitValidarDenuncia.php';
 class clsdenuncialegal_update {
+use traitValidarDenuncia;
 
     public function updatedenuncialegal($datos){
 
@@ -23,7 +25,7 @@ class clsdenuncialegal_update {
   'medidastexto'    =>  $datos['medidastexto'],
   'fechaCreacion'    =>  $datos['fechaCreacion'],
   'fechaUpdate'    =>  $datos['fechaUpdate'],
-  'estado'    =>  $datos['estado'],
+  'estado'    =>  'Guardado',
 
         
          ],"id=%i",$datos['id'] );
@@ -31,8 +33,19 @@ class clsdenuncialegal_update {
            
   
           error_log(" valor de denuncialegal actualizados  : " . $datos['id']);
+         
+          $validar =  $this->validar($datos['id']);
 
-          $data = array('id' => $datos['id']);
+          $estado ="guardado";
+
+          if ($validar == true){
+
+            DB::update('denuncialegal',
+             [ 'estado'    =>  'cerrado'],"id=%i",$datos['id'] );
+             $estado ="cerrado";
+          }
+
+          $data = array('id' => $datos['id'], 'estado' => $estado );
    
           return json_encode($data);
     }

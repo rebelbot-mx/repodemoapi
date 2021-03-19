@@ -89,7 +89,7 @@ $app->put('/api/v0/permisosimpresion', function (Request $request, Response $res
    
     // Retrieve the JSON data
   $parameters = (array)$request->getParsedBody();
-
+                            
   require 'apidatos/permisosimpresion/clspermisosimpresion_update.php';
 
   $apiDatos = new clspermisosimpresion_update;

@@ -17,15 +17,16 @@ trait  validarSeguimiento {
         
 
 
-        $s = strlen($seguimiento["status"]);
-        if ($s > 20 ){
+      //  $s = strlen($seguimiento["status"]);
+      
 
           error_log(" plan = " .$seguimiento['plan'] . "   no debe de ser 'POR CONFIRMAR' ");
           $r1 = 0;
-          $r1 = $this->No_es_Valido($seguimiento['plan'],'POR CONFIRMAR');
-        error_log(" valor de r1 : " . $r1);
-          $r2 = 0;
-          $r2 = $this->No_es_Valido($seguimiento['documentos'],'POR CONFIRMAR');
+          //$r1 = $this->No_es_Valido($seguimiento['plan'],'POR CONFIRMAR');
+          //error_log(" valor de r1 : " . $r1);
+
+         $r2 = 0;
+          //$r2 = $this->No_es_Valido($seguimiento['documentos'],'POR CONFIRMAR');
 
           $r3 = 0;
           $r3 = $this->No_es_Valido($seguimiento['notificaciondif'],'POR CONFIRMAR');
@@ -56,7 +57,7 @@ trait  validarSeguimiento {
           $r8 = $this->No_es_Valido($seguimiento['planrecuperacion'],'POR CONFIRMAR');
           
           $r9 = 0;        
-           $r9=   $this->No_es_Valido($seguimiento['documentos_docto'],0);
+          // $r9=   $this->No_es_Valido($seguimiento['documentos_docto'],0);
 
            $r10 = 0;
            $r10= $this->No_es_Valido($seguimiento['notificaciondif_docto'],0);
@@ -81,7 +82,7 @@ trait  validarSeguimiento {
            $r15= $this->No_es_Valido($seguimiento['planrecuperacion_docto'],0);
 
            $r16 = 0;
-           $r16= $this->No_es_Valido($seguimiento['plan_docto'],0);
+          // $r16= $this->No_es_Valido($seguimiento['plan_docto'],0);
 
 
 
@@ -117,11 +118,7 @@ trait  validarSeguimiento {
            }
            
 
-        } else{
-             
-            return false; //no se puede validar
-
-        }
+       
 
         
  /*

@@ -4,6 +4,7 @@ truncate  seguimiento ;
 truncate  testigoscierre; 
 truncate  valoracionintegral; 
 truncate  investigacion;
+truncate abordajinterno;
 
 
 

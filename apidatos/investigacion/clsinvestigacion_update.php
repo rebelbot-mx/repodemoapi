@@ -1,7 +1,9 @@
 <?php 
 
-class clsinvestigacion_update {
+require 'traitValidarInvestigacion.php';
 
+class clsinvestigacion_update {
+use traitValidarInvestigacion;
     public function updateInvestigacion($datos){
 
         date_default_timezone_set('America/Mexico_City');
@@ -17,7 +19,10 @@ class clsinvestigacion_update {
             'plan_docto'    =>  $datos['plan_docto'],
             'informe_docto'    =>  $datos['informe_docto'],
            // 'fechaCreacion'    =>  $datos['fechaCreacion'],
-            'fechaUpdate'    =>  $date
+            'fechaUpdate'    =>  $date,
+
+            'estado'    =>  'Guardado'
+
 
         
          ],"id=%i",$datos['id'] );
@@ -26,7 +31,17 @@ class clsinvestigacion_update {
   
           error_log(" valor de investigacion actualizados  : " . $datos['id']);
 
-          $data = array('id' => $datos['id']);
+          $validar =  $this->validar($datos['id']);
+
+          $estado ="guardado";
+          
+          if ($validar == true){
+
+            DB::update('investigacion',
+             [ 'estado'    =>  'cerrado'],"id=%i",$datos['id'] );
+             $estado ="cerrado";
+          }
+          $data = array('id' => $datos['id'],'estado'=>$estado);
    
           return json_encode($data);
     }
