@@ -76,6 +76,12 @@ class clsSeguimiento_update {
         //validamos si se puede cerrar el registro 
         // sise puede se actualiza la tabla en el campo estado a 'cerrado'
         $validacion = clsSeguimiento_update::validar($id);
+        
+        $edo = 'abierto';
+        if ($validacion == true ){
+          $edo = 'cerrado';
+        }
+        $data = array('msg' => 'ok', 'estado' => $edo);
 
         $seEnvianLosCorreos  = $_ENV['ENVIO_DE_CORREOS'];
         
