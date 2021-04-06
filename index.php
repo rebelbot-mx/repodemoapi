@@ -1867,7 +1867,7 @@ $app->options('/api/v0/parametrosconfig/nombreupdate', function (Request $reques
 /*----------------------------------------------------------------------------------*/
 $app->get('/api/v0/permisosimpresion/{id}', function (Request $request, Response $response,  array $args): Response {
    
-    $id = (int)$args['id'];
+    $id = (int)$args['id']; 
 
     require 'apidatos/permisosimpresion/clspermisosimpresion_getpermisosimpresion.php';
 
@@ -1926,6 +1926,28 @@ $app->get('/api/v0/permisosimpresion', function (Request $request, Response $res
 })->add($middleware_auth);
 
 $app->options('/api/v0/permisosimpresion', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/permisosimpresion/{id}/usuario', function (Request $request, Response $response,array $args): Response {
+   
+    $id = (int)$args['id'];
+
+    require 'apidatos/permisosimpresion/clspermisosimpresion_getTodosLospermisosimpresion.php';
+
+    $apiDatos = new clspermisosimpresion_getTodosLospermisosimpresion;
+    
+    $resultado  = $apiDatos->getTodosLospermisosimpresion($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+})->add($middleware_auth);
+
+$app->options('/api/v0/permisosimpresion/{id}/usuario', function (Request $request, Response $response): Response {
     // Retrieve the JSON data
     return $response;
 });
