@@ -4,15 +4,7 @@ require 'traitBuscarProgramaDeUsuario.php';
 class clspermisosimpresion_getTodosLospermisosimpresion {
 use traitBuscarProgramaDeUsuario;
 
-   /* public function getpermisosimpresion($id) {
 
-        $results = DB::query("SELECT * FROM permisosimpresion where incidenteid =%i " ,$id );
-
-        return json_encode($results);
-
-
-    }*/
-    
     //DEVUELVE LOS PERMISOS DE UN PROGRAMA O DE TODOS
     public function getpermisosimpresion($id) {
         
@@ -25,24 +17,39 @@ use traitBuscarProgramaDeUsuario;
         //como filtrar esta informacion? 
         // no se pueden regresar todos los permisos
         if ($programaid == 0){
-            $query ="SELECT * FROM permisosimpresion p 
+            $query =" SELECT *  FROM permisosimpresion p 
             join incidente i on i.id = p.incidenteid
-            join usuarios u on u.id = p.usuarioid ";
-            error_log("query de permisos : " .$query);
-            $results = DB::queryRaw($query );
+            join usuarios u on u.id = p.usuarioid  
+            where p.respuesta = 'PENDIENTE'";
+            error_log("query de permisos --->>> : " . $query);
+            $results = DB::query($query );
+
+         
+
+          
+
+       
+
+           
 
             return json_encode($results);      
         }else {
           
           $query ="SELECT * FROM permisosimpresion p 
           join incidente i on i.id = p.incidenteid
-          join usuarios u on u.id = p.usuarioid where i.programa= " . $programaid;
-           error_log("query de permisos : " .$query);   
+          join usuarios u on u.id = p.usuarioid 
+          where i.programa= " . $programaid . "
+           and  p.respuesta = 'PENDIENTE' " ;
+          error_log("query de permisos ******: " .$query);   
  
-            $results = DB::queryRaw($query);
 
+           
+         
+           $results = DB::query($query);
 
-            return json_encode($results);  
+          
+           
+           return json_encode(  $results);  
 
 
         }

@@ -1992,6 +1992,52 @@ $app->put('/api/v0/permisosimpresion', function (Request $request, Response $res
 
 
 
+
+$app->post('/api/v0/permisosimpresion/autorizar', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+
+  require 'apidatos/permisosimpresion/clspermisosimpresion_autorizar.php';
+
+  $apiDatos = new clspermisosimpresion_autorizar;
+  
+  $resultado  = $apiDatos->updatepermisosimpresion($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+})->add($middleware_auth);
+
+/* --------------------------------------------------------
+    Metodos para generar reporte de impresion  a partir del id
+    del permiso 
+*/
+
+$app->post('/api/v0/permisosimpresion/generar', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+ 
+
+  require 'apidatos/generarpdfs/clsGenerarReporte.php';
+
+  $apiDatos = new clsGenerarReporte;
+  
+  $resultado  = $apiDatos->generarReporte($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+})->add($middleware_auth);
+
+
+
+
 ///////////////////////////////////
 // pruebas JWT
 //////////////////////////////////

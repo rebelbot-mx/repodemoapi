@@ -13,6 +13,9 @@ class clsIncidentes_todosLosIncidentes {
 
     public function todosLosIncidentes($idusuario) {
 
+
+      error_log(" todos los incidentes : ");
+
         /* $results = DB::query("SELECT * FROM tbl WHERE name=%s AND age > %i AND height <= %d", $name, 15, 13.75);
 
 foreach ($results as $row) {
