@@ -8,19 +8,63 @@ class clsGenerarReporte {
 
   use trait_modificarVigencia;
 
-
+ 
   public function generarReporte($datos){
 
-    $permisoId = $datos["id"];
 
-    error_log("--generarReporte-- valor de permisoid " .  $permisoId);
 
-    $permisos = clsGenerarReporte::cargarPermisoImpresion($permisoId);
- 
-    $incidenteId = $permisos["incidenteid"];
-    $etapa = $permisos["etapa"];
+
+    $incidenteId ="";
+    $etapa = "";
     $ruta = "";
     $nombreDeArchivo = "";
+    
+    /*
+    @param tipo : determina si se imprimiar por peticion o solo sera impresion
+                  depende del valor , se buscara el incidenteid y la etapa.
+                  los valores pueden ser : autorizacion, sin autorizacion
+    */
+    $tipo =  $datos["tipo"];
+
+    if ($tipo == "autorizacion"){
+      /*
+       Se inicia proceso para generar el archivo pdf , pero se revisara 
+       previamente los valores de la tabla permisosimpresion.
+      
+      */
+      $permisoId = $datos["id"];
+
+      error_log("--generarReporte-- valor de permisoid " .  $permisoId);
+
+      $permisos = clsGenerarReporte::cargarPermisoImpresion($permisoId);
+
+      
+      
+      $incidenteId = $permisos["incidenteid"];
+      $etapa = $permisos["etapa"];
+  
+      error_log("--generarReporte-- valor de incidenteId " .  $incidenteId);
+      error_log("--generarReporte-- valor de etapa " .  $etapa);
+
+      /*
+      Se modifica la vigencia del permiso, pasara de SI a No
+      */
+      $this->modificarVigencia( $permisoId);
+
+      error_log("--generarReporte-- ya se realizo la modificacion " );
+
+    }else {
+      /*
+      Se inicia el proceso para generar el archivo pdf, pero solo ser requieren los datos 
+      del incidente y la etapa.
+      */
+
+      $incidenteId = $datos["incidenteid"];
+      $etapa = $datos["etapa"];
+
+
+    }
+
 
 
     switch ($etapa) {
@@ -38,7 +82,7 @@ class clsGenerarReporte {
     $respuesta["msg"]="ok";
     $respuesta["nombrereporte"] =  $nombreDeArchivo;
 
-    $this->modificarVigencia( $permisoId);
+    
 
     return json_encode($respuesta);
 

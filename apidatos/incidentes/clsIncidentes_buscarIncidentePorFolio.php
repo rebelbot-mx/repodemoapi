@@ -5,7 +5,7 @@ class clsIncidentes_buscarIncidentePorFolio {
                     
    public  function buscarIncidentePorFolio($folio){
 
-      $sql = "select * from incidente where folio = '". $folio ."'";
+      $sql = "select * from incidente where folio like '%". $folio ."%'";
       $results = DB::query($sql);
 
       /*$pr = $results['programa'];
