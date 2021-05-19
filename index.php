@@ -12,6 +12,8 @@ use Psr\Http\Message\UploadedFileInterface;
 
 require('vendor/autoload.php');
 
+
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -41,6 +43,8 @@ require_once 'vendor/autoload.php';
 //require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
 require_once 'apidatos/clsConexionDB.php';
+
+require_once ('apidatos/generarpdfs/fpdf.php');
 
 //require_once '/vendor/autoload.php';
 //require 'vendor/autoload.php';
@@ -647,7 +651,33 @@ $app->options('/api/v0/abordaje/{id}', function (Request $request, Response $res
 
 /*-----------------------------------------------------------------*/
 
+///api/v0/abordaje
 
+
+$app->put('/api/v0/abordaje', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+
+  require 'apidatos/abordaje/clsAbordaje_update.php';
+
+  $apiDatos = new clsAbordaje_update;
+  
+  $resultado  = $apiDatos->updateAbordaje($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+})->add($middleware_auth);
+
+$app->options('/api/v0/abordaje', function (Request $request, Response $response): Response {
+  // Retrieve the JSON data
+  return $response;
+});
+
+/*-------------------------------------------------------------------*/
 
 $app->get('/api/v0/incidente/{id}/abordaje/l', function (Request $request, Response $response,  array $args): Response {
 
@@ -2036,10 +2066,63 @@ $app->post('/api/v0/permisosimpresion/generar', function (Request $request, Resp
 })->add($middleware_auth);
 
 
+/////////////////////////////////
 
 
+
+$app->get('/api/v0/incidente/{id}/respuesta', function (Request $request, Response $response,array $args): Response {
+   
+    $id = (int)$args['id'];
+
+    require 'apidatos/incidentes/clsIncidente_respuesta.php';
+
+    $apiDatos = new clsIncidente_respuesta;
+    
+    $resultado  = $apiDatos->getRespuestaDelIncidente($id);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+})->add($middleware_auth);
+$app->options('/api/v0/incidente/{id}/respuesta', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+///////////////////////////////////////////////
+//estadisticas
+//////////////////////////////////////////////////
+
+
+$app->post('/api/v0/estadisticas', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+ 
+
+  require 'apidatos/estadisticas/clsGenerarEstadisticas.php';
+
+  $apiDatos = new clsGenerarEstadisticas;
+  
+  $resultado  = $apiDatos->generarReporte($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+})->add($middleware_auth);
+
+$app->options('/api/v0/estadisticas', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
 ///////////////////////////////////
 // pruebas JWT
+/*
+*/
 //////////////////////////////////
 
 

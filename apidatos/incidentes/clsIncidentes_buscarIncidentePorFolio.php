@@ -5,8 +5,32 @@ class clsIncidentes_buscarIncidentePorFolio {
                     
    public  function buscarIncidentePorFolio($folio){
 
-      $sql = "select * from incidente where folio like '%". $folio ."%'";
-      $results = DB::query($sql);
+    //  $sql = "select * from incidente where folio like '%". $folio ."%'";
+    $query = "SELECT 
+    i.id as 'id',
+    i.folio as 'folio',
+    i.programa ,
+    i.fechaAlta as 'fechaAlta',
+    i.incidenteconfirmado as 'incidenteconfirmado',
+    v.confirmaincidente as 'confirmaincidente',
+    v.tipoderespuesta as 'tipoderespuesta',
+    v.estadorespuesta as 'estadorespuesta',
+    v.colorestadorespuesta as 'colorestadorespuesta',
+    i.estado as 'estado',
+    i.etapauno as 'etapauno',
+    i.etapados as 'etapados',
+    i.etapatres as 'etapatres',
+    i.etapacuatro as 'etapacuatro',
+    i.coloretapauno as 'coloretapauno',
+    i.coloretapados as 'coloretapados',
+    i.coloretapatres as 'coloretapatres',
+    i.coloretapacuatro as 'coloretapacuatro',
+    v.estado as 'estadoseguimiento',
+    v.confirmaincidentenumerico as 'confirmaincidentenumerico'
+    FROM incidente i join valoracionintegral v on v.incidenteid = i.id 
+    where i.folio like '%". $folio ."%'";
+
+    $results = DB::query($query);
 
       /*$pr = $results['programa'];
 

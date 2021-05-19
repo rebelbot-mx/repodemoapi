@@ -39,6 +39,17 @@ use traitValidarDenuncia;
           $estado ="guardado";
 
           if ($validar == true){
+            
+            /*
+             actualizacmos el registro de valoracion indtegral al que pertenece esta denuncia legal 
+            */
+           
+            DB::update('valoracionintegral',
+            [ 'estadorespuesta'    =>  'cerrado','colorestadorespuesta'=> 'green'],"incidenteid=%i",$datos['incidenteid'] );
+ 
+            DB::update('incidente',
+            [ 'estado'    =>  'en llenado de seguimiento',],"id=%i",$datos['incidenteid'] );
+
 
             DB::update('denuncialegal',
              [ 'estado'    =>  'cerrado'],"id=%i",$datos['id'] );

@@ -37,6 +37,21 @@ use traitValidarInvestigacion;
           
           if ($validar == true){
 
+          
+
+            /*
+             conseguimoe el id del incidente
+            */ 
+            $sql_incidenteid = DB::queryFirstField("select incidenteid from investigacion where id=%i",$datos['id']);
+
+            DB::update('incidente',
+            [ 'estado'    =>  'en llenado de seguimiento',],"id=%i",  $sql_incidenteid );
+            
+            
+            DB::update('valoracionintegral',
+            [ 'estadorespuesta'    =>  'cerrado' ,'colorestadorespuesta'=> 'green'],"incidenteid=%i",  $sql_incidenteid );
+
+
             DB::update('investigacion',
              [ 'estado'    =>  'cerrado'],"id=%i",$datos['id'] );
              $estado ="cerrado";

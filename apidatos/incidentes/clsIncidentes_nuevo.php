@@ -66,7 +66,7 @@ use traiBuscarId_por_Programa;
         'coloretapatres'=> $datos['coloretapatres'] ,
         'coloretapacuatro'=> $datos['coloretapacuatro'],
         'textocierre' => '.',
-         'estado'=>'abierto'
+         'estado'=>'en espera de valoracion'
   ]);
 
   $id = DB::insertId();
@@ -91,7 +91,9 @@ use traiBuscarId_por_Programa;
             'tipoderespuesta'       => 'En Proceso de Valoracion',
             'medidasintegrales'     => '0',
             'activo'                => 1,
-            'estado'                => 'abierto'
+            'estado'                => 'abierto',
+            'colorestadorespuesta'=> 'yellow',
+            'estadorespuesta'=> 'abierto'
       ]);
         
     

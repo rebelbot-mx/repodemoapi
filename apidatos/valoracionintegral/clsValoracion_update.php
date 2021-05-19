@@ -152,7 +152,7 @@ class clsValoracion_update {
                         'etapatres' => 'visible',
                         'etapacuatro' => 'visible',
                         'coloretapados' => 'green',
-                        'estado' => 'abierto'
+                        'estado' => 'en llenado de respuesta'
                 ],"id=%i",$datos['incidenteid']);
 
                 require 'clsValoracion_crearTipoRespuesta.php';

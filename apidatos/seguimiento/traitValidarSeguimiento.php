@@ -110,8 +110,10 @@ trait  validarSeguimiento {
            error_log(" valor de  r14 " . $r14);
            error_log(" valor de  r15 " . $r15);
            $total =  $r1+ $r2 + $r3 + $r4+ $r5+ $r6 + $r7 + $r8 +$r9 + $r10 +$r11 +$r12 + $r13 +$r14 +$r15+ $r16;
-           error_log(" valor de  totla " . $total);
+           error_log(" ¿SE PUEDE VALIDAR SEGUIMIENTO ? --- valor de  TOTAL   =>" . $total);
            if($total == 0) {
+
+        
                return true; // se puede validar
            }else{
                return false; // no se puede validar

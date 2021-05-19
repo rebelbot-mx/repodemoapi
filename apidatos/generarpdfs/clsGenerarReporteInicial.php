@@ -1,15 +1,15 @@
 <?php 
 
 
-require ('fpdf.php');
-require ('trait_generarEncabezado.php');
-require ('trait_tituloReporte.php');
-require ('trait_creadoPor_fecha.php');
-require ('trait_textArea.php');
-require ('trait_piedeDePagina.php');
-require ('trait_ParDeValores.php');
-require ('trait_EncabezadoRenglon.php');
-require ('trait_PreguntaIluminada.php');
+//require_once ('fpdf.php');
+include ('trait_generarEncabezado.php');
+include ('trait_tituloReporte.php');
+include ('trait_creadoPor_fecha.php');
+include ('trait_textArea.php');
+include ('trait_piedeDePagina.php');
+include ('trait_ParDeValores.php');
+include ('trait_EncabezadoRenglon.php');
+include ('trait_PreguntaIluminada.php');
 
 
 class clsGenerarReporteInicial{

@@ -74,7 +74,7 @@ use traitBuscarProgramaDeUsuario,traitBuscarPermisoDeAutorizacion;
                 p.fechaautorizacion FROM permisosimpresion p 
                 join incidente i on i.id = p.incidenteid
                 join usuarios u on u.id = p.usuarioid 
-                where u.id = " . $id  ;
+                where u.id = " . $id . " and p.vigente = 'SI' "  ;
                 // and p.respuesta = 'PENDIENTE'";
                  error_log("query de permisos propios: " .$query);   
        

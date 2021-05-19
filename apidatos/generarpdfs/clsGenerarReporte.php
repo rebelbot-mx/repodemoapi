@@ -2,7 +2,16 @@
 
 
 require 'clsGenerarReporteInicial.php';
+require 'clsGenerarReporteValoracion.php';
 require 'trait_modificarVigencia.php';
+/*include ('trait_generarEncabezado.php');
+include ('trait_tituloReporte.php');
+include ('trait_creadoPor_fecha.php');
+include ('trait_textArea.php');
+include ('trait_piedeDePagina.php');
+include ('trait_ParDeValores.php');
+include ('trait_EncabezadoRenglon.php');
+include ('trait_PreguntaIluminada.php');*/
 
 class clsGenerarReporte {
 
@@ -72,6 +81,10 @@ class clsGenerarReporte {
             # code...
             $nombreDeArchivo = clsGenerarReporte::generarReporteInicial($incidenteId);
             break;
+            case 'Valoracion Integral':
+              # code...
+              $nombreDeArchivo = clsGenerarReporte::generarValoracionIntegral($incidenteId);
+              break;
         
         default:
             # code...
@@ -99,6 +112,20 @@ class clsGenerarReporte {
     return $nombreDocumentopdf;
   }
 
+
+  public function generarValoracionIntegral($id) {
+   
+
+    $reporte  = new clsGenerarReporteValoracion;
+
+    $nombreDocumentopdf =  $reporte->generarReporteValoracion($id);
+
+    return $nombreDocumentopdf;
+  }
+
+
+
+  
   public function cargarPermisoImpresion($id){
 
     

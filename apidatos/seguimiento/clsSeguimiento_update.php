@@ -136,9 +136,10 @@ class clsSeguimiento_update {
     //DB::update('tbl', ['age' => 25, 'height' => 10.99], "name=%s", $name);
 
     error_log("resouesta validacion : " . $respuesta);
+
     if ($respuesta== true ){
       DB::update('seguimiento', ['estado' => 'cerrado'], "id=%i", $id);
-      DB::update('incidente',  ['coloretapatres' => 'green'], "id=%i", $idincidente);
+      DB::update('incidente',  ['coloretapatres' => 'green', 'estado' => 'en espera de cierre'], "id=%i", $idincidente);
     }else {
       DB::update('seguimiento', ['estado' => 'abierto'], "id=%i", $id);
     }
