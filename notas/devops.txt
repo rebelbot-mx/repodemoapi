@@ -79,6 +79,10 @@ ctrl + z para detener el stream
 
 
 
+az webapp log tail --resource-group grupoDeRecursosAldeas --name apialdeasproteccioninfantil2
+
+
+
 
 
 

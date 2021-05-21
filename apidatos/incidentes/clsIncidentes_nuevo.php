@@ -14,6 +14,8 @@ use traiBuscarId_por_Programa;
 
       $f = new clsIncidentes_folio;
 
+      $id ="";
+
       $resultadoFolio = $f->generarFolio($datos['programa']);
 
       /** debenmo cambiar el programa por su id 
@@ -73,7 +75,7 @@ use traiBuscarId_por_Programa;
   
   error_log(" valor de id en incidente  : " . $id);
 
-  $data = array('id' => $id,'folio' => $resultadoFolio["folio"]);
+ // $data = array('id' => $id,'folio' => $resultadoFolio["folio"]);
 
   /* ----------------------------------------- */
      //creamos el registro para  valoracionintegral
@@ -101,13 +103,20 @@ use traiBuscarId_por_Programa;
    require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
      
    $seEnvianLosCorreos  = $_ENV['ENVIO_DE_CORREOS'];
+
+   $usuariosCorreos =  new clsEnviarCorreo();
+   $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
         
    if ($seEnvianLosCorreos =="SI"){
    $enviarCorreo = new clsEnviarCorreo();
    $enviarCorreo->enviarCorreo_version_extendida_nuevoIncidente($resultadoFolio["folio"],$ROOT_DIR);
    }
    
- 
+   $data = array(
+          'id'    => $id,
+          'folio' => $resultadoFolio["folio"],
+          'correos' => $listaDeCorreos_para_enviar);
+
   return json_encode($data);
 
 

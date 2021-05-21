@@ -140,7 +140,8 @@ if ($queIncidentesSePuedenVer  == "PROPIOS"){
        i.coloretapacuatro as 'coloretapacuatro',
        v.estado as 'estadoseguimiento',
        v.confirmaincidentenumerico as 'confirmaincidentenumerico'
-       FROM incidente i join valoracionintegral v on v.incidenteid = i.id where i.usuariocreador = %i",$idusuario);
+       FROM incidente i join valoracionintegral v on v.incidenteid = i.id where i.usuariocreador = %i
+         order by id desc ",$idusuario);
 
 return json_encode($results);
 
