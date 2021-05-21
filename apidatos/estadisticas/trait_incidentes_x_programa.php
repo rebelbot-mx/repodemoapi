@@ -78,8 +78,8 @@ trait trait_incidentes_x_programa {
      $res["porcentajeAbiertos"] = $porcentajeAbiertos;
      $res["porcentajeCerrados"] = $porcentajeCerrados;
 
-     $respuesta[$i] = $res;
-
+    // $respuesta[$i] = $res;
+        array_push( $respuesta ,$res);
 
     }// termina for
 
@@ -155,7 +155,9 @@ trait trait_incidentes_x_programa {
         $res["porcentajeAbiertos"] = $porcentajeAbiertos;
         $res["porcentajeCerrados"] = $porcentajeCerrados;
    
-        $respuesta[$i] = $res;
+        //$respuesta[$i] = $res;
+
+        array_push( $respuesta ,$res);
 
     
         }//termina for

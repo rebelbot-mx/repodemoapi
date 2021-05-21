@@ -83,11 +83,15 @@ trait trait_totalIncidentes_Abiertos_Cerrados {
         $res["TotalIncidenteCerrados"] = $totalCerrads;
         $res["TotalIncidentePendientes"] = 0;
       
+   
+        $porcentajeAbiertos = 0; 
+        $porcentajeCerrados = 0; 
 
+        if ($todos !=0 ){
         $porcentajeAbiertos = ($totalAbiertos * 100) / $todos; 
         $porcentajeCerrados = ($totalCerrads * 100) / $todos; 
    
-      
+        }
  
         $res["porcentajeAbiertos"] = $porcentajeAbiertos;
         $res["porcentajeCerrados"] = $porcentajeCerrados;
