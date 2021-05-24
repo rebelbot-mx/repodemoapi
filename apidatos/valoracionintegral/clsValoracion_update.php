@@ -169,7 +169,18 @@ class clsValoracion_update {
              }
          }
 
-        $data = array('msg' => 'ok','incidente'=>'Si');
+          /* ------------------------------------------*/
+
+         
+          $usuariosCorreos =  new clsEnviarCorreo();
+          $listaDeCorreos_para_enviar = array();
+          $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+
+
+        $data = array(
+                      'msg'       => 'ok',
+                      'incidente' => 'Si',
+                      'correos'   => $listaDeCorreos_para_enviar);
 
         error_log("antes de enviar el correo de valoracion ");
 

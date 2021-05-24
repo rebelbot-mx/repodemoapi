@@ -24,7 +24,25 @@ class clsCierre_realizar {
              'fechaCierre'      => $fechaDeCierre 
          ],"id=%i",$datos['id'] );
 
-         $data = array('msg' => 'ok');
+           /* **************************************************************
+            Obtenemos lista de usuarios que reciben notificacion por correo 
+            *****************************************************************/
+
+            require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
+            
+            $listaDeCorreos_para_enviar =array();
+
+            $usuariosCorreos =  new clsEnviarCorreo();
+        
+            $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+        
+            /************************************************************** */
+
+
+         $data = array(
+                       'msg' => 'ok',
+                       'estado' => 'cerrado',
+                       'correos' =>  $listaDeCorreos_para_enviar);
 
          $seEnvianLosCorreos  = $_ENV['ENVIO_DE_CORREOS'];
         

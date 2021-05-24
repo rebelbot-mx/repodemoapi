@@ -30,9 +30,12 @@ class clsAbordaje_update{
      //verficamos validacion si ya esta el 
      
      $estado = "abierto";
+     
+     $listaDeCorreos_para_enviar =array();
+
      if($this->validar( $parametros['incidenteid'] )== true ){
         
-       $estado = "cerrado";
+        $estado = "cerrado";
 
         DB::update('valoracionintegral',
         [ 'estadorespuesta'    =>  'cerrado','colorestadorespuesta'=> 'green'],"incidenteid=%i",$parametros['incidenteid'] );
@@ -48,11 +51,27 @@ class clsAbordaje_update{
          ],"incidenteid=%i",$parametros['incidenteid']);
 
 
+        /* **************************************************************
+         Obtenemos lista de usuarios que reciben notificacion por correo 
+         *****************************************************************/
+
+        require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
+        
+        $usuariosCorreos =  new clsEnviarCorreo();
+       
+        $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+       
+        /************************************************************** */
+
+
         
 
      }
 
-      $data = array('id' => $parametros['incidenteid'], 'estado' => $estado );
+      $data = array(
+                   'id' => $parametros['incidenteid'], 
+                   'estado' => $estado,
+                   'correos' =>  $listaDeCorreos_para_enviar );
    
       return json_encode($data);
 

@@ -34,6 +34,8 @@ use traitValidarInvestigacion;
           $validar =  $this->validar($datos['id']);
 
           $estado ="guardado";
+
+          $listaDeCorreos_para_enviar =array();
           
           if ($validar == true){
 
@@ -55,8 +57,29 @@ use traitValidarInvestigacion;
             DB::update('investigacion',
              [ 'estado'    =>  'cerrado'],"id=%i",$datos['id'] );
              $estado ="cerrado";
+
+
+            /* **************************************************************
+            Obtenemos lista de usuarios que reciben notificacion por correo 
+            *****************************************************************/
+
+            require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
+            
+            $usuariosCorreos =  new clsEnviarCorreo();
+        
+            $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+        
+            /************************************************************** */
+
+
+
+
           }
-          $data = array('id' => $datos['id'],'estado'=>$estado);
+          $data = array(
+              'id'      => $datos['id'],
+              'estado'  =>$estado,
+              'correos' =>$listaDeCorreos_para_enviar
+            );
    
           return json_encode($data);
     }

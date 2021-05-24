@@ -2119,6 +2119,72 @@ $app->options('/api/v0/estadisticas', function (Request $request, Response $resp
     // Retrieve the JSON data
     return $response;
 });
+
+///////////////////////////////////
+// DESCARGAR ARCHIVOS
+//////////////////////////////////
+
+
+$app->post('/api/v0/descargas', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+ 
+
+  require 'apidatos/descargas/clsDescargarpdf.php';
+
+  $apiDatos = new clsGenerarEstadisticas;
+  
+  $resultado  = $apiDatos->descargarArchivo($parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+})->add($middleware_auth);
+
+$app->options('/api/v0/descargas', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+$app->post('/api/v0/otradescargas', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+   $parameters = (array)$request->getParsedBody();
+ 
+    $path = $parameters["url"];
+  
+    $fileData = file_get_contents($path);
+    $base64 = base64_encode($fileData);
+    $r = array();
+    $r['pdf'] = $base64;
+    $r['customKey'] = "My Custom Value";
+    
+    //echo json_encode($response);
+    $response->getBody()->write(json_encode($r));
+    $res= $response->withHeader('Content-Type', 'application/json');
+    $res= $response->withHeader('Content-Description',  'File Transfer');
+    $res= $response->withHeader('Content-Type', 'application/json');
+    $res= $response->withHeader('Content-Transfer-Encoding', 'binary');
+    $res= $response->withHeader('Expires', '0');
+    $res= $response->withHeader('Pragma', 'public');
+ 
+
+
+  return $res;//
+  
+})->add($middleware_auth);
+
+$app->options('/api/v0/otradescargas', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+
+
+
 ///////////////////////////////////
 // pruebas JWT
 /*
