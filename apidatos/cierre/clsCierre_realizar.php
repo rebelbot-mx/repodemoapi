@@ -28,8 +28,7 @@ class clsCierre_realizar {
             Obtenemos lista de usuarios que reciben notificacion por correo 
             *****************************************************************/
 
-            require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
-            
+               
             $listaDeCorreos_para_enviar =array();
 
             $usuariosCorreos =  new clsEnviarCorreo();

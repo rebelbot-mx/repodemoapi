@@ -1613,6 +1613,28 @@ $app->options('/api/v0/login/usuario/{correo}/pass/{pass}', function (Request $r
 // conciencia
 /******************************************************************************** */
 /*----------------------------------------------------------------------------------*/
+$app->get('/api/v0/conciencia/tipo/{tipo}', function (Request $request, Response $response,  array $args): Response {
+   
+    $todos = (string)$args['tipo'];
+
+    require 'apidatos/conciencia/clsconciencia_getconcirnvis_tipo.php';
+
+    $apiDatos = new clsconciencia_getconcirnvis_tipo;
+    
+    $resultado  = $apiDatos->getconciencia_tipo($todos);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+})->add($middleware_auth);
+
+$app->options('/api/v0/conciencia/tipo/{tipo}', function (Request $request, Response $response, array $args): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/*----------------------------------------------------------------------------------*/
 $app->get('/api/v0/conciencia/{todos}/tipo', function (Request $request, Response $response,  array $args): Response {
    
     $todos = (int)$args['todos'];

@@ -63,8 +63,9 @@ use traitValidarInvestigacion;
             Obtenemos lista de usuarios que reciben notificacion por correo 
             *****************************************************************/
 
-            require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
-            
+            $raiz = $_ENV['RUTA'];
+            require $raiz. '/apidatos/enviodecorreos/clsEnviarCorreo.php';
+             
             $usuariosCorreos =  new clsEnviarCorreo();
         
             $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 

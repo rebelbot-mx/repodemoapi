@@ -9,23 +9,23 @@ use traitValidarDenuncia;
        
          DB::update('denuncialegal', [
            
-             'id'    =>  $datos['id'],
-  'incidenteid'    =>  $datos['incidenteid'],
-  'foliodenuncia'    =>  $datos['foliodenuncia'],
-  'consenso'    =>  $datos['consenso'],
-  'consensodocto'    =>  $datos['consensodocto'],
-  'soportecontacto'    =>  $datos['soportecontacto'],
-  'soporteantes'    =>  $datos['soporteantes'],
-  'soportedurante'    =>  $datos['soportedurante'],
-  'soporteemocionalcontacto'    =>  $datos['soporteemocionalcontacto'],
-  'soporteemocionalantes'    =>  $datos['soporteemocionalantes'],
-  'soporteemocionaldurante'    =>  $datos['soporteemocionaldurante'],
-  'medidasd'    =>  $datos['medidasd'],
-  'medidasd_docto'    =>  $datos['medidasd_docto'],
-  'medidastexto'    =>  $datos['medidastexto'],
-  'fechaCreacion'    =>  $datos['fechaCreacion'],
-  'fechaUpdate'    =>  $datos['fechaUpdate'],
-  'estado'    =>  'Guardado',
+             'id'                =>  $datos['id'],
+            'incidenteid'        =>  $datos['incidenteid'],
+            'foliodenuncia'      =>  $datos['foliodenuncia'],
+            'consenso'           =>  $datos['consenso'],
+            'consensodocto'      =>  $datos['consensodocto'],
+            'soportecontacto'    =>  $datos['soportecontacto'],
+            'soporteantes'       =>  $datos['soporteantes'],
+            'soportedurante'     =>  $datos['soportedurante'],
+            'soporteemocionalcontacto'    =>  $datos['soporteemocionalcontacto'],
+            'soporteemocionalantes'       =>  $datos['soporteemocionalantes'],
+            'soporteemocionaldurante'     =>  $datos['soporteemocionaldurante'],
+            'medidasd'                    =>  $datos['medidasd'],
+            'medidasd_docto'              =>  $datos['medidasd_docto'],
+            'medidastexto'                =>  $datos['medidastexto'],
+            'fechaCreacion'               =>  $datos['fechaCreacion'],
+            'fechaUpdate'                 =>  $datos['fechaUpdate'],
+            'estado'                      =>  'Guardado',
 
         
          ],"id=%i",$datos['id'] );
@@ -61,8 +61,9 @@ use traitValidarDenuncia;
             Obtenemos lista de usuarios que reciben notificacion por correo 
             *****************************************************************/
 
-            require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
-            
+            $raiz = $_ENV['RUTA'];
+            require $raiz. '/apidatos/enviodecorreos/clsEnviarCorreo.php';
+                         
             $usuariosCorreos =  new clsEnviarCorreo();
         
             $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 

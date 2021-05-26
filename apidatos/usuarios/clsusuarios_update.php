@@ -43,19 +43,18 @@ class clsusuarios_update {
          Obtenemos lista de usuarios que reciben notificacion por correo 
          *****************************************************************/
 
-         require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
+        // require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
         
-         $usuariosCorreos =  new clsEnviarCorreo();
+       //  $usuariosCorreos =  new clsEnviarCorreo();
         
-         $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+        // $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
         
          /************************************************************** */
             
           error_log(" valor de usuarios actualizados  : " . $datos['id']);
 
           $data = array(
-              'id' => $datos['id'],
-              'correos' =>$listaDeCorreos_para_enviar );
+              'id' => $datos['id'] );
    
           return json_encode($data);
     }

@@ -81,14 +81,11 @@ class clsSeguimiento_update {
         $listaDeCorreos_para_enviar =array();
         if ($validacion == true ){
           $edo = 'cerrado';
-
-            /* **************************************************************
+     /* **************************************************************
             Obtenemos lista de usuarios que reciben notificacion por correo 
             *****************************************************************/
 
-            require $ROOT_DIR .'/apidatos/enviodecorreos/clsEnviarCorreo.php';
-            
-            
+                         
             $usuariosCorreos =  new clsEnviarCorreo();
         
             $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
