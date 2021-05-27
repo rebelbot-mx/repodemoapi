@@ -136,13 +136,23 @@ use trait_generarEncabezado,
     $pdf->SetAutoPagebreak(False);
     $pdf->SetMargins(0,0,0);
 
-  
-    //al final cambiar parametro I y por F
-    $pdf->Output("F",  $nombre_archivo);
 
-    //mover de lugar el archivo creado 
 
-    rename($nombre_archivo, $ruta);
+    try {
+      //al final cambiar parametro I y por F
+      $pdf->Output("F",  $nombre_archivo);
+
+      //mover de lugar el archivo creado 
+
+      rename($nombre_archivo, $ruta);
+
+    }catch(Exception $ex){
+
+      $nombre_archivo ="ocurrio un error " . $ex->getMessage();
+
+
+    }
+
     
     error_log("nombre del documento pdf creado  : " . $nombre_archivo);
     
