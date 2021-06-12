@@ -5,6 +5,17 @@
     DB::$dbName = 'aisosmx_apialdeas';*/
    
     $EN_PRODUCCION =  $_ENV['PRODUCCION']; 
+
+
+
+    if ($EN_PRODUCCION =='DEMO') {
+
+        DB::$host='sdoaldeas.mysql.database.azure.com';
+        DB::$user = 'Macapower@sdoaldeas';
+        DB::$password = 'Rbl2478*';
+        DB::$dbName = 'bddapialdeas';  
+       
+    }
     
 
     if($EN_PRODUCCION=='SI') {
