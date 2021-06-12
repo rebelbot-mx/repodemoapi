@@ -14,9 +14,9 @@ class clsdoctosapoyo_getTodosLosdoctosapoyo {
     }
     public function getTodosLosdoctosapoyo() {
 
-        $results = DB::query("SELECT * FROM doctosapoyo " );
+        $resultsss = DB::query("SELECT * FROM doctosapoyo " );
 
-        return json_encode($results);
+        return json_encode($resultsss);
 
 
     }
