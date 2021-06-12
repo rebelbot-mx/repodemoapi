@@ -68,6 +68,7 @@ use traiBuscarId_por_Programa;
         'coloretapatres'=> $datos['coloretapatres'] ,
         'coloretapacuatro'=> $datos['coloretapacuatro'],
         'textocierre' => '.',
+        'actavaloracion'=> $datos['actavaloracion'],
          'estado'=>'en espera de valoracion'
   ]);
 
@@ -95,6 +96,7 @@ use traiBuscarId_por_Programa;
             'activo'                => 1,
             'estado'                => 'abierto',
             'colorestadorespuesta'=> 'yellow',
+           
             'estadorespuesta'=> 'abierto'
       ]);
         

@@ -98,5 +98,6 @@ $pdf->AddPage();
 $pdf->ImprovedTable($header,$data);
 $pdf->AddPage();
 $pdf->FancyTable($header,$data);
-$pdf->Output("F","lamelcocha.pdf");
+$res= $pdf->Output("S");
+echo($res);
 ?>

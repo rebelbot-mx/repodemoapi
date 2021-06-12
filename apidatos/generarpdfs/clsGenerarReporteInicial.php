@@ -136,15 +136,16 @@ use trait_generarEncabezado,
     $pdf->SetAutoPagebreak(False);
     $pdf->SetMargins(0,0,0);
 
-
+   
+    $cadena_generada = "";
 
     try {
       //al final cambiar parametro I y por F
-      $pdf->Output("F",  $nombre_archivo);
+      $cadena_generada = $pdf->Output("S",  $nombre_archivo);
 
       //mover de lugar el archivo creado 
 
-      rename($nombre_archivo, $ruta);
+      //rename($nombre_archivo, $ruta);
 
     }catch(Exception $ex){
 
@@ -156,7 +157,7 @@ use trait_generarEncabezado,
     
     error_log("nombre del documento pdf creado  : " . $nombre_archivo);
     
-    return $nombre_archivo;
+    return $cadena_generada;
 
    }
 

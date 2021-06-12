@@ -97,7 +97,10 @@ class clsGenerarReporte {
 
     
 
-    return json_encode($respuesta);
+   // return json_encode($nombreDeArchivo);
+
+   return $nombreDeArchivo;
+
 
   }
   

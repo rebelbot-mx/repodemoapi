@@ -27,8 +27,12 @@ LUNES 8 DE MARZO
 =============================================
 ALTER TABLE `roles` ADD `VISIBILIDADDEINCIDENTES` VARCHAR(50) NULL AFTER `AUTORIZAIMPRESION`;
 
+=============================================
+LUNES 28 DE MAYO 
+=============================================
 
-
+ALTER TABLE `incidente` ADD `actavaloracion` INT NULL AFTER `fechaCierre`;
+ALTER TABLE `incidente` ADD `actavaloracion_docto` TEXT NULL AFTER `actavaloracion`;
 
 
 https://agreeable-moss-01259571e.azurestaticapps.net/#/login
