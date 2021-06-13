@@ -15,7 +15,7 @@ trait trait_generarEncabezado {
    
             // logo con 30 de largo 19 de alto .
 
-    $ruta_imagen = $_ENV['RUTA']  ."\apidatos\generarpdfs\logo.jpg";        
+    $ruta_imagen = "logo.jpg";        
    
     $pdf->Image( $ruta_imagen, 10, 10, 30, 19);
 

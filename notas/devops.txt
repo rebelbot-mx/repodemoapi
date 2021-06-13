@@ -125,6 +125,12 @@ habilitando el log
 
 az webapp log config --name apidemo2 --resource-group rdapp2  --docker-container-logging filesystem
 
+////////////////////////////////////////
+visualizar el log desde el shell de azure
+///////////////////////////////////////
+az webapp log tail --resource-group rdapp2 --name apidemo2
+
+
 
 
 

@@ -141,13 +141,16 @@ use trait_generarEncabezado,
 
     try {
       //al final cambiar parametro I y por F
-      $cadena_generada = $pdf->Output("S",  $nombre_archivo);
+     // $cadena_generada = $pdf->Output("S",  $nombre_archivo);
+      $cadena_generada = $pdf->Output("I",  $nombre_archivo);
 
       //mover de lugar el archivo creado 
 
-      //rename($nombre_archivo, $ruta);
+      rename($nombre_archivo, $ruta);
 
     }catch(Exception $ex){
+
+      error_log($ex->getMessage());
 
       $nombre_archivo ="ocurrio un error " . $ex->getMessage();
 
