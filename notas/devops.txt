@@ -119,6 +119,12 @@ corremos el script de creacion de la base de datos.
 az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas3 --resource-group grupoDeRecursosAldeas2 --start-ip-address=187.143.228.177  --end-ip-address=187.143.228.177
 
 
+////////////////////////////////////////
+habilitando el log 
+///////////////////////////////////////
+
+az webapp log config --name apidemo2 --resource-group rdapp2  --docker-container-logging filesystem
+
 
 
 

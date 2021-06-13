@@ -33,7 +33,9 @@
    
     
 
-    }else {
+    }
+    
+    if ($EN_PRODUCCION=='NO'){
     DB::$user = 'mcabrera';
     DB::$password = '2478';
     DB::$dbName = 'apialdeas';
