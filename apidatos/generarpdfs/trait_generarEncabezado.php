@@ -17,7 +17,7 @@ trait trait_generarEncabezado {
 
     $ruta_imagen = "logo.jpg";        
    
-    $pdf->Image( $ruta_imagen, 10, 10, 30, 19);
+    $pdf->Image( $ruta_imagen, 10, 10, 30, 19,'jpg');
 
     $pdf->SetXY( 10, 13 ); 
     $pdf->SetFont('Arial','',14);
