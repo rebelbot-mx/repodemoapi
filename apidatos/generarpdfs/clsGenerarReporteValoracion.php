@@ -28,7 +28,7 @@ use trait_generarEncabezado,
      error_log("Folio del incidente a  generar pdf " . $datos["folio"]);
 
      $pdf = new FPDF( 'P', 'mm', 'A4' );
-     $directorio  = $_ENV['RUTA']  . "\\apidatos\\reportesetapas\\";
+     $directorio  = $_ENV['RUTA']  . "/apidatos/reportesetapas/";
      $nombre_archivo = "reporte_vi_". $folio . ".pdf";
 
      $ruta = $directorio . $nombre_archivo;
