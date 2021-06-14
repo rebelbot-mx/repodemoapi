@@ -146,7 +146,7 @@ use trait_generarEncabezado,
 
       //mover de lugar el archivo creado 
 
-      rename($nombre_archivo, $ruta);
+      //rename($nombre_archivo, $ruta);
 
     }catch(Exception $ex){
 
