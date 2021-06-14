@@ -10,15 +10,16 @@
 
     if ($EN_PRODUCCION =='DEMO') {
 
-       /* DB::$host='sdoaldeas.mysql.database.azure.com';
+       DB::$host='sdoaldeas.mysql.database.azure.com';
         DB::$user = 'Macapower@sdoaldeas';
         DB::$password = 'Rbl2478*';
-        DB::$dbName = 'bddapialdeas';  */
+        DB::$dbName = 'bddapialdeas';  
 
+        /* 
         DB::$host='mysqlApiAldeas3.mysql.database.azure.com';
         DB::$user = 'adminaldeas2@mysqlApiAldeas3';
         DB::$password = 'Ai2021mx-ona';
-        DB::$dbName = 'apialdeasbdd';  
+        DB::$dbName = 'apialdeasbdd';  */
        
     }
     
