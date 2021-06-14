@@ -222,7 +222,7 @@ use trait_generarEncabezado,
     //al final cambiar parametro I y por F
     $pdf->Output("F",  $nombre_archivo);
 
-    //mover de lugar el archivo creado 
+    //mover de lugar el archivo creado ssssss
 
     rename($nombre_archivo, $ruta);
     
