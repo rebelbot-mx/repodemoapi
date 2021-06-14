@@ -36,7 +36,7 @@ use trait_generarEncabezado,
      error_log("Folio del incidente a  generar pdf " . $datos["folio"]);
 
      $pdf = new FPDF( 'P', 'mm', 'A4' );
-     $directorio  = '/reportesetapas/';
+     $directorio  = $_ENV['RUTA']  . "/apidatos/reportesetapas/";
      $nombre_archivo = "reporte_inicial_". $folio . ".pdf";
 
      $ruta = $directorio . $nombre_archivo;
@@ -142,11 +142,11 @@ use trait_generarEncabezado,
     try {
       //al final cambiar parametro I y por F
      // $cadena_generada = $pdf->Output("S",  $nombre_archivo);
-     $pdf->Output("F",  $nombre_archivo);
+     $pdf->Output("F",  $ruta);
 
       //mover de lugar el archivo creado 
 
-      //rename($nombre_archivo, $ruta);
+      rename($nombre_archivo, $ruta);
 
     }catch(Exception $ex){
 
