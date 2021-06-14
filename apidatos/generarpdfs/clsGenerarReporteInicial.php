@@ -142,7 +142,7 @@ use trait_generarEncabezado,
     try {
       //al final cambiar parametro I y por F
      // $cadena_generada = $pdf->Output("S",  $nombre_archivo);
-     $pdf->Output("I",  $nombre_archivo);
+     $pdf->Output("F",  $nombre_archivo);
 
       //mover de lugar el archivo creado 
 
