@@ -15,12 +15,17 @@ trait traitValidarAbordaje{
        $r2 = 0;
        $r2 = $this->No_es_Valido($incidente['status'],'');
 
+
        $r3 = 0;
+       if($incidente['plan']== "SI") {
        $r3 = $this->No_es_Valido($incidente['plan_docto'],0);
+       }
+
 
        $r4 = 0;
+       if($incidente['documentos']=='SI APLICA'){
        $r4 = $this->No_es_Valido($incidente['documentos_docto'],0);
-            
+       }
       /* $r6 = 0;
        $r6 = $this->No_es_Valido($incidente['documentos'],0);*/
 
