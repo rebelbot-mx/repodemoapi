@@ -89,7 +89,13 @@ use traiBuscarId_por_Programa;
   ]);
 
   $id = DB::insertId();
-  
+
+  ////////////////////////////////////////////////////////////////////////
+  // con el id actualizamos el valor del campo incidenteid
+  ////////////////////////////////////////////////////////////////////////
+  DB::update('doctos',[  'incidenteid' =>$id ],"id=%i",$datos['actavaloracion']);
+  ////////////////////////////////////////////////////////////////////////
+ 
   error_log(" valor de id en incidente  : " . $id);
 
  // $data = array('id' => $id,'folio' => $resultadoFolio["folio"]);
