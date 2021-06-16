@@ -11,8 +11,12 @@ trait traitValidarDenuncia{
      $r1 = 0;
      $r1 =$this->No_es_Valido($denuncia['consenso'],'POR CONFIRMAR');
     
+    // si el consenso es no , puede guardarse
     $r2 = 0;
+    if ($denuncia['consenso']=="SI"){
     $r2 = $this->No_es_Valido($denuncia['consensodocto'],0);
+    }
+
 
     $r3 = 0;
     $r3 = $this->No_es_Valido($denuncia['soportecontacto'],'POR CONFIRMAR');
@@ -35,8 +39,14 @@ trait traitValidarDenuncia{
     $r9 = 0;
     $r9 = $this->No_es_Valido($denuncia['medidasd'],'POR CONFIRMAR');
 
+    
+    // si las medidas son igual a no pueden guardarse , puede guardarse
     $r10 = 0;
+    if ($denuncia['medidasd']=="SI") {
     $r10= $this->No_es_Valido($denuncia['medidasd_docto'],0);
+    }
+   
+
 
     $r11 = 0;
     $r11 = $this->No_es_Valido($denuncia['medidastexto'],'POR CONFIRMAR');
