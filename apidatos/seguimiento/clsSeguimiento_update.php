@@ -70,7 +70,26 @@ class clsSeguimiento_update {
          'plan_docto'                   =>  clsSeguimiento_update::eliminar_doblecomillas($datos['plan_docto']),
          'protocolosos'                 =>  clsSeguimiento_update::eliminar_doblecomillas($datos['protocolosos'])
       ],"incidenteid=%i",$datos['incidenteid'] );
-   
+       
+      /* **************************************************************/
+       //verificamos que en la etapa de reporte inicial se cuenta con el acta
+       //de valoracion, de no contar con esta acta se actualiza.
+      
+         $idActaValoracoin =  clsSeguimiento_update::eliminar_doblecomillas($datos['actavaloracion_docto']);
+        
+         if($idActaValoracoin == "0"){
+
+         }else{
+            
+           DB::update("incidente",[ 'actavaloracion'=>  $idActaValoracoin, 'coloretapauno' => 'green'],"id=%i",$datos['incidenteid']);
+
+         }
+
+        //
+        /***************************************************************/
+
+
+        
         $data = array('msg' => 'ok');
 
         //validamos si se puede cerrar el registro 
