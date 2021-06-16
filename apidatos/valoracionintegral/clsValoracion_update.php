@@ -31,6 +31,23 @@ class clsValoracion_update {
         $estado="cerrado";
         }
 
+        //////////////////////////////////////////////////
+        // se verifica el valor de las medidas integrales 
+        // si el valo viene en cero el estado no debe de 
+        // cerrarse y debe de dejarse en amarillo 
+        /////////////////////////////////////////////////
+
+        $colorParaElEstado  = "yellow";
+       
+        
+        if ($datos["medidasintegrales"]== '0'){
+          $estado = "abierto";
+        }else {
+
+          $colorParaElEstado  = "green";
+          $estado = "cerrado";
+        }
+
         $actualizacion = DB::update('valoracionintegral',[
             //              'incidenteid'           =>  $datos['incidenteid'],
             //'fechacreacion'         => $datos['fechacreacion'],
@@ -107,9 +124,13 @@ class clsValoracion_update {
       
          };
 
-
-
-         if ( $longitud_valoracion>5 and $longitud_planycronograma=='ok'){
+       ///////////////////////////////////////////////////////////////////////////////
+       ///  if ( $longitud_valoracion>5 and $longitud_planycronograma=='ok'){
+       /// esta linea se modifico para permitir que aunque  no se halla subido el documento 
+       // de las medidas integrales ,se permita generar una respuesta
+       ////////////////////////////////////////////////////////////////////////////////
+      
+        if ( $longitud_valoracion>5 ){
             error_log("se cumplen las condiciones y creamos el seguimiento") ;
             /* nota: insertar aqui el codigo de cambio de colores en los botones del incidente
             para el dashboard y creacion de registro para seguimiento */
@@ -119,7 +140,30 @@ class clsValoracion_update {
             error_log("valor de count :" . $count );
 
             if ($count==0){
-             $actualizacion = DB::insert('seguimiento',[
+
+            ////////////////////////////////////////////////////////
+            // antes verificamos que el acta de valoracion este dada
+            // de alta para agregarla y si no la agregamos
+            ///////////////////////////////////////////////////////
+
+            $existeActaDevaloracion = DB::queryFirstField("select actavaloracion from incidente where id =%i ", $datos['incidenteid']);
+            
+            $idActavaloracion = 0;
+            $textoActaValoracion = 'POR CONFIRMAR';
+
+            if ($existeActaDevaloracion==0){
+              $idActavaloracion = 0;
+            }else {
+              $idActavaloracion = $existeActaDevaloracion0;
+              $textoActaValoracion ="SI";
+
+            }
+            /////////////////////////////////////////////////////////
+
+
+            
+            
+            $actualizacion = DB::insert('seguimiento',[
 
             'incidenteid'           => $datos['incidenteid'],
             'status'                => '',
@@ -129,7 +173,7 @@ class clsValoracion_update {
             'notificacionautoridad' =>  'POR CONFIRMAR',
             'notificacionpfn'       =>  'POR CONFIRMAR',
             'notificaciodenunciante'=>  'POR CONFIRMAR',
-            'actavaloracion'        =>  'POR CONFIRMAR',
+            'actavaloracion'        =>   $textoActaValoracion,
             'planrecuperacion'      =>  'POR CONFIRMAR',
             'plan'                  =>  'POR CONFIRMAR',
             'documentos_docto'            =>  '0',
@@ -137,7 +181,7 @@ class clsValoracion_update {
             'notificacionautoridad_docto' =>  '0',
             'notificacionpfn_docto'       =>  '0',
             'notificaciondenunciante_docto'=>  '0',
-            'actavaloracion_docto'        =>  '0',
+            'actavaloracion_docto'        =>   $idActavaloracion,
             'planrecuperacion_docto'      =>  '0',
             'plan_docto'      =>  '0',
             'protocolosos'  =>'PENDIENTE',
@@ -151,7 +195,7 @@ class clsValoracion_update {
                 $update_incidente = DB::update('incidente',[
                         'etapatres' => 'visible',
                         'etapacuatro' => 'visible',
-                        'coloretapados' => 'green',
+                        'coloretapados' => $colorParaElEstado,
                         'estado' => 'en llenado de respuesta'
                 ],"id=%i",$datos['incidenteid']);
 

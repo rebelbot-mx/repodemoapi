@@ -33,6 +33,22 @@ use traiBuscarId_por_Programa;
 
       error_log(" valor de datos['adultoexterno'] " . $datos['adultoexterno']);
    
+      /////////////////////////////////////////
+      // esta if es para ver si tenemos ya el acta de valoracion , en caso 
+      // no tenerla el estado del reporte sera amarillo 
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      $color_etapauno = 'yellow';
+      if($datos['actavaloracion']== '0'){
+
+        $color_etapauno = 'yellow';
+
+       }else {
+
+        $color_etapauno = 'green';
+
+       }
+ 
+
       DB::insert('incidente', [
         
         'folio' => $resultadoFolio["folio"],
@@ -63,7 +79,7 @@ use traiBuscarId_por_Programa;
         'etapados'=> $datos['etapados'] ,
         'etapatres'=> $datos['etapatres'] ,
         'etapacuatro'=> $datos['etapacuatro'] ,
-        'coloretapauno'=> $datos['coloretapauno'] ,
+        'coloretapauno'=> $color_etapauno ,
         'coloretapados'=> $datos['coloretapados'] ,
         'coloretapatres'=> $datos['coloretapatres'] ,
         'coloretapacuatro'=> $datos['coloretapacuatro'],

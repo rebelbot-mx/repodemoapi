@@ -74,6 +74,9 @@ configurand como ver el log  stream ?
 ====================================
 
 az webapp log tail --resource-group grupoDeRecursosAldeas2 --name apialdeasproteccioninfantil2
+
+az webapp log tail --resource-group rdapp2 --name apidemo2
+
 ctrl + z para detener el stream
 
 //asi vemos los logs en vivo 
