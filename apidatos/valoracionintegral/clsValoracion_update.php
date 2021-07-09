@@ -150,11 +150,15 @@ class clsValoracion_update {
             
             $idActavaloracion = 0;
             $textoActaValoracion = 'POR CONFIRMAR';
+            //$existeActaDevaloracion = DB::queryFirstField("select actavaloracion from incidente where id =%i ", $datos['incidenteid']);
+            
+            error_log("valor del acta de valoracion : " . $existeActaDevaloracion );
+
 
             if ($existeActaDevaloracion==0){
               $idActavaloracion = 0;
             }else {
-              $idActavaloracion = $existeActaDevaloracion0;
+              $idActavaloracion = $existeActaDevaloracion;
               $textoActaValoracion ="SI";
 
             }
