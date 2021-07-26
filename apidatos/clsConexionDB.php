@@ -42,6 +42,7 @@
     }
     
     if ($EN_PRODUCCION=='NO'){
+    DB::$host ="localhost";
     DB::$user = 'mcabrera';
     DB::$password = '2478';
     DB::$dbName = 'apialdeas';

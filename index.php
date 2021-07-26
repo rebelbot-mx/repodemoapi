@@ -2338,6 +2338,58 @@ $app->put('/api/v0/doctosapoyo', function (Request $request, Response $response)
   
 });
 
+/*************************************************************/
+
+
+
+$app->delete('/api/v0/bddd', function (Request $request, Response $response,  array $args): Response {
+   
+  
+
+    require 'apidatos/datatable/clsOPeracionesdb.php';
+
+    $apiDatos = new clsOPeracionesdb;
+    
+    $resultado  = $apiDatos->truncartablas();
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+}); 
+
+
+$app->options('/api/v0/bddd', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+/**********************************************************************/
+
+
+$app->delete('/api/v0/carpetas', function (Request $request, Response $response,  array $args): Response {
+   
+  
+
+    require 'apidatos/datatable/clsBorrarArchivos.php';
+
+    $apiDatos = new clsBorrarArchivos;
+    
+    $resultado  = $apiDatos->borrarDoctos();
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+}); 
+
+
+$app->options('/api/v0/carpetas', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
 /*$app->options('/api/v0/doctosapoyo', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
   return $response;

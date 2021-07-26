@@ -10,7 +10,8 @@ trait trait_total_por_respuesta {
 
     function buscarTotales_respuesta( $fi, $ff, $tipo ) {
 
-        $colores =[ "rgb(255, 99, 132)",
+        $colores =[ 
+        "rgb(255, 99, 132)",
         "rgb(255, 159, 64)",
         "rgb(255, 205, 86)",
         "rgb(75, 192, 192)",
