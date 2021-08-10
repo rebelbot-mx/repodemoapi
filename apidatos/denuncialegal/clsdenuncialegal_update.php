@@ -9,14 +9,14 @@ use traitValidarDenuncia;
        
          DB::update('denuncialegal', [
            
-             'id'                =>  $datos['id'],
-            'incidenteid'        =>  $datos['incidenteid'],
-            'foliodenuncia'      =>  $datos['foliodenuncia'],
-            'consenso'           =>  $datos['consenso'],
-            'consensodocto'      =>  $datos['consensodocto'],
-            'soportecontacto'    =>  $datos['soportecontacto'],
-            'soporteantes'       =>  $datos['soporteantes'],
-            'soportedurante'     =>  $datos['soportedurante'],
+             'id'                         =>  $datos['id'],
+            'incidenteid'                 =>  $datos['incidenteid'],
+            'foliodenuncia'               =>  $datos['foliodenuncia'],
+            'consenso'                    =>  $datos['consenso'],
+            'consensodocto'               =>  $datos['consensodocto'],
+            'soportecontacto'             =>  $datos['soportecontacto'],
+            'soporteantes'                =>  $datos['soporteantes'],
+            'soportedurante'              =>  $datos['soportedurante'],
             'soporteemocionalcontacto'    =>  $datos['soporteemocionalcontacto'],
             'soporteemocionalantes'       =>  $datos['soporteemocionalantes'],
             'soporteemocionaldurante'     =>  $datos['soporteemocionaldurante'],
@@ -26,6 +26,17 @@ use traitValidarDenuncia;
             'fechaCreacion'               =>  $datos['fechaCreacion'],
             'fechaUpdate'                 =>  $datos['fechaUpdate'],
             'estado'                      =>  'Guardado',
+
+            'informapatronato'         =>  $datos['informapatronato'],
+            'docto_informapatronato'   =>  $datos['docto_informapatronato'],
+            'informaoficinaregional'   =>  $datos['informaoficinaregional'],
+            'docto_informaoficinaregional'  =>  $datos['docto_informaoficinaregional'],
+            'informaenterector'        =>  $datos['informaenterector'],
+            'docto_informaenterector'  =>  $datos['docto_informaenterector'],
+            'docto_soportelegal'       =>  $datos['docto_soportelegal'],
+            'docto_soporteemocional'   =>  $datos['docto_soporteemocional'],
+            'denunciapresentada'       =>  $datos['denunciapresentada'],
+            'docto_denunciapresentada' =>  $datos['docto_denunciapresentada'],
 
         
          ],"id=%i",$datos['id'] );

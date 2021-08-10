@@ -243,11 +243,12 @@ $app->post('/api/v0/incidentes', function (Request $request, Response $response)
 
     $id = $apidatos->nuevoIncidente($parameters , $ROOT_DIR);
 
-   $response->getBody()->write(json_encode( $id));
+   $response->getBody()->write( $id );
 
-    
+  
 
     return $response->withHeader('Content-Type', 'application/json');
+
 })->add($middleware_auth);
 
 $app->options('/api/v0/incidentes', function (Request $request, Response $response): Response {
@@ -2390,6 +2391,36 @@ $app->options('/api/v0/carpetas', function (Request $request, Response $response
     return $response;
 });
 
+
+
+
+$app->post('/api/v0/doctosencloud', function (Request $request, Response $response): Response {
+   
+    // Retrieve the JSON data
+  $parameters = (array)$request->getParsedBody();
+
+  require 'apidatos/doctoscloud/clsdoctoscloud_nuevo.php';
+
+  $apiDatos = new clsdoctoscloud_nuevo;
+  
+  $resultado  = $apiDatos->nuevodoctoscloud( $parameters);
+
+  $response->getBody()->write($resultado);
+
+  return $response->withHeader('Content-Type', 'application/json');
+
+  
+});
+
+$app->options('/api/v0/doctosencloud', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
+
+
+/****************************************************************************************/
+
+/**************************************************************/
 /*$app->options('/api/v0/doctosapoyo', function (Request $request, Response $response): Response {
   // Retrieve the JSON data
   return $response;

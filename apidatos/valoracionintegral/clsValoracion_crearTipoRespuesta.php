@@ -47,23 +47,36 @@ class clsValoracion_crearTipoRespuesta
             date_default_timezone_set('America/Mexico_City');
             $date = date("Y-m-d H:i:s");  
             DB::insert('denuncialegal', [
-                'incidenteid'    =>  $incidenteid,
-                'foliodenuncia'    =>   $folio,
-                'consenso'    => "POR CONFIRMAR",
-                'consensodocto'    => "0",
-                'soportecontacto'    =>  "POR CONFIRMAR",
-                'soporteantes'    =>  "POR CONFIRMAR",
-                'soportedurante'    =>  "POR CONFIRMAR",
-                'soporteemocionalcontacto'    => "POR CONFIRMAR",
-                'soporteemocionalantes'    =>  "POR CONFIRMAR",
-                'soporteemocionaldurante'    =>  "POR CONFIRMAR",
-                'medidasd'    => "POR CONFIRMAR",
-                'medidasd_docto'    => "0",
-                'medidastexto'    =>  "POR CONFIRMAR",
-                'fechaCreacion'    => $date,
-                'fechaUpdate'    =>  $date,
-                'estado'    =>  'EN PROCESO',
-                'programa'  =>   $idprograma
+                'incidenteid'                   =>  $incidenteid,
+                'foliodenuncia'                 =>   $folio,
+                'consenso'                      => "POR CONFIRMAR",
+                'consensodocto'                 => "0",
+                'soportecontacto'               =>  "POR CONFIRMAR",
+                'soporteantes'                  =>  "POR CONFIRMAR",
+                'soportedurante'                =>  "POR CONFIRMAR",
+                'soporteemocionalcontacto'      => "POR CONFIRMAR",
+                'soporteemocionalantes'         =>  "POR CONFIRMAR",
+                'soporteemocionaldurante'       =>  "POR CONFIRMAR",
+                'medidasd'                      =>  "POR CONFIRMAR",
+                'medidasd_docto'                =>  "0",
+                'medidastexto'                  =>  "POR CONFIRMAR",
+                'fechaCreacion'                 =>  $date,
+                'fechaUpdate'                   =>  $date,
+                'estado'                        =>  'EN PROCESO',
+                'programa'                      =>  $idprograma,
+
+                'informapatronato'              =>  'NO',
+                'docto_informapatronato'        =>  '0',
+                'informaoficinaregional'        =>  'NO',
+                'docto_informaoficinaregional'  =>  '0',
+                'informaenterector'             =>  'NO',
+                'docto_informaenterector'       =>  '0',
+                'docto_soportelegal'            =>  '0',
+                'docto_soporteemocional'        =>  '0',
+                'denunciapresentada'            =>  'NO',
+                'docto_denunciapresentada'      =>  '0'
+
+
                 ]);
         }
 

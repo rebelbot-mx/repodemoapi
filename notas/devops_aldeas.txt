@@ -12,3 +12,9 @@ grant all privileges on apialdeasbdd.* to  'rblprod';
 
 
 https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiAldeasProteccionInfantil.git
+
+
+/////////////
+
+demo plataform
+az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas3 --resource-group rdapp2 --start-ip-address=172.69.35.89  --end-ip-address=172.69.35.89

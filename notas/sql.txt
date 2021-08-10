@@ -50,3 +50,35 @@ Lorem ipsum dolor sit amet. Aut soluta necessitatibus qui saepe quibusdam eum su
 Est itaque perspiciatis nam delectus ducimus At autem neque eos consequatur illo ut architecto asperiores 33 ullam dolore et natus accusamus. Et voluptatem assumenda et veniam numquam ex voluptas voluptas aut autem rerum. Quo impedit provident est minus explicabo ad nisi obcaecati aut quibusdam voluptatum deserunt sequi et quibusdam facere. Est amet modi sit ratione aperiam est facere sint et aspernatur adipisci. Ut aperiam quibusdam At sint omnis et quia consequatur et eveniet deserunt ut galisum autem? Et atque accusantium quo eaque quam et vero vero 33 tempora voluptas aut ratione libero. Et consequatur consectetur ex ipsum laboriosam sit laborum corporis 33 saepe officiis.
 
 Et nisi nobis et assumenda galisum qui consequatur magni aut reiciendis debitis. Et tempora repudiandae quo neque voluptatem a animi beatae. Sit fugiat voluptas id quam dolorum quo consequuntur galisum. Aut nostrum sint aut odio earum non voluptas veniam aut voluptas quasi eos blanditiis voluptas. Ad laudantium quisquam aut excepturi harum et quam debitis?
+
+/////////////////////////////////////////////
+para agregar datos a denuncia legal
+////////////////////////////////////////////
+
+
+  ALTER TABLE `denuncialegal` 
+  ADD `informapatronato` VARCHAR(50) NULL AFTER `estado`, 
+  ADD `docto_informapatronato` VARCHAR(50) NULL DEFAULT '0' 
+  AFTER `informapatronato`, 
+  ADD `informaoficinaregional` VARCHAR(50) NULL AFTER 
+  `docto_informapatronato`, 
+  ADD `docto_informaoficinaregional` VARCHAR(50) NULL DEFAULT '0' 
+  AFTER `informaoficinaregional`,
+  ADD `informaenterector` VARCHAR(50) NULL AFTER `docto_informaoficinaregional`,
+  ADD `docto_informaenterector` VARCHAR(50) NULL DEFAULT '0' AFTER `informaenterector`, 
+  ADD `docto_soportelegal` VARCHAR(50) NULL DEFAULT '0' AFTER `docto_informaenterector`, 
+  ADD `docto_soporteemocional` VARCHAR(50) NULL DEFAULT '0' AFTER `docto_soportelegal`, 
+  ADD `denunciapresentada` VARCHAR(50) NULL AFTER `docto_soporteemocional`,
+  ADD `docto_denunciapresentada` VARCHAR(50) NULL DEFAULT '0' AFTER `denunciapresentada`;
+
+
+  informapatronato
+  docto_informapatronato
+  informaoficinaregional
+  docto_informaoficinaregional
+  informaenterector
+  docto_informaenterector
+  docto_soportelegal
+  docto_soporteemocional
+  denunciapresentada
+  docto_denunciapresentada

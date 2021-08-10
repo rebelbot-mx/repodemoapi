@@ -52,15 +52,15 @@ class clsValoracion_update {
             //              'incidenteid'           =>  $datos['incidenteid'],
             //'fechacreacion'         => $datos['fechacreacion'],
             //'fechaupdate'           => $datos['fechaupdate'],
-            'textovi'               => $datos['textovi'],
-            'tipologiadelincidente' => $datos['tipologiadelincidente'],
-            'niveldelincidente'     => $datos['niveldelincidente'],
-            'tipodecaso'            => $datos['tipodecaso'],
-            'confirmaincidente'     => $datos['confirmaincidente'],
+            'textovi'                       => $datos['textovi'],
+            'tipologiadelincidente'         => $datos['tipologiadelincidente'],
+            'niveldelincidente'             => $datos['niveldelincidente'],
+            'tipodecaso'                    => $datos['tipodecaso'],
+            'confirmaincidente'             => $datos['confirmaincidente'],
             'confirmaincidentenumerico'     => $confirmanumerico,
-            'tipoderespuesta'       => $datos['tipoderespuesta'],
-            'medidasintegrales'     => $datos['medidasintegrales'],
-            'estado'                => $estado
+            'tipoderespuesta'               => $datos['tipoderespuesta'],
+            'medidasintegrales'             => $datos['medidasintegrales'],
+            'estado'                        => $estado
         ],"id=%i",$datos['id']);
        
 

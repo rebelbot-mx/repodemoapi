@@ -18,6 +18,9 @@ use traiBuscarId_por_Programa;
 
       $resultadoFolio = $f->generarFolio($datos['programa']);
 
+      date_default_timezone_set('America/Mexico_City');
+      $DateAndTime = date('Y-m-d');   
+
       /** debenmo cambiar el programa por su id 
        * $datos['programa']
       */
@@ -53,8 +56,8 @@ use traiBuscarId_por_Programa;
         
         'folio' => $resultadoFolio["folio"],
         'programa'=>  $resultadoFolio["id"],
-        'fechaAlta'=>  $datos['fechaAlta'],
-        'fechaUpdate'=>  $datos['fechaUpdate'],
+        'fechaAlta'=>  $DateAndTime,
+        'fechaUpdate'=>  $DateAndTime,
         'usuarioCreador'=>  $datos['usuarioCreador'],
         'involucrados'=>  $datos['involucrados'],
         'elaboro'=>  $datos['elaboro'], 
@@ -84,7 +87,7 @@ use traiBuscarId_por_Programa;
         'coloretapatres'=> $datos['coloretapatres'] ,
         'coloretapacuatro'=> $datos['coloretapacuatro'],
         'textocierre' => '.',
-        'actavaloracion'=> $datos['actavaloracion'],
+        'actavaloracion_docto'=> $datos['actavaloracion_docto'],
          'estado'=>'en espera de valoracion'
   ]);
 
@@ -105,8 +108,8 @@ use traiBuscarId_por_Programa;
 
       DB::insert('valoracionintegral', [
         'incidenteid' => $id,
-        'fechacreacion' => $datos['fechaAlta'],
-        'fechaupdate' => $datos['fechaAlta'],
+        'fechacreacion' =>  $DateAndTime,
+        'fechaupdate' => $DateAndTime,
         'textovi'               => '.',
             'tipologiadelincidente' => '.',
             'niveldelincidente'     => '.',
