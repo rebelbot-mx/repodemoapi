@@ -111,7 +111,7 @@ $app->get('/',function(Request $request , Response $response):Response{
      
    
 
-    $response->getBody()->write("api activa version 1.1.2");
+    $response->getBody()->write("api activa version 1.1.3 demo hoy 1.43");
 
     return $response;
 
