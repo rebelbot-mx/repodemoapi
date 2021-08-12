@@ -1,14 +1,7 @@
-<FilesMatch '\.(eot|ttf|otf|woff|pdf)'>
- Header set Access-Control-Allow-Origin '*'
- </FilesMatch>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin '*'
+</IfModule>
 RewriteEngine On
- RewriteCond %{REQUEST_FILENAME} !-f
- RewriteCond %{REQUEST_FILENAME} !-d
- RewriteRule ^ index.php [QSA,L]
-php_value upload_max_filesize 1000M
- php_value post_max_size 2000M
- php_value memory_limit 3000M
- php_value max_execution_time 180
- php_value max_input_time 180
- php_value display_errors On
- php_value upload_max_filesize 10M
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^ /apialdeas/index.php [QSA,L]
