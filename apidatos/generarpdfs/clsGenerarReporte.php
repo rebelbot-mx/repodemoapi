@@ -83,8 +83,8 @@ class clsGenerarReporte {
             break;
             case 'Valoracion Integral':
               # code...
-              $nombreDeArchivo = clsGenerarReporte::generarValoracionIntegral($incidenteId);
-              break;
+            $nombreDeArchivo = clsGenerarReporte::generarValoracionIntegral($incidenteId);
+            break;
         
         default:
             # code...

@@ -1,9 +1,5 @@
 <?php 
 
-
-
-
-
 require ('clsGenerarReporteInicial.php');
 
 
