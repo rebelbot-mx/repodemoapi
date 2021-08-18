@@ -73,7 +73,12 @@ trait trait_seguimientoDenuncia{
           $idActavaloracion =DB::queryFirstField("select actavaloracion_docto from incidente where id  = %i", $id);
         
           error_log("acta de valroacion id " . $idActavaloracion);
-          //$idActavaloracion = str_replace('"','',$datosDenuncia_acta);
+          //$idActavaloracion = str_replace('"','',$datosDenuncia_acta);}
+           
+          $folio = DB::queryFirstField("select folio from incidente where id  = %i", $id);
+        
+         
+
           /************************************************************
            *  valores de la tabla valoracionintegral  (valoraicion inicial)
            *  - se recupera el acta de hechos
@@ -89,7 +94,9 @@ trait trait_seguimientoDenuncia{
 
 
           $data = array(
-
+                      'incidenteid'                     => $id,
+                      'tipoderespuesta'                 => 'DENUNCIA LEGAL',
+                      'folio'                           => $folio,
                       'estatus_consenso'                => $estatusConsenso ,
                       'estatus_medidas'                 => $estatusMedidas,
                       'estatus_denuncia'                => $estatusDenunciaPresentada,
@@ -102,7 +109,7 @@ trait trait_seguimientoDenuncia{
                       'id_Notificacionpfn'              => $idNotificacionpfn,
                       'id_NotificacionDenunciante'      => $idNotificacionDenunciante,
                       'id_NotificacionPlan'             => $idNotificacionPlan,
-                      'id_ActaHechos'                   => $idActavaloracion,
+                      'id_Actavaloracion'               => $idActavaloracion,
                       'id_ActaHechos'                   => $idActaHechos
 
           );

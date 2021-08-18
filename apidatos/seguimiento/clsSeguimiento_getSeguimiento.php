@@ -13,10 +13,11 @@ class clsSeguimiento_getSeguimiento
 
       //1.- identificamos que tipo de respuesta es .
       $tipoDeRespuesta = $this->queTipoDeIncidente($id);
+      $datos_denuncia =array();
 
       if ($tipoDeRespuesta == "DENUNCIA LEGAL"){
 
-        $this->getSeguimientoDenuncia($id);
+        $datos_denuncia = $this->getSeguimientoDenuncia($id);
 
       }
 
@@ -24,7 +25,7 @@ class clsSeguimiento_getSeguimiento
 
     }
 
-    $data = array( 'msg' =>'ok' );
+    $data = array( 'msg' =>'ok','respuesta' =>  $datos_denuncia );
 
 
       return json_encode($data);
