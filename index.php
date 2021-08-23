@@ -573,9 +573,9 @@ $app->put('/api/v0/seguimiento', function (Request $request, Response $response,
 
     $apidatos = new clsSeguimiento_update;
 
-    $ROOT_DIR = dirname(__FILE__); 
+   // $ROOT_DIR = dirname(__FILE__); 
 
-    $msg = $apidatos->updateSeguimiento2($parameters, $ROOT_DIR );
+    $msg = $apidatos->updateSeguimiento2($parameters );
 
    $response->getBody()->write($msg);
 

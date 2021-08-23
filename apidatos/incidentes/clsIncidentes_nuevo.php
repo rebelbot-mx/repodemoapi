@@ -41,7 +41,38 @@ use traiBuscarId_por_Programa;
       // no tenerla el estado del reporte sera amarillo 
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////
       $color_etapauno = 'yellow';
-      if($datos['actavaloracion']== '0'){
+      $temp_actahechosid = 0;
+      error_log(" valor de temp_actahechosid en nuevoIncidente = " . $temp_actahechosid);
+   
+      if ( isset($datos['actavaloracion_docto']) ) {
+           
+           //quetipo    
+          $quetipo = gettype($datos['actavaloracion_docto']);
+          error_log("que tipo de datos = ?? " . $datos['actavaloracion_docto']);
+          
+          if(strlen($datos['actavaloracion_docto']) == 0){
+            $datos['actavaloracion_docto']= 0;
+          }
+         
+           if( $datos['actavaloracion_docto'] == 0) {
+
+                $color_etapauno = 'yellow';
+  
+            }else {
+  
+               $color_etapauno     = 'green';
+               $temp_actahechosid  = $datos['actavaloracion_docto'];
+            }
+
+
+      }else {
+         
+        $temp_actahechosid =0;
+        $color_etapauno = 'yellow';
+
+      }// termina isset
+
+     /* if($datos['actavaloracion_docto']== '0'){
 
         $color_etapauno = 'yellow';
 
@@ -49,46 +80,46 @@ use traiBuscarId_por_Programa;
 
         $color_etapauno = 'green';
 
-       }
+       }*/
  
 
       DB::insert('incidente', [
         
-        'folio' => $resultadoFolio["folio"],
-        'programa'=>  $resultadoFolio["id"],
-        'fechaAlta'=>  $DateAndTime,
-        'fechaUpdate'=>  $DateAndTime,
-        'usuarioCreador'=>  $datos['usuarioCreador'],
-        'involucrados'=>  $datos['involucrados'],
-        'elaboro'=>  $datos['elaboro'], 
-        'cargousuario'=>   $datos['cargousuario'],
-        'registrohechos'=>  $datos['registrohechos'],
-        'prefildelagresor'=> $datos['perfildelagresor'] ,
-        'paadultocolaborador' => $datos['paadultocolaborador'],
-        'paadultocolaboradortipo' => $datos['paadultocolaboradortipo'],
-        'pafamilia' =>$datos['pafamilia'],
-        'pafamiliatipo' =>$datos['pafamiliatipo'], 
-        'adultoexterno' => $datos['adultoexterno'],
-        'nnj'=> $datos['nnj'],
-        'perfilvictima'=>  $datos['perfilvictima'],
-        'recibeayuda' => $datos['recibeayuda'],
-        'medidasproinmediatas'=> $datos['medidasproinmediatasdiatas'] ,
-      'incidenteconfirmado'=>  $datos['incidenteconfirmado'],
-        'testigos' => $datos['testigos'],
-        'etapa'=> $datos['etapa'] ,
-        'activo'=> 1,
+        'folio'                     => $resultadoFolio["folio"],
+        'programa'                  => $resultadoFolio["id"],
+        'fechaAlta'                 => $DateAndTime,
+        'fechaUpdate'               => $DateAndTime,
+        'usuarioCreador'            => $datos['usuarioCreador'],
+        'involucrados'              => $datos['involucrados'],
+        'elaboro'                   => $datos['elaboro'], 
+        'cargousuario'              => $datos['cargousuario'],
+        'registrohechos'            => $datos['registrohechos'],
+        'prefildelagresor'          => $datos['perfildelagresor'] ,
+        'paadultocolaborador'       => $datos['paadultocolaborador'],
+        'paadultocolaboradortipo'   => $datos['paadultocolaboradortipo'],
+        'pafamilia'                 => $datos['pafamilia'],
+        'pafamiliatipo'             => $datos['pafamiliatipo'], 
+        'adultoexterno'             => $datos['adultoexterno'],
+        'nnj'                       => $datos['nnj'],
+        'perfilvictima'             => $datos['perfilvictima'],
+        'recibeayuda'               => $datos['recibeayuda'],
+        'medidasproinmediatas'      => $datos['medidasproinmediatasdiatas'] ,
+        'incidenteconfirmado'       => $datos['incidenteconfirmado'],
+        'testigos'                  => $datos['testigos'],
+        'etapa'                     => $datos['etapa'] ,
+        'activo'                    => 1,
 
-        'etapauno'=> $datos['etapauno'] ,
-        'etapados'=> $datos['etapados'] ,
-        'etapatres'=> $datos['etapatres'] ,
-        'etapacuatro'=> $datos['etapacuatro'] ,
-        'coloretapauno'=> $color_etapauno ,
-        'coloretapados'=> $datos['coloretapados'] ,
-        'coloretapatres'=> $datos['coloretapatres'] ,
-        'coloretapacuatro'=> $datos['coloretapacuatro'],
-        'textocierre' => '.',
-        'actavaloracion_docto'=> $datos['actavaloracion_docto'],
-         'estado'=>'en espera de valoracion'
+        'etapauno'                  => $datos['etapauno'] ,
+        'etapados'                  => $datos['etapados'] ,
+        'etapatres'                 => $datos['etapatres'] ,
+        'etapacuatro'               => $datos['etapacuatro'] ,
+        'coloretapauno'             => $color_etapauno ,
+        'coloretapados'             => $datos['coloretapados'] ,
+        'coloretapatres'            => $datos['coloretapatres'] ,
+        'coloretapacuatro'          => $datos['coloretapacuatro'],
+        'textocierre'               => '.',
+        'actavaloracion_docto'      => $temp_actahechosid,
+         'estado'                   =>'en espera de valoracion'
   ]);
 
   $id = DB::insertId();
@@ -96,7 +127,7 @@ use traiBuscarId_por_Programa;
   ////////////////////////////////////////////////////////////////////////
   // con el id actualizamos el valor del campo incidenteid
   ////////////////////////////////////////////////////////////////////////
-  DB::update('doctos',[  'incidenteid' =>$id ],"id=%i",$datos['actavaloracion']);
+  DB::update('doctos',[  'incidenteid' =>$id ],"id=%i",$datos['actavaloracion_docto']);
   ////////////////////////////////////////////////////////////////////////
  
   error_log(" valor de id en incidente  : " . $id);
@@ -135,6 +166,8 @@ use traiBuscarId_por_Programa;
    $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
         
    if ($seEnvianLosCorreos =="SI"){
+
+
    $enviarCorreo = new clsEnviarCorreo();
    $enviarCorreo->enviarCorreo_version_extendida_nuevoIncidente($resultadoFolio["folio"],$ROOT_DIR);
    }

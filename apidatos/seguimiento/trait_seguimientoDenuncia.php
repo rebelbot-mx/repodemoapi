@@ -63,16 +63,16 @@ trait trait_seguimientoDenuncia{
 
           $idNotificacionDenunciante  =str_replace('"','',$datosDenuncia_seguimiento["notificaciondenunciante_docto"]);
 
-          $idNotificacionPlan  = str_replace('"','',$datosDenuncia_seguimiento["notificaciondenunciante_docto"]);
+          $idNotificacionPlan  = str_replace('"','',$datosDenuncia_seguimiento["planrecuperacion_docto"]);
 
           /************************************************************
            *  valores de la tabla incidente  (valoraicion inicial)
            *  - se recupera el acta de valoracion
            ******************************************/
 
-          $idActavaloracion =DB::queryFirstField("select actavaloracion_docto from incidente where id  = %i", $id);
+          $idActaHechos =DB::queryFirstField("select actavaloracion_docto from incidente where id  = %i", $id);
         
-          error_log("acta de valroacion id " . $idActavaloracion);
+          //error_log("acta de valroacion id " . $idActavaloracion);
           //$idActavaloracion = str_replace('"','',$datosDenuncia_acta);}
            
           $folio = DB::queryFirstField("select folio from incidente where id  = %i", $id);
@@ -84,9 +84,9 @@ trait trait_seguimientoDenuncia{
            *  - se recupera el acta de hechos
            ******************************************/
 
-          $idActaHechos =DB::queryFirstField("select medidasintegrales from valoracionintegral where incidenteid  = %i", $id);
+          $idActavaloracion =DB::queryFirstField("select medidasintegrales from valoracionintegral where incidenteid  = %i", $id);
         
-          error_log("acta de idActaHechos id " . $idActaHechos);
+         // error_log("acta de idActaHechos id " . $idActaHechos);
          // $idActaHechos = str_replace('"','',$datosDenuncia_actaValoracion);
 
 

@@ -116,9 +116,9 @@ $result = $mailer->send($message);
                     $correo = $value['email'];
                     $name   = $value['nombre'];
 
-                    error_log(" correo : " . $correo );
-                    error_log(" name : " . $name );
-                    error_log(" textoTema : " . $textoTema );
+                   // error_log(" correo : " . $correo );
+                   // error_log(" name : " . $name );
+//error_log(" textoTema : " . $textoTema );
 
                     $usr = new To(
 

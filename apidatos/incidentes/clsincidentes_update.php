@@ -14,40 +14,87 @@ use traiBuscarId_por_Programa;
       date_default_timezone_set('America/Mexico_City');
       $DateAndTime = date('Y-m-d');
         
+     /////////////////////////////////////////
+      // esta if es para ver si tenemos ya el acta de valoracion , en caso 
+      // no tenerla el estado del reporte sera amarillo 
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      $color_etapauno = 'yellow';
+      $temp_actahechosid = 0;
+      error_log(" valor de temp_actahechosid en nuevoIncidente = " . $temp_actahechosid);
+   
+      if ( isset($datos['actavaloracion_docto']) ) {
+           
+           //quetipo    
+          $quetipo = gettype($datos['actavaloracion_docto']);
+          error_log("que tipo de datos = ?? " . $datos['actavaloracion_docto']);
+          
+          if(strlen($datos['actavaloracion_docto']) == 0){
 
+
+            error_log("que tipo de datos = ?? " . $datos['actavaloracion_docto']);
+            $datos['actavaloracion_docto']= 0;
+        
+          }
+
+          if ( $datos['actavaloracion_docto'] =="En espera"){
+
+            error_log("que tipo de datos = ?? " . $datos['actavaloracion_docto']);
+            $datos['actavaloracion_docto'] = 0;
+          
+          }
+         
+           if( $datos['actavaloracion_docto'] == 0) {
+
+                $color_etapauno = 'yellow';
+  
+            }else {
+  
+               $color_etapauno     = 'green';
+               $temp_actahechosid  = $datos['actavaloracion_docto'];
+            }
+
+
+      }else {
+         
+        $temp_actahechosid =0;
+        $color_etapauno = 'yellow';
+
+      }// termina isset
+
+      /**************************************************** */
     
       DB::update('incidente', [
         
         
-        'fechaUpdate'=>  $DateAndTime,
+        'fechaUpdate'                  =>  $DateAndTime,
        
-        'involucrados'=>  $datos['involucrados'],
-        'elaboro'=>  $datos['elaboro'], 
-        'cargousuario'=>   $datos['cargousuario'],
-        'registrohechos'=>  $datos['registrohechos'],
-        'prefildelagresor'=> $datos['perfildelagresor'] ,
-        'paadultocolaborador' => $datos['paadultocolaborador'],
-        'paadultocolaboradortipo' => $datos['paadultocolaboradortipo'],
-        'pafamilia' =>$datos['pafamilia'],
-        'pafamiliatipo' =>$datos['pafamiliatipo'], 
-        'adultoexterno' => $datos['adultoexterno'],
-        'nnj'=> $datos['nnj'],
-        'perfilvictima'=>  $datos['perfilvictima'],
-        'recibeayuda' => $datos['recibeayuda'],
-        'medidasproinmediatas'=> $datos['medidasproinmediatasdiatas'] ,
-        'incidenteconfirmado'=>  $datos['incidenteconfirmado'],
-        'testigos' => $datos['testigos'],
-        'etapa'=> $datos['etapa'] ,
+        'involucrados'                  => $datos['involucrados'],
+        'elaboro'                       => $datos['elaboro'], 
+        'cargousuario'                  => $datos['cargousuario'],
+        'registrohechos'                => $datos['registrohechos'],
+        'prefildelagresor'              => $datos['perfildelagresor'] ,
+        'paadultocolaborador'           => $datos['paadultocolaborador'],
+        'paadultocolaboradortipo'       => $datos['paadultocolaboradortipo'],
+        'pafamilia'                     => $datos['pafamilia'],
+        'pafamiliatipo'                 => $datos['pafamiliatipo'], 
+        'adultoexterno'                 => $datos['adultoexterno'],
+        'nnj'                           => $datos['nnj'],
+        'perfilvictima'                 => $datos['perfilvictima'],
+        'recibeayuda'                   => $datos['recibeayuda'],
+        'medidasproinmediatas'          => $datos['medidasproinmediatasdiatas'] ,
+        'incidenteconfirmado'           =>  $datos['incidenteconfirmado'],
+        'testigos'                      => $datos['testigos'],
+        'etapa'                         => $datos['etapa'] ,
         'activo'=> 1,
-        'etapauno'=> $datos['etapauno'] ,
-        'etapados'=> $datos['etapados'] ,
-        'etapatres'=> $datos['etapatres'] ,
-        'etapacuatro'=> $datos['etapacuatro'] ,
-        'coloretapauno'=> $datos['coloretapauno'] ,
-        'coloretapados'=> $datos['coloretapados'] ,
-        'coloretapatres'=> $datos['coloretapatres'] ,
-        'coloretapacuatro'=> $datos['coloretapacuatro'],
-
+        'etapauno'                      => $datos['etapauno'] ,
+        'etapados'                      => $datos['etapados'] ,
+        'etapatres'                     => $datos['etapatres'] ,
+        'etapacuatro'                   => $datos['etapacuatro'] ,
+        'coloretapauno'                 => $color_etapauno ,
+        'coloretapados'                 => $datos['coloretapados'] ,
+        'coloretapatres'                => $datos['coloretapatres'] ,
+        'coloretapacuatro'              => $datos['coloretapacuatro'],
+        'actavaloracion_docto'         =>  $temp_actahechosid
   ],"id=%i",$datos['id']);
 
  
