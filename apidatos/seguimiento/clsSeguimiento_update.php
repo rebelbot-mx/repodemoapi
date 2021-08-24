@@ -1,5 +1,7 @@
 <?php
 
+require ( $_ENV['RUTA'] . '\apidatos\incidentes\trait_validacionInicial.php');
+require ( $_ENV['RUTA'] . '\apidatos\valoracionintegral\trait_validarValoracion_update.php');
 require ('trait_updateTablaIncidente.php');
 require ('trait_updateTablaValoracion.php');
 require ('trait_updateTablaDenuncia.php');
@@ -7,10 +9,12 @@ require ('trait_updateTablaSeguimiento.php');
 
 class clsSeguimiento_update {
 
-    use trait_updateTablaIncidente,
+    use trait_validacionInicial ,
+        trait_updateTablaIncidente,
         trait_updateTablaValoracion,
         trait_updateTablaDenuncia,
-        trait_updateTablaSeguimiento ;
+        trait_updateTablaSeguimiento,
+        trait_validarValoracion_update ;
 
  public function updateSeguimiento2( $datos ) {
   
@@ -41,13 +45,21 @@ class clsSeguimiento_update {
      - actualiza el campo de acta de hechos
    *****************************************************************/
    $this->actualizarTablaIncidente($datos);
-   
+   //---------------------------------------------------------------
+   // SE REALIZA LA VALIDACION DE VALORACION INICIAL
+   //----------------------------------------------------------------
+   $this->validar_valoracionInicial($datos["incidenteid"]);
    /*****************************************************************
      ACTUALIZAN DATOS DE LA TABLA INCIDENTE
      - se actualiza campo con el valor del docto de acta de valoracion
        pero se almacena en 'medidasintegrales'
    *****************************************************************/
   $this->actualizarTablaValoracion($datos);
+   //---------------------------------------------------------------
+   // SE REALIZA LA VALIDACION DE VALORACION INtegral
+   //----------------------------------------------------------------
+
+  $this->validar_valoracionIntegral_desde_otra_etapa($datos["incidenteid"]);
 
    /*****************************************************************
      ACTUALIZAN DATOS DE LA TABLA DENUNCIALEGAL

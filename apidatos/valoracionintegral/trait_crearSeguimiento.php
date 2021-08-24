@@ -49,14 +49,13 @@ trait trait_crearSeguimiento{
        // error_log(" Actualizarn incidente en el update de valoracion colorParaElEstado ="  . $colorParaElEstado);
         error_log(" Actualizarn incidente en el update de valoracion incidenteid "  . $datos['incidenteid']);
 
-       /* $update_incidente = DB::update('incidente',[
+        $update_incidente = DB::update('incidente',[
 
                     'etapatres'      => 'visible',
                     'etapacuatro'    => 'visible',
-                    'coloretapados'  =>  $colorParaElEstado,
                     'estado'         => 'en llenado de respuesta'
 
-         ],"id=%i",$datos['incidenteid']);*/
+         ],"id=%i",$datos['incidenteid']);
          
 
       }
