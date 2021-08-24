@@ -138,22 +138,22 @@ use traiBuscarId_por_Programa;
      //creamos el registro para  valoracionintegral
 
       DB::insert('valoracionintegral', [
-        'incidenteid' => $id,
-        'fechacreacion' =>  $DateAndTime,
-        'fechaupdate' => $DateAndTime,
-        'textovi'               => '.',
-            'tipologiadelincidente' => '.',
-            'niveldelincidente'     => '.',
-            'tipodecaso'            => '.',
+            'incidenteid'           =>  $id,
+            'fechacreacion'         =>  $DateAndTime,
+            'fechaupdate'           =>  $DateAndTime,
+            'textovi'               => 'En Proceso de Valoracion',
+            'tipologiadelincidente' => 'En Proceso de Valoracion',
+            'niveldelincidente'     => 'En Proceso de Valoracion',
+            'tipodecaso'            => 'En Proceso de Valoracion',
             'confirmaincidente'     => 'En Proceso de Valoracion',
             'confirmaincidentenumerico'     => 0,
             'tipoderespuesta'       => 'En Proceso de Valoracion',
             'medidasintegrales'     => '0',
-            'activo'                => 1,
+            'activo'                =>  1,
             'estado'                => 'abierto',
-            'colorestadorespuesta'=> 'yellow',
+            'colorestadorespuesta'  => 'yellow',
            
-            'estadorespuesta'=> 'abierto'
+            'estadorespuesta'       => 'abierto'
       ]);
         
     

@@ -6,11 +6,17 @@ class clsdenuncialegal_getTodosLosdenuncialegal {
 
     public function getdenuncialegal($id) {
 
+        error_log(" dentro de getDenuncialegal ");
+
         $results = DB::query("SELECT * FROM denuncialegal where incidenteid =%i " ,$id );
+
+        error_log(" SELECT * FROM denuncialegal where incidenteid = " . $id  );
 
         $folio = clsdenuncialegal_getTodosLosdenuncialegal::getFolio($id);
 
-        $results[0]["folio"] =$folio;
+        $results[0]["folio"] =$folio ;
+
+        error_log("foliol " . $folio);
         
         $results2 =DB::queryFirstRow("SELECT * FROM denuncialegal where incidenteid =%i " ,$id );
 
@@ -19,10 +25,15 @@ class clsdenuncialegal_getTodosLosdenuncialegal {
         $consensoArchivo = clsdenuncialegal_getTodosLosdenuncialegal::datoDelArchivo($consensodoctoid);
         $results[0]["consensoArchivo"] =$consensoArchivo;
 
+        //error_log("consensoArchivo " . $consensoArchivo);
 
         $medidasd = $results2["medidasd_docto"];
         $medidasArchivo = clsdenuncialegal_getTodosLosdenuncialegal::datoDelArchivo($medidasd);
         $results[0]["medidasArchivo"] =$medidasArchivo;
+
+        //error_log("medidasArchivo " . $medidasArchivo);
+
+       // var_dump($results);
 
         return json_encode($results);
 
