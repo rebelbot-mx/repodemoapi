@@ -12,7 +12,8 @@ trait trait_updateTablaDenuncia {
     function actualizarTablaDenuncia($datos){
 
       DB::update('denuncialegal',
-      [ 'consenso'               => str_replace('"','',$datos["estatus_consenso"]),
+      [ 
+        'consenso'               => str_replace('"','',$datos["estatus_consenso"]),
         'consensodocto'          => str_replace('"','',$datos["id_consensodocto"]),
 
        'denunciapresentada'      => str_replace('"','',$datos["estatus_denuncia"]),

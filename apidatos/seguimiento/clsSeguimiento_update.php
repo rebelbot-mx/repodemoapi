@@ -2,10 +2,13 @@
 
 require ( $_ENV['RUTA'] . '\apidatos\incidentes\trait_validacionInicial.php');
 require ( $_ENV['RUTA'] . '\apidatos\valoracionintegral\trait_validarValoracion_update.php');
+require ( $_ENV['RUTA'] . '\apidatos\denuncialegal\traitValidarDenuncia.php');
 require ('trait_updateTablaIncidente.php');
 require ('trait_updateTablaValoracion.php');
 require ('trait_updateTablaDenuncia.php');
 require ('trait_updateTablaSeguimiento.php');
+require ('trait_updateTablas_despues_de_validarDenuncia.php');
+require ('trait_validarSeguimiento.php');
 
 class clsSeguimiento_update {
 
@@ -14,7 +17,10 @@ class clsSeguimiento_update {
         trait_updateTablaValoracion,
         trait_updateTablaDenuncia,
         trait_updateTablaSeguimiento,
-        trait_validarValoracion_update ;
+        trait_validarValoracion_update,
+        trait_updateTablas_despues_de_validarDenuncia,
+        trait_validarSeguimiento,
+        traitValidarDenuncia ;
 
  public function updateSeguimiento2( $datos ) {
   
@@ -59,7 +65,7 @@ class clsSeguimiento_update {
    // SE REALIZA LA VALIDACION DE VALORACION INtegral
    //----------------------------------------------------------------
 
-  $this->validar_valoracionIntegral_desde_otra_etapa($datos["incidenteid"]);
+  $this->validar_valoracionIntegral_desde_otra_etapa( $datos["incidenteid"] );
 
    /*****************************************************************
      ACTUALIZAN DATOS DE LA TABLA DENUNCIALEGAL
@@ -69,7 +75,13 @@ class clsSeguimiento_update {
    *****************************************************************/
 
   $this->actualizarTablaDenuncia($datos);
+  //--------------------------------------------------------------
+  // SE REALIZA LA VALIDACION DE LA DENUNCIA
+  //--------------------------------------------------------------
 
+  $estaValidadoDenuncia = $this->validar( $datos["incidenteid"] );
+  $this->actualizarTablaIncidente_despues_de_validarDenuncia($estaValidadoDenuncia ,$datos["incidenteid"]);
+ 
    /*****************************************************************
      ACTUALIZAN DATOS DE LA TABLA SEGUIMIENTO
      - se actualizan campos notificacionpfn y notificacionpfn_docto
@@ -79,10 +91,16 @@ class clsSeguimiento_update {
 
   $this->actualizarTablaSeguimiento($datos);
 
+  //--------------------------------------------------------------
+  // SE REALIZA LA VALIDACION DE LA TABLA SEGUIMIENTO
+  //--------------------------------------------------------------
+  $estado_seguimiento = "abierto";
+  $estado_seguimiento = $this->validarSeguimiento($datos["incidenteid"]);
+
   $data =  array(
           
     'msg' => 'ok',
-    'estado'=>'abierto'
+    'estado'=>$estado_seguimiento
 
   );
 
