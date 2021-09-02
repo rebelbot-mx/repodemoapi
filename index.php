@@ -405,9 +405,9 @@ $app->get('/api/v0/incidentes/{id}/cierre', function (Request $request, Response
    
     $id = (int)$args['id'];
 
-    require 'apidatos/cierre/clsCierre_getDatosDelCierre.php';
-
-    $apiDatos = new clsCierre_getDatosDelCierre;
+   // require 'apidatos/cierre/clsCierre_getDatosDelCierre.php';
+   require 'apidatos/cierre/clsCierre_getDatosDelCierre_update.php';
+    $apiDatos = new clsCierre_getDatosDelCierre_update;
     
     $resultado  = $apiDatos->getcierre($id);
 

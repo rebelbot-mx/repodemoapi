@@ -156,6 +156,33 @@ trait trait_validarSeguimiento {
           $id 
           );
 
+       }else {
+          //----------------------------------------
+          // ACTUALIZAMOS LA TABLA INCIDENTE
+          //-----------------------------------------
+          DB::update( 'incidente', 
+                    
+          [
+              'coloretapatres' => 'yellow'
+          ],
+
+          " id =%i",
+          $id 
+          );
+          //----------------------------------------
+          // ACTUALIZAMOS LA TABLA SEGUIMIENTO
+          //-----------------------------------------
+           
+          DB::update( 'seguimiento', 
+                    
+          [
+              'estado' => 'abierto'
+          ],
+
+          " incidenteid =%i",
+          $id 
+          );
+
        }//termina actualizacion de tablas
 
        return $estado ;
