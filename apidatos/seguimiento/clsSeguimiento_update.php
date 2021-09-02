@@ -1,9 +1,9 @@
 <?php
 
 $ruta     = $_ENV['RUTA'];
-$ruta_uno  = $ruta . '\apidatos\incidentes\trait_validacionInicial.php';
-$ruta_dos  = $ruta . '\apidatos\valoracionintegral\trait_validarValoracion_update.php';
-$ruta_tres = $ruta . '\apidatos\denuncialegal\traitValidarDenuncia.php';
+$ruta_uno  = $ruta . '/apidatos/incidentes/trait_validacionInicial.php';
+$ruta_dos  = $ruta . '/apidatos/valoracionintegral/trait_validarValoracion_update.php';
+$ruta_tres = $ruta . '/apidatos/denuncialegal/traitValidarDenuncia.php';
 
 error_log("ruta uno = " . $ruta_uno);
 require ( $ruta_uno);
