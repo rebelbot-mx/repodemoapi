@@ -1,8 +1,14 @@
 <?php
 
-require ( $_ENV['RUTA'] . '\apidatos\incidentes\trait_validacionInicial.php');
-require ( $_ENV['RUTA'] . '\apidatos\valoracionintegral\trait_validarValoracion_update.php');
-require ( $_ENV['RUTA'] . '\apidatos\denuncialegal\traitValidarDenuncia.php');
+$ruta     = $_ENV['RUTA'];
+$ruta_uno  = $ruta . '\apidatos\incidentes\trait_validacionInicial.php';
+$ruta_dos  = $ruta . '\apidatos\valoracionintegral\trait_validarValoracion_update.php';
+$ruta_tres = $ruta . '\apidatos\denuncialegal\traitValidarDenuncia.php';
+
+error_log("ruta uno = " . $ruta_uno);
+require ( $ruta_uno);
+require ( $ruta_dos);
+require ( $ruta_tres);
 require ('trait_updateTablaIncidente.php');
 require ('trait_updateTablaValoracion.php');
 require ('trait_updateTablaDenuncia.php');
