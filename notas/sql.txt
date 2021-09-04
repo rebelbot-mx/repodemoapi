@@ -82,3 +82,13 @@ para agregar datos a denuncia legal
   docto_soporteemocional
   denunciapresentada
   docto_denunciapresentada
+
+
+
+  =====================================================
+  = hoy abordaje interno
+  =====================================================
+
+  ALTER TABLE `abordajinterno` ADD `informaenterector` VARCHAR(50) NOT NULL AFTER `folioabordaje`;
+
+  ALTER TABLE `abordajinterno` ADD `docto_informaenterector` INT NULL DEFAULT '0' AFTER `informaenterector`;

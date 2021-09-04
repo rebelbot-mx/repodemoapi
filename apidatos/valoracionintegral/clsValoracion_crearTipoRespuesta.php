@@ -244,16 +244,18 @@ class clsValoracion_crearTipoRespuesta
      
                   
                        'incidenteid'           =>  $incidenteid,
-                       'folioabordaje'    =>  $folio,
-                       'status' => " ",
-                       'plan' => " ",
-                       'documentos' => "0",
-                       'plan_docto' => "0",
-                       'documentos_docto' => "0",
-                       'fechaCreacion' =>  $date,
-                       'fechaUpdate' =>  $date,
-                       'estado'=> 'abierto',
-                       'programa' => $idprograma
+                       'folioabordaje'         =>  $folio,
+                       'status'                => " ",
+                       'plan'                  => " ",
+                       'documentos'            => "0",
+                       'plan_docto'            => "0",
+                       'documentos_docto'      => "0",
+                       'fechaCreacion'         =>  $date,
+                       'fechaUpdate'           =>  $date,
+                       'estado'                => 'abierto',
+                       'programa'              => $idprograma,
+                       'informaenterector'     => 'POR CONFIRMAR',
+                       'docto_informaenterector' => 0
                         ]);       
 
                    }catch(Exception $ex) {

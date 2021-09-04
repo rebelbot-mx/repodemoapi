@@ -11,7 +11,7 @@ trait trait_crearSeguimiento{
 
         $count = DB::queryFirstField("SELECT COUNT(*) FROM seguimiento WHERE incidenteid = %i", $datos['incidenteid']);
             
-        error_log("valor de count :" . $count );
+        error_log("valor de count en crear seguimiento :" . $count );
 
         if ($count==0){
           

@@ -17,7 +17,7 @@ require ('trait_updateTablas_despues_de_validarDenuncia.php');
 require ('trait_validarSeguimiento.php');
 
 class clsSeguimiento_update {
-
+  0
     use trait_validacionInicial ,
         trait_updateTablaIncidente,
         trait_updateTablaValoracion,

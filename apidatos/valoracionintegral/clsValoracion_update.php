@@ -36,31 +36,43 @@ class clsValoracion_update {
           error_log("es un incidente");
           $confirmanumerico= 2;
 
-            if ( $datos["tipoderespuesta"]== "DENUNCIA LEGAL"){
-                 error_log("es una denuncia");
-                //-----------  -----------------------------------------
-                // verificar que exista un registro en la  y si no se crea.
-                //-----------------------------------------------------
-                $count = DB::queryFirstField("select count(*) from denuncialegal where incidenteid = %i",$incidenteId );
+          //-----------  -----------------------------------------
+          // verificar que exista un registro en la  y si no se crea.
+          //-----------------------------------------------------
 
-                if ($count == 0){
-                  error_log("creamos  una denuncia");
-                  // si no existe un registro creamos una respuesta 
-                  require 'clsValoracion_crearTipoRespuesta.php';
+          $count =0;
 
-                  $crearRespuesta = new clsValoracion_crearTipoRespuesta;
+          if ( $datos["tipoderespuesta"]== "DENUNCIA LEGAL"){
+            $count = DB::queryFirstField("select count(*) from denuncialegal where incidenteid = %i",$incidenteId );
+            error_log("es una denuncia");
+          }
 
-                  $args =[ 
-                      'id'         => $datos['incidenteid'],
-                      'respuesta'  => $datos['tipoderespuesta']
-                    ];
+          if ( $datos["tipoderespuesta"]== "ABORDAJE INTERNO"){
+            $count = DB::queryFirstField("select count(*) from abordajinterno where incidenteid = %i",$incidenteId );
+            error_log("es una ABORDAJE");
+          }
 
-                   $crearRespuesta->crearRespuesta($args);
 
-                }//termina count.
+          if ($count == 0){
+            error_log("creamos  una denuncia");
+            // si no existe un registro creamos una respuesta 
+            require 'clsValoracion_crearTipoRespuesta.php';
 
-            }//termina if si respuesta es DENUNCIA LEGAL
+            $crearRespuesta = new clsValoracion_crearTipoRespuesta;
 
+            $args =[ 
+                'id'         => $datos['incidenteid'],
+                'respuesta'  => $datos['tipoderespuesta']
+              ];
+
+             $crearRespuesta->crearRespuesta($args);
+
+          }//termina
+
+
+
+
+          
                 //----------------------------------------------------
                 // verificar que exista un registro En la tabla 
                 // seguimiento y si no pues se crea.

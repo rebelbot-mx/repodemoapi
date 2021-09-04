@@ -12,9 +12,19 @@ class clsabordaje_getabordaje {
 
        $folioIncidente = DB::queryFirstField("select folio from incidente where id = %i" , $idincidente);
         
+       $seguimiento = DB::queryFirstRow("select * from seguimiento where incidenteid = %i",$idincidente);
+       
+       $idactahecho = DB::queryFirstField("select actavaloracion_docto from incidente where id = %id", $idincidente);
+       
+       $idactavaloracion = DB::queryFirstField("select medidasintegrales from valoracionintegral where id = %id", $idincidente);
        //print_r( $results);
 
        //$results['folioincidente'] = $folioIncidente;
+
+       $results["seguimiento"]       = $seguimiento ; 
+       $results["id_actahechos"]     = $idactahecho ; 
+       $results["id_actavaloracion"] = $idactavaloracion ; 
+
 
         return json_encode($results);
 
@@ -34,12 +44,41 @@ class clsabordaje_getabordaje {
             
             error_log(" folioIncidente  " .  $folioIncidente  );
 
-            $results = DB::query("SELECT * FROM abordajinterno where id =%i " ,$idabordaje );
+            $results = DB::queryFirstRow("SELECT * FROM abordajinterno where id =%i " ,$idabordaje );
 
             //print_r( $results);
             $results[1]['folioincidente'] =  $folioIncidente;
 
-            return json_encode($results);
+            $folioIncidente = DB::queryFirstField("select folio from incidente where id = %i" , $id);
+        
+            $seguimiento = DB::queryFirstRow("select * from seguimiento where incidenteid = %i",$id);
+            
+            $idactahecho = DB::queryFirstField("select actavaloracion_docto from incidente where id = %i", $id);
+            
+            $idactavaloracion = DB::queryFirstField("select medidasintegrales from valoracionintegral where id = %i", $id);
+            //print_r( $results);
+     
+            //$results['folioincidente'] = $folioIncidente;
+
+
+            /* Tabla abordaje */
+            $results0["folioAbordaje"]                  = $results["folioabordaje"] ;
+            $results0["fechaUpdate"]                    = $results["fechaUpdate"] ; 
+            $results0["status"]                         = $results["status"] ;
+            $results0["informaenterector"]              = $results["informaenterector"] ;
+            $results0["docto_informaenterector"]        = $results["docto_informaenterector"] ;
+            $results0["estado"]                         = $results["estado"] ;
+     
+            /* tabla seguimiento */
+            
+            $results0["id_actahechos"]     = $idactahecho ; 
+            
+            $results0["id_actavaloracion"] = $idactavaloracion ; 
+            $results0["folioIncidente"]    = $folioIncidente ; 
+            
+            $results0["seguimiento"]       = $seguimiento ; 
+
+            return json_encode($results0);
             
         }catch(Exception $ex) {
 
