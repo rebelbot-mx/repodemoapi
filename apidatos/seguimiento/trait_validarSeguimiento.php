@@ -4,7 +4,7 @@
 
 trait trait_validarSeguimiento {
 
-    function validarSeguimiento($id){
+    function validarSeguimiento( $id, $tipoderespuesta){
 
         $r1 =0;
 
@@ -59,7 +59,18 @@ trait trait_validarSeguimiento {
 
 
         //--------------------------------------------------------------------------
-        
+         
+        if ($tipoderespuesta =="ABORDAJE INTERNO"){
+            
+            $r3= 0;
+            $r4= 0;
+            $r5= 0;
+            $r6= 0;
+            $r7= 0;
+            $r8 =0;
+
+        }
+
         $seguimiento  = DB::queryFirstRow("select * from seguimiento where incidenteid = %i", $id);
 
         

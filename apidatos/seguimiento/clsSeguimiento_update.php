@@ -5,6 +5,8 @@ $ruta_uno  = $ruta . '/apidatos/incidentes/trait_validacionInicial.php';
 $ruta_dos  = $ruta . '/apidatos/valoracionintegral/trait_validarValoracion_update.php';
 $ruta_tres = $ruta . '/apidatos/denuncialegal/traitValidarDenuncia.php';
 
+$ruta_validacionABordaje = $ruta . '/apidatos/abordaje/traitValidarAbordaje.php';
+
 error_log("ruta uno = " . $ruta_uno);
 require ( $ruta_uno);
 require ( $ruta_dos);
@@ -16,8 +18,11 @@ require ('trait_updateTablaSeguimiento.php');
 require ('trait_updateTablas_despues_de_validarDenuncia.php');
 require ('trait_validarSeguimiento.php');
 
+require ('trait_updateTablaAbordaje.php');
+require ($ruta_validacionABordaje);
+
 class clsSeguimiento_update {
-  0
+  
     use trait_validacionInicial ,
         trait_updateTablaIncidente,
         trait_updateTablaValoracion,
@@ -26,7 +31,9 @@ class clsSeguimiento_update {
         trait_validarValoracion_update,
         trait_updateTablas_despues_de_validarDenuncia,
         trait_validarSeguimiento,
-        traitValidarDenuncia ;
+        traitValidarDenuncia,
+        trait_updateTablaAbordaje,
+        traitValidarAbordaje ;
 
  public function updateSeguimiento2( $datos ) {
   
@@ -73,6 +80,11 @@ class clsSeguimiento_update {
 
   $this->validar_valoracionIntegral_desde_otra_etapa( $datos["incidenteid"] );
 
+
+  $tipoDeRespuesta = $datos["tipoderespuesta"];
+
+  if ($tipoDeRespuesta == "DENUNCIA LEGAL"){
+
    /*****************************************************************
      ACTUALIZAN DATOS DE LA TABLA DENUNCIALEGAL
      - se actualizan campos consenso y consensodocto
@@ -87,7 +99,61 @@ class clsSeguimiento_update {
 
   $estaValidadoDenuncia = $this->validar( $datos["incidenteid"] );
   $this->actualizarTablaIncidente_despues_de_validarDenuncia($estaValidadoDenuncia ,$datos["incidenteid"]);
+  
+}//////// DENUNCIA LEGAL
+
+
+
+  if ($tipoDeRespuesta == "ABORDAJE INTERNO"){
+
+  /*****************************************************************
+       ACTUALIZAN DATOS DE LA TABLA ABORDAJINTERNO
+     - se actualizan campos informaenterector y docto_informenterector
+   *****************************************************************/
+
+  $this->actualizarTablaAbordaje($datos);
+
+  //--------------------------------------------------------------
+  // SE REALIZA LA VALIDACION DEl ABORDAJE INTERNO
+  //--------------------------------------------------------------
+
+  $resValidaAbordaje = $this->validar($datos["incidenteid"]);
+
+  //--------------------------------------------------------------
+  // SE REALIZA LA ACTUALIZACION DE LA ABORDAJE
+  //--------------------------------------------------------------
+    
+  $estado ="abierto";
+  $coloretaparespuesta ="yellow";
+
+  if( $resValidaAbordaje == true ) {
+    $estado ="cerrado";
+    $coloretaparespuesta ="green";
+  }
+
+  DB::update('valoracionintegral',
+             [ 'estadorespuesta'    => $estado,
+               'colorestadorespuesta'=> $coloretaparespuesta],
+               "incidenteid=%i",
+               $parametros['incidenteid'] );
+
  
+
+   DB::update("abordajinterno",[
+    
+           "estado" =>  $estado 
+
+       ],"incidenteid=%i",$parametros['incidenteid']);
+
+  }////
+
+
+
+
+
+
+
+
    /*****************************************************************
      ACTUALIZAN DATOS DE LA TABLA SEGUIMIENTO
      - se actualizan campos notificacionpfn y notificacionpfn_docto
@@ -100,8 +166,9 @@ class clsSeguimiento_update {
   //--------------------------------------------------------------
   // SE REALIZA LA VALIDACION DE LA TABLA SEGUIMIENTO
   //--------------------------------------------------------------
+  $tipoderespuesta    = $datos["tipoderespuesta"]
   $estado_seguimiento = "abierto";
-  $estado_seguimiento = $this->validarSeguimiento($datos["incidenteid"]);
+  $estado_seguimiento = $this->validarSeguimiento($datos["incidenteid"],  $tipoderespuesta);
 
   $data =  array(
           

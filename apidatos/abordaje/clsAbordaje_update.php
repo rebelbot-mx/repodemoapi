@@ -110,13 +110,13 @@ class clsAbordaje_update{
 
      }
 
+ DB::update('incidente',
+        [ 'estado'    =>  'en llenado de seguimiento',],"id=%i",$parametros['incidenteid'] );
 
      DB::update('valoracionintegral',
         [ 'estadorespuesta'    => $estado,'colorestadorespuesta'=> $coloretaparespuesta],"incidenteid=%i",$parametros['incidenteid'] );
 
-        DB::update('incidente',
-        [ 'estado'    =>  'en llenado de seguimiento',],"id=%i",$parametros['incidenteid'] );
-
+       
 
          DB::update("abordajinterno",[
           

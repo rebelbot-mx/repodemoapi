@@ -2,10 +2,13 @@
 
 require 'trait_tipoDeRespuesta.php';
 require 'trait_seguimientoDenuncia.php';
+require 'trait_seguimientoAbordaje.php';
 
 class clsSeguimiento_getSeguimiento
  {
-    use trait_tipoDeRespuesta,trait_seguimientoDenuncia;
+    use trait_tipoDeRespuesta,
+        trait_seguimientoDenuncia,
+        trait_seguimientoAbordaje;
 
 
     public function getSeguimiento_x_incidenteid($id){
@@ -22,7 +25,7 @@ class clsSeguimiento_getSeguimiento
       }
 
       if ($tipoDeRespuesta == "ABORDAJE INTERNO"){
-
+       $datos_denuncia = $this->getSeguimientoAbordaje($id);
     }
 
     $data = array( 'msg' =>'ok','respuesta' =>  $datos_denuncia );

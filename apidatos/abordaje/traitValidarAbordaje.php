@@ -119,6 +119,7 @@ trait traitValidarAbordaje{
     
 
        error_log(" valor de  total validacion abordaje " . $total);
+       
        if($total == 0) {
            return true; // se puede validar
        }else{
