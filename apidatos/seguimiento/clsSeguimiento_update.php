@@ -41,21 +41,24 @@ class clsSeguimiento_update {
    * ESTRUCTURA DE LOS DATOS QUE SE RECIBEN
   ******************************************
 
-        incidenteid, folio ,tipoderespuesta
-        'estatus_consenso'                => $estatusConsenso ,
+        incidenteid, 
+         folio ,
+         tipoderespuesta
+        'estatus_consenso'                 => $estatusConsenso ,
         'estatus_medidas'                  => $estatusMedidas,
-        'estatus_denuncia'                => $estatusDenunciaPresentada,
-        'estatus_notificacionpfn'         => $estatus_notificacionpfn,
-        'estatus_notificaciondenunciante' => $estatus_notificaciondenunciante,
-        'estatus_planrecuperacion'        => $estatus_planrecuperacion,
-        'id_consensodocto'                => $idDocumentoConsenso,
-        'id_denunciadocto'                => $idDenuciaPresentada,
-        'id_medidasdocto'                 => $idmedidasdisciplinarias,
-        'id_Notificacionpfn'              => $idNotificacionpfn,
-        'id_NotificacionDenunciante'      => $idNotificacionDenunciante,
-        'id_NotificacionPlan'             => $idNotificacionPlan,
-        'id_Actavaloracion'               => $idActavaloracion,
-        'id_ActaHechos'                   => $idActaHechos
+        'estatus_denuncia'                 => $estatusDenunciaPresentada,
+        'estatus_notificacionpfn'          => $estatus_notificacionpfn,
+        'estatus_notificaciondenunciante'  => $estatus_notificaciondenunciante,
+        'estatus_planrecuperacion'         => $estatus_planrecuperacion,
+        'id_consensodocto'                 => $idDocumentoConsenso,
+        'id_denunciadocto'                 => $idDenuciaPresentada,
+        'id_medidasdocto'                  => $idmedidasdisciplinarias,
+        'id_Notificacionpfn'               => $idNotificacionpfn,
+        'id_NotificacionDenunciante'       => $idNotificacionDenunciante,
+        'id_NotificacionPlan'              => $idNotificacionPlan,
+        'id_Actavaloracion'                => $idActavaloracion,
+        'id_ActaHechos'                    => $idActaHechos,
+
   
   */
 
@@ -110,14 +113,14 @@ class clsSeguimiento_update {
        ACTUALIZAN DATOS DE LA TABLA ABORDAJINTERNO
      - se actualizan campos informaenterector y docto_informenterector
    *****************************************************************/
-
-  $this->actualizarTablaAbordaje($datos);
+  //comentarmos por que en seguimiento no mostramos ente rector
+ // $this->actualizarTablaAbordaje($datos);
 
   //--------------------------------------------------------------
   // SE REALIZA LA VALIDACION DEl ABORDAJE INTERNO
   //--------------------------------------------------------------
 
-  $resValidaAbordaje = $this->validar($datos["incidenteid"]);
+  $resValidaAbordaje = $this->validarAbordaje($datos["incidenteid"]);
 
   //--------------------------------------------------------------
   // SE REALIZA LA ACTUALIZACION DE LA ABORDAJE
@@ -135,7 +138,7 @@ class clsSeguimiento_update {
              [ 'estadorespuesta'    => $estado,
                'colorestadorespuesta'=> $coloretaparespuesta],
                "incidenteid=%i",
-               $parametros['incidenteid'] );
+               $datos['incidenteid'] );
 
  
 
@@ -143,7 +146,7 @@ class clsSeguimiento_update {
     
            "estado" =>  $estado 
 
-       ],"incidenteid=%i",$parametros['incidenteid']);
+       ],"incidenteid=%i",$datos['incidenteid']);
 
   }////
 
@@ -166,7 +169,7 @@ class clsSeguimiento_update {
   //--------------------------------------------------------------
   // SE REALIZA LA VALIDACION DE LA TABLA SEGUIMIENTO
   //--------------------------------------------------------------
-  $tipoderespuesta    = $datos["tipoderespuesta"]
+  $tipoderespuesta    = $datos["tipoderespuesta"];
   $estado_seguimiento = "abierto";
   $estado_seguimiento = $this->validarSeguimiento($datos["incidenteid"],  $tipoderespuesta);
 

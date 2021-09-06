@@ -94,7 +94,7 @@ class clsAbordaje_update{
 
      
      $listaDeCorreos_para_enviar =array();
-     $respuestaValidacion = $this->validar( $parametros['incidenteid']) ;
+     $respuestaValidacion = $this->validarAbordaje( $parametros['incidenteid']) ;
 
      error_log(" respuesta de validacion abordaje " . $respuestaValidacion);
 

@@ -1,13 +1,21 @@
 <?php
 
+$ruta     = $_ENV['RUTA'];
 
+$ruta_getABordaje = $ruta . '/apidatos/seguimiento/trait_seguimientoAbordaje.php';
+require ($ruta_getABordaje);
 require 'traitEstadoDelSeguimiento.php';
 require 'trait_cierreDenuncia.php';
+require 'trait_getAbordajeParaCierre.php';
 
 class clsCierre_getDatosDelCierre_update { 
  
 use traitEstadoDelSeguimiento,
-    trait_cierreDenuncia;
+    trait_seguimientoAbordaje,
+    trait_cierreDenuncia,
+    trait_getAbordajeParaCierre;
+
+    
 
     public function getcierre($id){
 
@@ -64,6 +72,7 @@ use traitEstadoDelSeguimiento,
         error_log("  xxxxxxx " . $idDocto_valor);
 
         $datosRespuesta = array();
+
        if ( $results[0]['tipoderespuesta']=='DENUNCIA LEGAL'){
 
 
@@ -76,82 +85,25 @@ use traitEstadoDelSeguimiento,
        }// TERMINA NOTIFICACION
 
 
-       /* $archivoPlan = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_valor);
-        $results[0]['Archivo_Plan_nombreOriginal']=$archivoPlan['nombreOriginal'];
-        $results[0]['Archivo_Plan_ext']=$archivoPlan['ext'];
-        $results[0]['Archivo_Plan_nombreinterno']=$archivoPlan['nombreinterno'];
-        $results[0]['Archivo_Plan_directorio']=$archivoPlan['directorio'];
-        $results[0]['Archivo_Plan_id']=$archivoPlan['id'];
-        $results[0]['Archivo_Plan_hayArchivo']=$archivoPlan['hayArchivo'];*/
-
-     /*   $idDocto_planrecuperacion_docto =  $results2['planrecuperacion_docto'];
-        error_log("  xxxxxxx " . $idDocto_planrecuperacion_docto);
-        $Archivoplanrecuperacion = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_planrecuperacion_docto);
-        $results[0]['Archivo_planrecuperacion_nombreOriginal']=$Archivoplanrecuperacion['nombreOriginal'];
-        $results[0]['Archivo_planrecuperacion_ext']=$Archivoplanrecuperacion['ext'];
-        $results[0]['Archivo_planrecuperacion_nombreinterno']=$Archivoplanrecuperacion['nombreinterno'];
-        $results[0]['Archivo_planrecuperacion_directorio']=$Archivoplanrecuperacion['directorio'];
-        $results[0]['Archivo_planrecuperacion_id']=$Archivoplanrecuperacion['id'];
-        $results[0]['Archivo_planrecuperacion_hayArchivo']=$Archivoplanrecuperacion['hayArchivo'];
-
-*/
-      /*  $idDocto_actavaloracion_docto =  $results2['actavaloracion_docto'];
-        error_log("  xxxxxxx " . $idDocto_actavaloracion_docto);
-        $ArchivoActaValoracion = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_actavaloracion_docto);
-        $results[0]['Archivo_actavaloracion_nombreOriginal']=$ArchivoActaValoracion['nombreOriginal'];
-        $results[0]['Archivo_actavaloracion_ext']=$ArchivoActaValoracion['ext'];
-        $results[0]['Archivo_actavaloracion_nombreinterno']=$ArchivoActaValoracion['nombreinterno'];
-        $results[0]['Archivo_actavaloracion_directorio']=$ArchivoActaValoracion['directorio'];
-        $results[0]['Archivo_actavaloracion_id']=$ArchivoActaValoracion['id'];
-        $results[0]['Archivo_actavaloracion_hayArchivo']=$ArchivoActaValoracion['hayArchivo'];
-*/
+       if ( $results[0]['tipoderespuesta']=='ABORDAJE INTERNO'){
 
 
-       /* $idDocto_notificaciondenunciante_docto =  $results2['notificaciondenunciante_docto'];
-        error_log("  xxxxxxx " . $idDocto_notificaciondenunciante_docto);
-        $Archivonotificaciondenunciante = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_notificaciondenunciante_docto);
-        $results[0]['Archivo_notificaciondenunciante_nombreOriginal']=$Archivonotificaciondenunciante['nombreOriginal'];
-        $results[0]['Archivo_notificaciondenunciante_ext']=$Archivonotificaciondenunciante['ext'];
-        $results[0]['Archivo_notificaciondenunciante_nombreinterno']=$Archivonotificaciondenunciante['nombreinterno'];
-        $results[0]['Archivo_notificaciondenunciante_directorio']=$Archivonotificaciondenunciante['directorio'];
-        $results[0]['Archivo_notificaciondenunciante_id']=$Archivonotificaciondenunciante['id'];
-        $results[0]['Archivo_notificaciondenunciante_hayArchivo']=$Archivonotificaciondenunciante['hayArchivo'];
-*/
 
-
-      /*  $idDocto_notificaciondif_docto =  $results2['notificaciondif_docto'];
-        error_log("  xxxxxxx " . $idDocto_notificaciondif_docto);
-        $Archivonotificaciondif = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_notificaciondif_docto);
-        $results[0]['Archivo_notificaciondif_nombreOriginal']=$Archivonotificaciondif['nombreOriginal'];
-        $results[0]['Archivo_notificaciondif_ext']=$Archivonotificaciondif['ext'];
-        $results[0]['Archivo_notificaciondif_nombreinterno']=$Archivonotificaciondif['nombreinterno'];
-        $results[0]['Archivo_notificaciondif_directorio']=$Archivonotificaciondif['directorio'];
-        $results[0]['Archivo_notificaciondif_id']=$Archivonotificaciondif['id'];
-        $results[0]['Archivo_notificaciondif_hayArchivo']=$Archivonotificaciondif['hayArchivo'];
-*/
-      /*  $idDocto_notificacionautoridad_docto_docto =  $results2['notificacionautoridad_docto'];
-        error_log("  idDocto_notificacionautoridad_docto_docto " . $idDocto_notificacionautoridad_docto_docto);
-        $Archivonotificacionautoridad_docto = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_notificacionautoridad_docto_docto);
-        $results[0]['Archivo_notificacionautoridad_nombreOriginal']=$Archivonotificacionautoridad_docto['nombreOriginal'];
-        $results[0]['Archivo_notificacionautoridad_ext']=$Archivonotificacionautoridad_docto['ext'];
-        $results[0]['Archivo_notificacionautoridad_nombreinterno']=$Archivonotificacionautoridad_docto['nombreinterno'];
-        $results[0]['Archivo_notificacionautoridad_directorio']=$Archivonotificacionautoridad_docto['directorio'];
-        $results[0]['Archivo_notificacionautoridad_id']=$Archivonotificacionautoridad_docto['id'];
-        $results[0]['Archivo_notificacionautoridad_hayArchivo']=$Archivonotificacionautoridad_docto['hayArchivo'];
-*/
+        $datosRespuesta = $this->getSeguimientoAbordaje_para_cierre($id);
+         
+         $results[0]['abordaje']=$datosRespuesta;
+    
+         //error_log(" valor de la respues abordaje interno");
+         //print_r( $datosRespuesta );
        
-     /*   $idDocto_notificacionpfn_docto =  $results2['notificacionpfn_docto'];
-        error_log("  idDocto_notificacionautoridad_docto_docto " . $idDocto_notificacionpfn_docto);
-        $Archivo_notificacionPFN_docto = clsCierre_getDatosDelCierre::datoDelArchivo($idDocto_notificacionpfn_docto);
-        $results[0]['Archivo_notificacionPFN_nombreOriginal']=$Archivo_notificacionPFN_docto['nombreOriginal'];
-        $results[0]['Archivo_notificacionPFN_ext']=$Archivo_notificacionPFN_docto['ext'];
-        $results[0]['Archivo_notificacionPFN_nombreinterno']=$Archivo_notificacionPFN_docto['nombreinterno'];
-        $results[0]['Archivo_notificacionPFN_directorio']=$Archivo_notificacionPFN_docto['directorio'];
-        $results[0]['Archivo_notificacionPFN_id']=$Archivo_notificacionPFN_docto['id'];
-        $results[0]['Archivo_notificacionPFN_hayArchivo']=$Archivo_notificacionPFN_docto['hayArchivo'];
-*/
-       $testigos = DB::query("select * from testigoscierre where incidenteid = %i",$id);
 
+     }// TERMINA NOTIFICACION
+
+
+
+       $testigos = DB::query("select * from testigoscierre where incidenteid = %i",$id);
+       error_log(" TESTIGOS ");
+       
        $results[0]['testigos']=$testigos;
 
        $results[0]['estadoseguimiento'] = $this->estadoDelSeguimiento($id);

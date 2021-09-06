@@ -1,10 +1,10 @@
 <?php
 
 
-trait trait_seguimientoAbordaje {
+trait trait_getAbordajeParaCierre {
 
 
-    function getSeguimientoAbordaje($id){
+    function getSeguimientoAbordaje_para_cierre($id){
                    
                    /************************************************************
                     *  valores de la tabla abordaje que se mostraran en seguimientos
@@ -91,8 +91,22 @@ trait trait_seguimientoAbordaje {
          
                   error_log(" creadno el array de respesta en seguimiento ABordaje " );
 
-                
-         
+                 $nombre_actahecho               = DB::queryFirstField("select nombreOriginal from doctos where id = %i", $idActaHechos);
+                 $nombre_actavaloracion          = DB::queryFirstField("select nombreOriginal from doctos where id = %i", $idActavaloracion);
+                 $nombre_Notificacionpfn         = DB::queryFirstField("select nombreOriginal from doctos where id = %i", $idNotificacionpfn);
+                 $nombre_NotificacionDenunciante = DB::queryFirstField("select nombreOriginal from doctos where id = %i", $idNotificacionDenunciante);
+                 $nombre_NotificacionPlan        = DB::queryFirstField("select nombreOriginal from doctos where id = %i",  $idNotificacionPlan);
+                 $nombre_informerector          = DB::queryFirstField("select nombreOriginal from doctos where id = %i",  $idDoctoinformaEnteRector);
+                 
+                 error_log($nombre_actahecho );
+                 
+                 error_log($nombre_actavaloracion);
+                 
+                 error_log($nombre_Notificacionpfn );
+                 
+                 error_log($nombre_NotificacionDenunciante );
+                 
+                 error_log($nombre_NotificacionPlan );
                    $data = array(
                                'incidenteid'                     => $id,
                                'tipoderespuesta'                 => 'ABORDAJE INTERNO',
@@ -110,8 +124,14 @@ trait trait_seguimientoAbordaje {
                                'id_NotificacionDenunciante'      => $idNotificacionDenunciante,
                                'id_NotificacionPlan'             => $idNotificacionPlan,
                                'id_Actavaloracion'               => $idActavaloracion,
-                               'id_ActaHechos'                   => $idActaHechos
-         
+                               'id_ActaHechos'                   => $idActaHechos,
+                               'id_doctoinformerector'          =>$idDoctoinformaEnteRector,
+                               'nombre_actahecho'                    => $nombre_actahecho,
+                               'nombre_actavaloracion'               => $nombre_actavaloracion,
+                               'nombre_Notificacionpfn'              => $nombre_Notificacionpfn,
+                               'nombre_NotificacionDenunciante'      => $nombre_NotificacionDenunciante,
+                               'nombre_NotificacionPlan'             => $nombre_NotificacionPlan,
+                               'nombre_informerector'                => $nombre_informerector
                    );
 
                   // print_r($data);

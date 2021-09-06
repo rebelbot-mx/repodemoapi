@@ -24,7 +24,7 @@ trait traitValidarAbordaje{
             */
     
 
-    function validar($incidenteid){
+    function validarAbordaje($incidenteid){
 
 
         $incidente = DB::queryFirstRow("select * from abordajinterno where incidenteid = %i", $incidenteid);
@@ -38,11 +38,11 @@ trait traitValidarAbordaje{
            
        $r2 = 0;
        error_log (" estatus " . $incidente['status'] ); 
-       $r2 = $this->No_es_Valido($incidente['status'],'');
+       $r2 = $this->No_es_Valido_abordaje($incidente['status'],'');
 
        $r3 = 0;
        error_log ("ente rector " .  $incidente['informaenterector'] ); 
-       $r3 =$this->No_es_Valido($incidente['informaenterector'],'POR CONFIRMAR');
+       $r3 =$this->No_es_Valido_abordaje($incidente['informaenterector'],'POR CONFIRMAR');
    
 
        $r4 = 0;
@@ -59,13 +59,13 @@ trait traitValidarAbordaje{
          "planrecuperacion_docto"         =>    $parametros['id_pr'],  
          */
        $r5 = 0;
-       $r5 =$this->No_es_Valido($seguimiento['notificacionpfn'],'POR CONFIRMAR');
+       $r5 =$this->No_es_Valido_abordaje($seguimiento['notificacionpfn'],'POR CONFIRMAR');
 
        $r6 = 0;
-       $r6 =$this->No_es_Valido($seguimiento['notificaciodenunciante'],'POR CONFIRMAR');
+       $r6 =$this->No_es_Valido_abordaje($seguimiento['notificaciodenunciante'],'POR CONFIRMAR');
 
        $r7 = 0;
-       $r7 =$this->No_es_Valido($seguimiento['planrecuperacion'],'POR CONFIRMAR');
+       $r7 =$this->No_es_Valido_abordaje($seguimiento['planrecuperacion'],'POR CONFIRMAR');
 
        $r8 = 0;
        $valida_r8 = str_replace ( '"',  '' , $seguimiento['notificacionpfn_docto'] ) ;
@@ -74,13 +74,13 @@ trait traitValidarAbordaje{
 
        $r9 = 0;
        $valida_r9 = str_replace ( '"',  '' , $seguimiento['notificaciondenunciante_docto'] ) ;
-      // $r9 =$this->No_es_Valido($seguimiento['notificaciondenunciante_docto'],'0');
+      // $r9 =$this->No_es_Valido_abordaje($seguimiento['notificaciondenunciante_docto'],'0');
       $valida_r9 == 0 ? $r9 = 1 : $r9 = 0;
 
        $r10 = 0;
        $valida_r10 = str_replace ( '"',  '' , $seguimiento['planrecuperacion_docto'] ) ;
        $valida_r10 == 0 ? $r10 = 1 : $r10 = 0;
-       //$r10 =$this->No_es_Valido($seguimiento['planrecuperacion_docto'],'0');
+       //$r10 =$this->No_es_Valido_abordaje($seguimiento['planrecuperacion_docto'],'0');
 
        
       
@@ -96,7 +96,7 @@ trait traitValidarAbordaje{
 
        
       /* $r6 = 0;
-       $r6 = $this->No_es_Valido($incidente['documentos'],0);*/
+       $r6 = $this->No_es_Valido_abordaje($incidente['documentos'],0);*/
 
 
        $total =   $r2  +$r3 + $r4 +$r5 +$r6 + $r7 +$r8 +$r9 +$r10 + $r11 +$r12;
@@ -131,7 +131,7 @@ trait traitValidarAbordaje{
 
 
     
-function esValido($campo, $valor){
+function esValidoAbordaje($campo, $valor){
         $res=0;
         if ($campo== $valor){
             $res = 0;
@@ -143,7 +143,7 @@ function esValido($campo, $valor){
         return $res;
  }
 
- function No_es_Valido($campo, $valor){
+ function No_es_Valido_abordaje($campo, $valor){
      $res=0;
      if ($campo== $valor){
          $res = 1;
