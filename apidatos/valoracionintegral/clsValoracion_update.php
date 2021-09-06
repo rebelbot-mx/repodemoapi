@@ -161,6 +161,37 @@ class clsValoracion_update {
         }
         //////////////////////////////////////////////////////////////
 
+        
+        if ($datos["accion"] == "crearinvestigacion") {
+          
+          $perteneceAlprograma = DB::queryFirstField("select programa from incidente where id = %i", $datos['incidenteid']);
+
+          
+          require 'clsValoracion_crearTipoRespuesta.php';
+
+
+          $crearRespuesta = new clsValoracion_crearTipoRespuesta;
+
+          $crearRespuesta->crearInvestigacion($datos['incidenteid'],$perteneceAlprograma);
+          
+          //-------------------------------------------------
+          // SE GENERAN LOS DATOS PARA LA LISTA DE CORREOS
+          //------------------------------------------------
+           $usuariosCorreos =  new clsEnviarCorreo();
+           $listaDeCorreos_para_enviar = array();
+           $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+        
+           //------------------------------------------------
+
+          $data = array(
+            'msg'       => 'ok',
+            'incidente' => 'investigacion',
+            'correos'   => $listaDeCorreos_para_enviar);
+
+          return json_encode( $data );
+      
+        }
+
 
 
       }
