@@ -119,7 +119,9 @@ use traiBuscarId_por_Programa;
         'coloretapacuatro'          => $datos['coloretapacuatro'],
         'textocierre'               => '.',
         'actavaloracion_docto'      => $temp_actahechosid,
-         'estado'                   =>'en espera de valoracion'
+         'estado'                   =>'en espera de valoracion',
+         'tieneInvestigacion'       => '0',
+         'colorInvestigacion'       => 'yellow'
   ]);
 
   $id = DB::insertId();
@@ -154,6 +156,7 @@ use traiBuscarId_por_Programa;
             'colorestadorespuesta'  => 'yellow',
            
             'estadorespuesta'       => 'abierto'
+
       ]);
         
     

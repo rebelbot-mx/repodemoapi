@@ -7,6 +7,7 @@ require 'trait_cierreDeIncidente_noconfirmacion.php';
 require 'trait_actualizaTablaValoracion.php';
 require 'trait_crearSeguimiento.php';
 require 'traitValidarValoracion.php';
+require 'trait_cerrarProceso_desde_investigacion.php';
 
 
 class clsValoracion_update { 
@@ -14,19 +15,75 @@ class clsValoracion_update {
       trait_cierreDeIncidente_noconfirmacion,
       trait_actualizaTablaValoracion,
       trait_crearSeguimiento,
-      traitValidarValoracion;
+      traitValidarValoracion,
+      trait_cerrarProceso_desde_investigacion;
  
     public function updateValoracion($datos){
 
         error_log("en updatevaloracion");
+           //-------------------------------------------------
+          // SE GENERAN LOS DATOS PARA LA LISTA DE CORREOS
+          //------------------------------------------------
+          $usuariosCorreos =  new clsEnviarCorreo();
+          $listaDeCorreos_para_enviar = array();
+          $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
+       
 
-        $folio            = DB::queryFirstColumn("select folio from incidente where id = %i", $datos['incidenteid']);
 
-        $id               = $datos['id'];
+        /*********************************************************************
+        * * VERIFICAMOS CUAL ES EL VALOR DE LA ACCION  
+        *********************************************************************/
+             
+            if ($datos["accion" ] == "cierre_desde_investigacion"){
+                 
+              error_log("entradno al cierre desde investigacion");
+                 $this->cerrarProceso_desde_investigacion($datos["incidenteid"]);
 
-        $incidenteId      = $datos['incidenteid'];
-        
-       $confirmanumerico = 0;
+                 $data = array(
+                  'msg'       => 'incidente_cerrado_desde_investigacion',
+                  'incidente' => 'investigacion',
+                  'correos'   => $listaDeCorreos_para_enviar);
+      
+                return json_encode( $data );
+             }// termina acccion de cierre desde investigacion
+
+             
+             if ($datos["accion" ] == "respuestanormal_desde_investigacion"){
+
+              error_log(" estamos en respuestanormal_desde_investigacion ");
+                 
+               $datosFaltante = DB::queryFirstRow("select * from valoracionintegral where incidenteid = %i",$datos["incidenteid"]);
+               $datos["textovi" ] =  $datosFaltante["textovi"];
+               $datos["id" ]      =  $datosFaltante["id"];
+
+               error_log(" respuestanormal_desde_investigacion - textovi =  " . $datos["textovi" ]);
+               error_log(" respuestanormal_desde_investigacion - id =       " . $datos["id" ]);
+              /* ocultar la valoracion integral y cambiar el color de la respuesa */
+              DB::update('incidente' ,
+              [ 'etapados'         => 'visible',
+                'colorInvestigacion'=> 'green'],
+              " id = %i",
+              $datos['incidenteid'] );
+                /* cambiamos el estado de la investigacion a cerrado */
+                DB::update('investigacion' ,
+                [ 'estado'           => 'cerrado'],
+                 " incidenteid = %i",
+                $datos['incidenteid'] );      
+                 
+             }// termina acccion de cierre desde investigacion  
+
+
+        //////////////////////////////////////////////////////////
+        //  OBTENEMOS ALGUNOS VALORES NECESARIOS PARA EL PROCESO
+        /////////////////////////////////////////////////////////
+
+          $folio            = DB::queryFirstColumn("select folio from incidente where id = %i", $datos['incidenteid']);
+
+          $id               = $datos['id'];
+  
+          $incidenteId      = $datos['incidenteid'];
+          
+         $confirmanumerico = 0;     
 
         //////////////////////////////////////////////////////////
         //   PROCESO DE ACTUALIZACION DE TABLA VALORACION
@@ -54,7 +111,7 @@ class clsValoracion_update {
 
 
           if ($count == 0){
-            error_log("creamos  una denuncia");
+            error_log("creamos  una respuesta de tipo : " . $datos['tipoderespuesta'] );
             // si no existe un registro creamos una respuesta 
             require 'clsValoracion_crearTipoRespuesta.php';
 
@@ -111,19 +168,13 @@ class clsValoracion_update {
                   ],"id=%i",$datos['incidenteid']);
 
 
-                  //-------------------------------------------------
-                  // SE GENERAN LOS DATOS PARA LA LISTA DE CORREOS
-                  //------------------------------------------------
-                  $usuariosCorreos =  new clsEnviarCorreo();
-                  $listaDeCorreos_para_enviar = array();
-                  $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
-        
-                  //------------------------------------------------
+
 
                   $data = array(
-                    'msg'       => 'ok',
-                    'incidente' => 'Si',
-                    'correos'   => $listaDeCorreos_para_enviar);
+                    'msg'             => 'ok',
+                    'incidente'       => 'Si',
+                    'tipoderespuesta' => $datos['tipoderespuesta'],
+                    'correos'         => $listaDeCorreos_para_enviar);
 
                      return json_encode($data);
       
@@ -155,6 +206,8 @@ class clsValoracion_update {
             * CERRAMOS EL PROCESO DE NO ES UN INCIDENTE Y REGRESAMOS LOS DATOS
             **********************************************************************/
             $data_noesincidente = $this->cerrarUnIncidente_noconfirmacion( $datos['incidenteid'] );
+           
+
             return json_encode( $data_noesincidente);
       
 
@@ -166,7 +219,12 @@ class clsValoracion_update {
           
           $perteneceAlprograma = DB::queryFirstField("select programa from incidente where id = %i", $datos['incidenteid']);
 
-          
+          /* ocultar la valoracion integral */
+          DB::update('incidente' ,
+            [ 'etapados' => 'invisible',
+              'estado'   => 'EN INVESTIGACION INTERNA'],
+            " id = %i",
+            $datos['incidenteid'] );
           require 'clsValoracion_crearTipoRespuesta.php';
 
 
@@ -174,14 +232,7 @@ class clsValoracion_update {
 
           $crearRespuesta->crearInvestigacion($datos['incidenteid'],$perteneceAlprograma);
           
-          //-------------------------------------------------
-          // SE GENERAN LOS DATOS PARA LA LISTA DE CORREOS
-          //------------------------------------------------
-           $usuariosCorreos =  new clsEnviarCorreo();
-           $listaDeCorreos_para_enviar = array();
-           $listaDeCorreos_para_enviar= $usuariosCorreos->listaDeCorreos_depurada(); 
-        
-           //------------------------------------------------
+
 
           $data = array(
             'msg'       => 'ok',

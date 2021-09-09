@@ -20,6 +20,9 @@ class clsValoracion_getValoracion {
 
         $results[0]['folio'] = $folio;
 
+        $datosInvestigacion  = clsValoracion_getValoracion::getInvestigacion($id);
+
+        $results[0]['investigacion'] = $datosInvestigacion;
         return json_encode($results);
 
 
@@ -30,6 +33,29 @@ class clsValoracion_getValoracion {
         $folio = DB::queryFirstField("SELECT folio FROM incidente WHERE id=%i", $id);
         
          return $folio;
+    }
+
+    public function getInvestigacion($id){
+
+        $investigacion = DB::queryFirstField("SELECT count(*) FROM investigacion WHERE incidenteid=%i", $id);
+        
+        $res = false;
+
+        $estado ='';
+
+        $investigacion ==  0 ? $res= false : $res = true;
+
+        if ($res == true ){
+
+            $estado = DB::queryFirstField("SELECT estado FROM investigacion WHERE incidenteid=%i", $id);
+        }
+         
+        $respuesta =  array (
+                      'hayInvestigacion' => $res ,
+                      'estado'           => $estado
+        ) ;
+
+        return $respuesta;
     }
 
 

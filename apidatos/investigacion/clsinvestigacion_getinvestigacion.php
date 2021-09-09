@@ -24,6 +24,8 @@ class clsinvestigacion_getinvestigacion {
         $results[0]['folio'] = $folio;
 
         $results2 = DB::queryFirstRow("SELECT * FROM investigacion where incidenteid =%i " ,$id );
+       
+        $idInvestigacion = $results2["id"];
 
         $cartautorizacion_docto_id = $results2["cartautorizacion_docto"];
         $cartautorizacion_docto_Archivo = clsinvestigacion_getinvestigacion::datoDelArchivo($cartautorizacion_docto_id);
@@ -42,6 +44,16 @@ class clsinvestigacion_getinvestigacion {
         $informe_docto_Archivo = clsinvestigacion_getinvestigacion::datoDelArchivo($informe_docto_id);
         $results[0]["informe_docto_Archivo"] =$informe_docto_Archivo;
 
+
+        $evidenciasDocumento = DB::queryFirstField("select count(*) from evidencias where tipo='Documento' and investigacionid = %i",$idInvestigacion);
+        $evidenciasImagen    = DB::queryFirstField("select count(*) from evidencias where tipo='Imagen'    and investigacionid = %i",$idInvestigacion);
+        $evidenciasAudio     = DB::queryFirstField("select count(*) from evidencias where tipo='Audio'     and investigacionid = %i",$idInvestigacion);
+        $evidenciasVideo     = DB::queryFirstField("select count(*) from evidencias where tipo='Video'     and investigacionid = %i",$idInvestigacion);
+
+        $results[0]["totalDoctos"] = $evidenciasDocumento;
+        $results[0]["totalImagen"] = $evidenciasImagen;
+        $results[0]["totalAudio"]  = $evidenciasAudio;
+        $results[0]["totalVideo"]  = $evidenciasVideo;
 
 
         return json_encode($results);

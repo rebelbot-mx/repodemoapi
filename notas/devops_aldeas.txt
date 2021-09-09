@@ -15,6 +15,10 @@ https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiA
 
 
 /////////////
-
+187.143.175.251
 demo plataform
-az mysql server firewall-rule create --name AllowLocalClient --server mysqlApiAldeas3 --resource-group rdapp2 --start-ip-address=172.69.34.154  --end-ip-address=172.69.34.154
+-firewall database
+az mysql server firewall-rule create --name AllowLocalClient --server sdoaldeas --resource-group rdapp2 --start-ip-address=187.143.175.251  --end-ip-address=187.143.175.251
+
+-- activando el log 
+az webapp log tail --resource-group grupoDeRecursosAldeas --name apialdeasproteccioninfantil2

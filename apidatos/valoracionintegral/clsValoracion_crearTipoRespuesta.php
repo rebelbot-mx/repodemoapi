@@ -190,7 +190,7 @@ class clsValoracion_crearTipoRespuesta
                    
                    try {
                     error_log( "creando registro investigacoin =>> "  );
-                    DB::insert('investigacion', [
+                    $idInvestigacion = DB::insert('investigacion', [
      
                   
                        'incidenteid'           =>  $incidenteid,
@@ -204,7 +204,22 @@ class clsValoracion_crearTipoRespuesta
                        'fechaUpdate' =>  $date,
                        'programa' =>  $idprograma,
                        'estado' => 'EN PROCESO'
-                        ]);                      
+                        ]);  
+                        
+                        /******************************************/
+                        /* ACTUALIZAMOS TABLA DE INCIDENTE
+                         ******************************************/
+                        DB::update( 'incidente',
+                         
+                         [
+                             'tieneInvestigacion' => $idInvestigacion,
+                             'colorInvestigacion' => "yellow"
+                         ], 
+
+                         'id= %i',
+                         $incidenteid  );
+
+                         
                    }catch(Exception $ex) {
                        error_log(" error en insertar investigacion"  . $ex);
                    }
