@@ -36,8 +36,9 @@ class clsValoracion_update {
              
             if ($datos["accion" ] == "cierre_desde_investigacion"){
                  
-              error_log("entradno al cierre desde investigacion");
-                 $this->cerrarProceso_desde_investigacion($datos["incidenteid"]);
+                 error_log("entradno al cierre desde investigacion");
+
+                 $this->cerrarProceso_desde_investigacion($datos);
 
                  $data = array(
                   'msg'       => 'incidente_cerrado_desde_investigacion',
@@ -53,7 +54,7 @@ class clsValoracion_update {
               error_log(" estamos en respuestanormal_desde_investigacion ");
                  
                $datosFaltante = DB::queryFirstRow("select * from valoracionintegral where incidenteid = %i",$datos["incidenteid"]);
-               $datos["textovi" ] =  $datosFaltante["textovi"];
+               //$datos["textovi" ] =  $datosFaltante["textovi"];
                $datos["id" ]      =  $datosFaltante["id"];
 
                error_log(" respuestanormal_desde_investigacion - textovi =  " . $datos["textovi" ]);
