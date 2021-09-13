@@ -28,7 +28,9 @@ class clsevidencias_nuevo {
   
           error_log(" valor de id en nuevoevidencias  : " . $id);
 
-          $data = array('id' => $id);
+          $data = array(
+                        'id'      => $id,
+                        'estado'  => 'guardado');
    
           return json_encode($data);
     }

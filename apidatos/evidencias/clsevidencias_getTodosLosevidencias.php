@@ -17,9 +17,9 @@ class clsevidencias_getTodosLosevidencias {
 
         $results = DB::query("SELECT * FROM evidencias where investigacionid =%i " ,$id );
 
-        $respuesta = array();
+       // $respuesta = array();
 
-    foreach ($results as $key => $value) {
+   /* foreach ($results as $key => $value) {
         # code...
           
         error_log("tipo : " . $value["tipo"]);
@@ -39,9 +39,9 @@ class clsevidencias_getTodosLosevidencias {
 
           $respuesta[]=$value;
 
-    }
+    }*/
 
-        return json_encode($respuesta);
+        return json_encode($results);
 
     }
 }

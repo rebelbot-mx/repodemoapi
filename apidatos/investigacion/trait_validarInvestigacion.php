@@ -32,7 +32,7 @@ trait trait_validarInvestigacion {
 
         $r6 = 0;
         $cuantasPruebas = DB::queryFirstField(" select count(*) from evidencias where investigacionid = %i", $datos["id"]);
-        $cuantasPruebas > 0 ? $r6 =0 : $r=1;
+        $cuantasPruebas > 0 ? $r6 =0 : $r6=1;
 
 
         $suma = 0;
