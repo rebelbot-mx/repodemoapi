@@ -2418,7 +2418,27 @@ $app->options('/api/v0/doctosencloud', function (Request $request, Response $res
 
 
 /****************************************************************************************/
+$app->get('/api/v0/test/dn/{id}', function (Request $request, Response $response,  array $args): Response {
+   
+    $categoria = (string)$args['id'];
 
+    require 'apidatos/test/clstest_dn.php';
+
+    $apiDatos = new clstest_dn;
+    
+    $resultado  = $apiDatos->testDatos($categoria);
+
+    $response->getBody()->write($resultado);
+
+    return $response->withHeader('Content-Type', 'application/json');
+
+    
+});
+
+$app->options('/api/v0/test/dn/{id}', function (Request $request, Response $response): Response {
+    // Retrieve the JSON data
+    return $response;
+});
 /**************************************************************/
 /*$app->options('/api/v0/doctosapoyo', function (Request $request, Response $response): Response {
   // Retrieve the JSON data

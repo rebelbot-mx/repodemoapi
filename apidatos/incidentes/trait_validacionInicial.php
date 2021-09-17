@@ -16,7 +16,7 @@ trait trait_validacionInicial {
 
         error_log("En validacion de valoracion inicial color_etapa_uno " . $color_etapa_uno);
 
-       DB::update ('incidente',['coloretapauno' => $color_etapa_uno ], "id=%i", $id);
+        DB::update ('incidente',['coloretapauno' => $color_etapa_uno ], "id=%i", $id);
    
     }
 

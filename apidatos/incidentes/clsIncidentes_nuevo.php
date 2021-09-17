@@ -2,11 +2,13 @@
 
 //Use swiftmailer;
 require 'traitBuscarId_por_Programa.php';
-
+require 'trait_formarDatosNavegacion.php';
+  
 
 
 class clsIncidentes_nuevo {
-use traiBuscarId_por_Programa;
+use traiBuscarId_por_Programa,
+trait_formarDatosNavegacion;
 
     public function nuevoIncidente($datos,$ROOT_DIR ){
 
@@ -175,10 +177,12 @@ use traiBuscarId_por_Programa;
    $enviarCorreo->enviarCorreo_version_extendida_nuevoIncidente($resultadoFolio["folio"],$ROOT_DIR);
    }
    
+   $datosNavegacion =$this->getDatosNavegacion($id);
    $data = array(
           'id'    => $id,
           'folio' => $resultadoFolio["folio"],
-          'correos' => $listaDeCorreos_para_enviar);
+          'correos' => $listaDeCorreos_para_enviar,
+          'datosNavegacion' => $datosNavegacion);
 
   return json_encode($data);
 

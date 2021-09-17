@@ -1,7 +1,8 @@
 <?php 
 require 'traitSePuedeRealizarElcierre.php';
+require 'trait_formarDatosNavegacion.php';
 class clsIncidentes_getIncidente { 
-     use traitSePuedeRealizarElcierre;
+     use traitSePuedeRealizarElcierre,trait_formarDatosNavegacion;
 
     public function getIncidente($id){
 
@@ -21,6 +22,8 @@ class clsIncidentes_getIncidente {
 
         //$results['estado'] =$estadoSeguimiento;
 
+        $datosNavegacion =$this->getDatosNavegacion($id);
+        $results['datosNavegacion']=$datosNavegacion;
         return json_encode($results);
 
 
