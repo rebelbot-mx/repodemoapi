@@ -1,5 +1,6 @@
 <?php
-
+$raiz = $_ENV['RUTA'];
+require $raiz. '/apidatos/incidentes/trait_formarDatosNavegacion.php';
 require 'trait_tipoDeRespuesta.php';
 require 'trait_seguimientoDenuncia.php';
 require 'trait_seguimientoAbordaje.php';
@@ -8,7 +9,8 @@ class clsSeguimiento_getSeguimiento
  {
     use trait_tipoDeRespuesta,
         trait_seguimientoDenuncia,
-        trait_seguimientoAbordaje;
+        trait_seguimientoAbordaje,
+        trait_formarDatosNavegacion;
 
 
     public function getSeguimiento_x_incidenteid($id){
@@ -27,8 +29,13 @@ class clsSeguimiento_getSeguimiento
       if ($tipoDeRespuesta == "ABORDAJE INTERNO"){
        $datos_denuncia = $this->getSeguimientoAbordaje($id);
     }
-
-    $data = array( 'msg' =>'ok','respuesta' =>  $datos_denuncia );
+      
+      $datosNavegacion  = $this->getDatosNavegacion($id);
+      
+      $data = array( 
+        'msg'             =>  'ok',
+        'respuesta'       =>  $datos_denuncia,
+        'datosNavegacion' =>  $datosNavegacion );
 
 
       return json_encode($data);

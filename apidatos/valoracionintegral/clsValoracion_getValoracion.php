@@ -1,6 +1,8 @@
 <?php 
-
+$raiz = $_ENV['RUTA'];
+require $raiz. '/apidatos/incidentes/trait_formarDatosNavegacion.php';
 class clsValoracion_getValoracion { 
+    use trait_formarDatosNavegacion;
  
     public function getValoracion($id){
 
@@ -22,7 +24,10 @@ class clsValoracion_getValoracion {
 
         $datosInvestigacion  = clsValoracion_getValoracion::getInvestigacion($id);
 
+        $datosNavegacion =$this->getDatosNavegacion($id);
+
         $results[0]['investigacion'] = $datosInvestigacion;
+        $results[0]['datosNavegacion'] = $datosNavegacion;
         return json_encode($results);
 
 

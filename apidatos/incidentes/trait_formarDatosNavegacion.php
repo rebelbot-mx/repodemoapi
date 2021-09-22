@@ -154,8 +154,8 @@ trait trait_formarDatosNavegacion{
       error_log(" existe investigacion " . $existen_INVESTIGACION_res);
       error_log(" colorn_INVESTIGACION  " . $colorn_INVESTIGACION);
     if (  $existen_INVESTIGACION_res == true  && $colorn_INVESTIGACION =='yellow' ){
-      error_log(" existe investigacion " . $existen_INVESTIGACION_res);
-      error_log(" colorn_INVESTIGACION  " . $colorn_INVESTIGACION);
+      error_log(" existe investigacion condicion se cumple" . $existen_INVESTIGACION_res);
+      error_log(" colorn_INVESTIGACION  condicion de cumple " . $colorn_INVESTIGACION);
       $existeVintegral_res = false;
       $colorVintegral = 'yellow';
       error_log("   " . $colorVintegral. " -- " . $existeVintegral_res );
@@ -178,6 +178,26 @@ trait trait_formarDatosNavegacion{
         'colorCierre'        => $color_etapa_cierre,
         'id'                 => $id
     );
+
+
+    error_log("impresion el array de datos de navegacion");
+    error_log($respuesta['verVInicial']);
+    error_log($respuesta['verVIntegral']);
+    error_log($respuesta['verInvestigacion']);
+    error_log($respuesta['verDenuncia']);
+    error_log($respuesta['verAbordaje']);
+
+    error_log($respuesta['verSeguimiento']);
+    error_log($respuesta['verCierre']);
+    error_log($respuesta['colorVinicial']);
+    error_log($respuesta['colorVintegral']);
+    error_log($respuesta['colorInvestigacion']);
+
+    error_log($respuesta['colorDenuncia']);
+    error_log($respuesta['colorAbordaje']);
+    error_log($respuesta['colorSeguimiento']);
+    error_log($respuesta['colorCierre']);
+    error_log($respuesta['id']);
 
 
     return $respuesta;

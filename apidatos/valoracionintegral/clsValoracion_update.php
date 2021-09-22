@@ -3,6 +3,7 @@ $raiz = $_ENV['RUTA'];
 require $raiz. '/apidatos/enviodecorreos/clsEnviarCorreo.php';
 require $raiz. '/apidatos/enviodecorreos/traitTemplate_updateValoracionIntegral.php';
 
+require $raiz. '/apidatos/incidentes/trait_formarDatosNavegacion.php';
 require 'trait_cierreDeIncidente_noconfirmacion.php';
 require 'trait_actualizaTablaValoracion.php';
 require 'trait_crearSeguimiento.php';
@@ -16,7 +17,8 @@ class clsValoracion_update {
       trait_actualizaTablaValoracion,
       trait_crearSeguimiento,
       traitValidarValoracion,
-      trait_cerrarProceso_desde_investigacion;
+      trait_cerrarProceso_desde_investigacion,
+      trait_formarDatosNavegacion;
  
     public function updateValoracion($datos){
 
@@ -40,31 +42,36 @@ class clsValoracion_update {
 
                  $this->cerrarProceso_desde_investigacion($datos);
 
+                $datosNavegacion =$this->getDatosNavegacion($datos["incidenteid"]);                 
+
                  $data = array(
-                  'msg'       => 'incidente_cerrado_desde_investigacion',
-                  'incidente' => 'investigacion',
-                  'correos'   => $listaDeCorreos_para_enviar);
-      
+                  'msg'             => 'incidente_cerrado_desde_investigacion',
+                  'incidente'       => 'investigacion',
+                  'datosNavegacion' => $datosNavegacion,
+                  'correos'         => $listaDeCorreos_para_enviar);
+     
                 return json_encode( $data );
              }// termina acccion de cierre desde investigacion
 
              
              if ($datos["accion" ] == "respuestanormal_desde_investigacion"){
 
-              error_log(" estamos en respuestanormal_desde_investigacion ");
+                error_log(" estamos en respuestanormal_desde_investigacion ");
                  
-               $datosFaltante = DB::queryFirstRow("select * from valoracionintegral where incidenteid = %i",$datos["incidenteid"]);
-               //$datos["textovi" ] =  $datosFaltante["textovi"];
-               $datos["id" ]      =  $datosFaltante["id"];
+                $datosFaltante = DB::queryFirstRow("select * from valoracionintegral where incidenteid = %i",$datos["incidenteid"]);
+                //$datos["textovi" ] =  $datosFaltante["textovi"];
+                $datos["id" ]      =  $datosFaltante["id"];
 
-               error_log(" respuestanormal_desde_investigacion - textovi =  " . $datos["textovi" ]);
-               error_log(" respuestanormal_desde_investigacion - id =       " . $datos["id" ]);
-              /* ocultar la valoracion integral y cambiar el color de la respuesa */
-              DB::update('incidente' ,
-              [ 'etapados'         => 'visible',
-                'colorInvestigacion'=> 'green'],
-              " id = %i",
-              $datos['incidenteid'] );
+                error_log(" respuestanormal_desde_investigacion - textovi =  " . $datos["textovi" ]);
+                error_log(" respuestanormal_desde_investigacion - id =       " . $datos["id" ]);
+               /* ocultar la valoracion integral y cambiar el color de la respuesa */
+               
+               DB::update('incidente' ,
+                        [ 'etapados'            => 'visible',
+                          'colorInvestigacion'  => 'green'],
+                          " id = %i",
+                          $datos['incidenteid'] );
+
                 /* cambiamos el estado de la investigacion a cerrado */
                 DB::update('investigacion' ,
                 [ 'estado'           => 'cerrado'],
@@ -112,16 +119,17 @@ class clsValoracion_update {
 
 
           if ($count == 0){
+            
             error_log("creamos  una respuesta de tipo : " . $datos['tipoderespuesta'] );
             // si no existe un registro creamos una respuesta 
             require 'clsValoracion_crearTipoRespuesta.php';
 
             $crearRespuesta = new clsValoracion_crearTipoRespuesta;
 
-            $args =[ 
-                'id'         => $datos['incidenteid'],
-                'respuesta'  => $datos['tipoderespuesta']
-              ];
+            $args = [ 
+                      'id'         => $datos['incidenteid'],
+                      'respuesta'  => $datos['tipoderespuesta']
+                    ];
 
              $crearRespuesta->crearRespuesta($args);
 
@@ -169,12 +177,13 @@ class clsValoracion_update {
                   ],"id=%i",$datos['incidenteid']);
 
 
-
+                  $datosNavegacion =$this->getDatosNavegacion($datos["incidenteid"]);
 
                   $data = array(
                     'msg'             => 'ok',
                     'incidente'       => 'Si',
                     'tipoderespuesta' => $datos['tipoderespuesta'],
+                    'datosNavegacion' => $datosNavegacion,
                     'correos'         => $listaDeCorreos_para_enviar);
 
                      return json_encode($data);
