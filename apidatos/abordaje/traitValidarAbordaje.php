@@ -62,7 +62,7 @@ trait traitValidarAbordaje{
        $r5 =$this->No_es_Valido_abordaje($seguimiento['notificacionpfn'],'POR CONFIRMAR');
 
        $r6 = 0;
-       $r6 =$this->No_es_Valido_abordaje($seguimiento['notificaciodenunciante'],'POR CONFIRMAR');
+       //$r6 =$this->No_es_Valido_abordaje($seguimiento['notificaciodenunciante'],'POR CONFIRMAR');
 
        $r7 = 0;
        $r7 =$this->No_es_Valido_abordaje($seguimiento['planrecuperacion'],'POR CONFIRMAR');
@@ -75,7 +75,17 @@ trait traitValidarAbordaje{
        $r9 = 0;
        $valida_r9 = str_replace ( '"',  '' , $seguimiento['notificaciondenunciante_docto'] ) ;
       // $r9 =$this->No_es_Valido_abordaje($seguimiento['notificaciondenunciante_docto'],'0');
-      $valida_r9 == 0 ? $r9 = 1 : $r9 = 0;
+      
+     if( $seguimiento['notificaciodenunciante']=='POR CONFIRMAR'){
+           
+        $r9=0;
+
+     }else {
+
+        $valida_r9 == 0 ? $r9 = 1 : $r9 = 0;
+
+     }
+
 
        $r10 = 0;
        $valida_r10 = str_replace ( '"',  '' , $seguimiento['planrecuperacion_docto'] ) ;

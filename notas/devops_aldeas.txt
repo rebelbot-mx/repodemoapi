@@ -16,9 +16,11 @@ https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiA
 
 /////////////
 187.143.175.251
+-- con este comando permito que me pueda conectar a la base de datos desde 
+-- la ip que se autoriza con algun software cliente como mysqlworkbench
 demo plataform
 -firewall database
-az mysql server firewall-rule create --name AllowLocalClient --server sdoaldeas --resource-group rdapp2 --start-ip-address=187.143.175.251  --end-ip-address=187.143.175.251
+az mysql server firewall-rule create --name AllowLocalClient --server sdoaldeas --resource-group rdapp2 --start-ip-address=172.69.35.69  --end-ip-address=172.69.35.69
 
 -- activando el log 
 az webapp log tail --resource-group grupoDeRecursosAldeas --name apialdeasproteccioninfantil2

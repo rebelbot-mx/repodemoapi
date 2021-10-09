@@ -92,10 +92,14 @@ trait trait_validarSeguimiento {
         $notificacionpfn_docto == 0  ? $r10 =1  : $r10=0 ;
 
         $r11 = 0;
-        $notificaciodenunciante == "POR CONFIRMAR" ? $r11 = 1 : $r11 = 0;
+       // $notificaciodenunciante == "POR CONFIRMAR" ? $r11 = 1 : $r11 = 0;
 
         $r12  = 0;
         $notificaciondenunciante_docto == 0 ? $r12 =1 : $r12 =0;
+        
+        if ($notificaciodenunciante == "POR CONFIRMAR"){
+            $r12  = 0;
+        }
 
         $r13 = 0;
         $planrecuperacion  == "POR CONFIRMAR" ? $r13 = 1 : $r13 = 0 ;
