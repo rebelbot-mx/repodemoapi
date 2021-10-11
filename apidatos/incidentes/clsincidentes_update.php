@@ -2,10 +2,13 @@
 //Use swiftmailer;
 require 'traitBuscarId_por_Programa.php';
 require 'trait_formarDatosNavegacion.php';
+require 'trait_validacionInicial.php';
 
 
 class clsincidentes_update {
-use traiBuscarId_por_Programa,trait_formarDatosNavegacion;
+use traiBuscarId_por_Programa,
+    trait_formarDatosNavegacion,
+    trait_validacionInicial;
 
     public function updateIncidente($datos,$ROOT_DIR ){
 
@@ -115,6 +118,10 @@ use traiBuscarId_por_Programa,trait_formarDatosNavegacion;
    $datosNavegacion =$this->getDatosNavegacion($datos['id']);
    $data = array('id'              => $datos['id'],
                  'datosNavegacion' => $datosNavegacion);
+
+
+   $this->validar_valoracionInicial( $datos['id'] );
+
   return json_encode($data);
 
 
