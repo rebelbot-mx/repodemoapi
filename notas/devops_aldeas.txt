@@ -20,7 +20,12 @@ https://rebelBotDeploytwo@apialdeasproteccioninfantil.scm.azurewebsites.net/apiA
 -- la ip que se autoriza con algun software cliente como mysqlworkbench
 demo plataform
 -firewall database
-az mysql server firewall-rule create --name AllowLocalClient --server sdoaldeas --resource-group rdapp2 --start-ip-address=172.69.35.69  --end-ip-address=172.69.35.69
+az mysql server firewall-rule create --name AllowLocalClient --server sdoaldeas --resource-group rdapp2 --start-ip-address=187.132.101.190  --end-ip-address=187.132.101.190
+
+az mysql server firewall-rule create --name AllowLocalClient --server sdoaldeas --resource-group rdapp2 --start-ip-address=187.143.229.164  --end-ip-address=187.143.229.164
+
+
+
 
 -- activando el log 
 az webapp log tail --resource-group grupoDeRecursosAldeas --name apialdeasproteccioninfantil2

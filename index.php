@@ -110,7 +110,7 @@ $app->get('/',function(Request $request , Response $response):Response{
    
      
 
-    $response->getBody()->write("api activa version 1.1.4 demo 8 de octubre 733");
+    $response->getBody()->write("api activa version 1.1.4 produccion 19 de octubre");
 
     return $response;
 
