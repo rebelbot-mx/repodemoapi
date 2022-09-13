@@ -39,11 +39,25 @@ use traitEstadoDelSeguimiento,
          join valoracionintegral v on v.incidenteid = i.id 
          join seguimiento s on s.incidenteid = i.id where i.id = %i",$id);
 
+
+         $buscarElaborador                   = $results[0]['usuarioCreador'];
+         error_log(" valor  buscarElaborador: " .   $buscarElaborador);
+
+         $nombreUsuarioCreador               =  DB::queryFirstField("select nombre from usuarios where id=%i", $buscarElaborador );
+         $results[0]['nombreUsuarioCreador'] =   $nombreUsuarioCreador ;
+
+
+         error_log(" valor  nombreUsuarioCreador: " .   $nombreUsuarioCreador);
+
+         error_log(" valor  nombreUsuarioCreador: " .   $nombreUsuarioCreador);
+
+
         $programa =  $results[0]['programa'];
         $nombrePrograma  =  DB::queryFirstField(" select abreviatura from programas where id =%i",  $programa);
         $valor = gettype($results);
 
         error_log(" valor : " . $valor);
+
         /*
         
          'plan'                         =>  clsSeguimiento_update::eliminar_doblecomillas($datos['plan']),
@@ -64,6 +78,8 @@ use traitEstadoDelSeguimiento,
          'plan_docto'   
         
         */
+
+
         $results[0]['estadoIncidente']=  DB::queryFirstField("select estado from incidente where  id  = %i",$id); 
    
         $results[0]['nombrePrograma']=$nombrePrograma;
@@ -103,6 +119,9 @@ use traitEstadoDelSeguimiento,
 
        $testigos = DB::query("select * from testigoscierre where incidenteid = %i",$id);
        error_log(" TESTIGOS ");
+
+
+      // $colaboradores =  DB::query("select * from colaboradores where incidenteid = %i",$id);
        
        $results[0]['testigos']=$testigos;
 

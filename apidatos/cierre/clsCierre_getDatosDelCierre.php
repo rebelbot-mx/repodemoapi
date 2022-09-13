@@ -27,6 +27,15 @@ use traitEstadoDelSeguimiento;
          join valoracionintegral v on v.incidenteid = i.id 
          join seguimiento s on s.incidenteid = i.id where i.id = %i",$id);
 
+         $buscarElaborador = $results[0]['usuarioCreador'];
+          error_log(" valor de buscarELaborador : " .   $buscarElaborador);
+        
+          $nombreUsuarioCreador  = DB::queryFirstField("select nombre from usuarios where id=%i", $buscarElaborador );
+          error_log(" valor de nombreUsuarioCreador : " .  $nombreUsuarioCreador );
+        
+          $results[0]['nombreUsuarioCreador'] =   $nombreUsuarioCreador ;
+      // $results[0]['nombreUsuarioCreador'] =   $nombreUsuarioCreador ;
+
         $programa =  $results[0]['programa'];
         $nombrePrograma  =  DB::queryFirstField(" select abreviatura from programas where id =%i",  $programa);
         $valor = gettype($results);
@@ -137,6 +146,7 @@ use traitEstadoDelSeguimiento;
        $results[0]['testigos']=$testigos;
 
        $results[0]['estadoseguimiento'] = $this->estadoDelSeguimiento($id);
+
 
 
         return json_encode($results);
