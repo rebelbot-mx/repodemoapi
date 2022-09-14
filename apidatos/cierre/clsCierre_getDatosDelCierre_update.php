@@ -40,7 +40,12 @@ use traitEstadoDelSeguimiento,
          join seguimiento s on s.incidenteid = i.id where i.id = %i",$id);
 
 
-         $buscarElaborador                   = $results[0]['usuarioCreador'];
+         $results_usuarioCreador = DB::query(
+            "select * from incidente where id = %i", $id 
+         );
+
+
+         $buscarElaborador                   = $results_usuarioCreador[0]['usuarioCreador'];
          error_log(" valor  buscarElaborador: " .   $buscarElaborador);
 
          $nombreUsuarioCreador               =  DB::queryFirstField("select nombre from usuarios where id=%i", $buscarElaborador );
